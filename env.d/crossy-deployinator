@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ -z "$CROSSY_DEPLOYINATOR_HOST" ]; then
+  export CROSSY_DEPLOYINATOR_HOST='deployinate.crossy.io'
+fi

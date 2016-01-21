@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ -z "$DOCKER_HOST" ]; then
+  export DOCKER_HOST=tcp://localhost:2375
+fi

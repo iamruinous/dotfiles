@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export GOPATH=$HOME/.go
+if [ ! -d $GOPATH ]; then
+  mkdir -p $GOPATH
+fi
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
