@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/Projects/go
 if [ ! -d $GOPATH ]; then
   mkdir -p $GOPATH
 fi
