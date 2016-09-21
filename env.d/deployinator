@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$DEPLOYINATOR_UUID" ]; then
+  export DEPLOYINATOR_UUID='fff1572a-4a10-4c88-a80e-f82f4dd4d9af'
+fi
+
+if [ -z "$DEPLOYINATOR_TOKEN" ]; then
+  export DEPLOYINATOR_TOKEN='042c520f81b60884ac2920d51661a8d38a0e55db'
+fi
+
+if [ -z "$DEPLOYINATOR_DOCKER_PASS" ]; then
+  export DEPLOYINATOR_DOCKER_PASS='aeofiaweofi'
+fi
+
+if [ -z "$DEPLOYINATOR_HOST" ]; then
+  export DEPLOYINATOR_HOST='deployinate.octoblu.com'
+fi
+
+if [ -z "$DEPLOYINATOR_QUAY_TOKEN" ]; then
+  export DEPLOYINATOR_QUAY_TOKEN='Pmmu21WDBHVI6CW5ytJ8AjQS1muV0q4eDn8Q14bf'
+fi

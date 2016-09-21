@@ -9,6 +9,13 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'airblade/vim-gitgutter'
+
+Bundle 'gosukiwi/vim-atom-dark'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -34,13 +41,25 @@ set softtabstop=2
 set expandtab
 syntax on
 
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
 " Always show statusline
 set laststatus=2
 
 " Use 256 colours (Use this setting only if your terminal supports 256
 " colours)
 set t_Co=256
+set shell=bash
+colorscheme atom-dark
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
