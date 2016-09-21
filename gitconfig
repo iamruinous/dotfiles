@@ -2,6 +2,7 @@
 [core]
 	user = Jade Meskill
 	email = jade.meskill@gmail.com
+	editor = /usr/bin/vim
 [push]
 	default = simple
 [user]
