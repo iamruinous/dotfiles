@@ -113,6 +113,6 @@ let g:gutentags_project_root_finder = 'ProjectRootGuess'
 let g:gutentags_ctags_tagfile = '.tags'
 set tags=./.tags;./tags
 set encoding=utf8
-set guifont=FiraCode\ Nerd\ Font\ 18
+set guifont=FuraCode\ Nerd\ Font\ 18
 let NERDTreeMapOpenInTab='<ENTER>'
 colorscheme minimalist 

@@ -2,6 +2,7 @@ package bang-bang
 package battery
 package brew
 package config
+package direnv
 package envious
 package foreign-env
 package https://github.com/iamruinous/plugin-golang-binpath
