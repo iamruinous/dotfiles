@@ -32,6 +32,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
+\   'json': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 
