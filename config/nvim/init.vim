@@ -12,11 +12,15 @@ endfunction
 " Plug 'neomake/neomake', { 'on': 'Neomake' }
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/indentLine'
+Plug 'dbakker/vim-projectroot'
 
 "Javascript Plugins
 Plug 'sheerun/vim-polyglot'
@@ -69,6 +73,10 @@ endif
 " Search and Replace
 nmap <Leader>s :%s//g<Left><Left>
 
+nmap <Leader>t :Files<CR>
+nmap <Leader>r :BTags<CR>
+nmap <Leader>/ :TComment<CR>
+
 set showmatch           " Show matching brackets.
 set number              " Show the line numbers on the left side.
 set formatoptions+=o    " Continue comment marker in new lines.
@@ -95,3 +103,7 @@ set nostartofline       " Do not jump to first character with page commands.
 
 let g:netrw_banner = 0
 let g:netrw_browse_split = 3
+let g:gutentags_generate_on_new = 1
+let g:gutentags_project_root_finder = 'ProjectRootGuess'
+let g:gutentags_ctags_tagfile = '.tags'
+set tags=./.tags;./tags
