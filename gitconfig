@@ -2,12 +2,13 @@
 [core]
 	user = Jade Meskill
 	email = jade.meskill@gmail.com
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/nvim
 [push]
 	default = tracking
 [user]
 	name = Jade Meskill
 	email = jade.meskill@gmail.com
+	signkey = CA5500A8F3A920A0
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustexitcode = true
@@ -27,3 +28,5 @@
 	required = true
 [branch]
 	autosetupmerge = true
+[commit]
+	gpgsign = true
