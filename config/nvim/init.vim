@@ -10,6 +10,9 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 " Plug 'neomake/neomake', { 'on': 'Neomake' }
+Plug 'dikiaap/minimalist'
+Plug 'scrooloose/nerdtree'
+Plug 'Nopik/vim-nerdtree-direnter'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -30,6 +33,8 @@ Plug 'w0rp/ale'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
+" Load Last
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -107,3 +112,7 @@ let g:gutentags_generate_on_new = 1
 let g:gutentags_project_root_finder = 'ProjectRootGuess'
 let g:gutentags_ctags_tagfile = '.tags'
 set tags=./.tags;./tags
+set encoding=utf8
+set guifont=FiraCode\ Nerd\ Font\ 18
+let NERDTreeMapOpenInTab='<ENTER>'
+colorscheme minimalist 
