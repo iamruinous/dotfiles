@@ -11,6 +11,5 @@ package https://github.com/iamruinous/plugin-yarn-binpath
 package hub
 package osx
 package rbenv
-package vundle
 theme clearance
 theme default

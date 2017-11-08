@@ -3,6 +3,7 @@
 --exclude=log
 --exclude=tmp
 --exclude=node_modules
+--exclude=vendor
 
 --languages=-javascript,sql
 

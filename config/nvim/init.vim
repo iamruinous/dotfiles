@@ -6,10 +6,11 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin()
+
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-" Plug 'neomake/neomake', { 'on': 'Neomake' }
+
 Plug 'dikiaap/minimalist'
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
@@ -24,6 +25,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/indentLine'
 Plug 'dbakker/vim-projectroot'
+Plug 'mileszs/ack.vim'
 
 "Javascript Plugins
 Plug 'sheerun/vim-polyglot'
@@ -42,6 +44,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'json': ['prettier'],
+\   'go': ['gofmt'],
 \}
 let g:ale_fix_on_save = 1
 
@@ -108,11 +111,16 @@ set nostartofline       " Do not jump to first character with page commands.
 
 let g:netrw_banner = 0
 let g:netrw_browse_split = 3
+
 let g:gutentags_generate_on_new = 1
 let g:gutentags_project_root_finder = 'ProjectRootGuess'
 let g:gutentags_ctags_tagfile = '.tags'
 set tags=./.tags;./tags
+
 set encoding=utf8
 set guifont=FuraCode\ Nerd\ Font\ 18
 let NERDTreeMapOpenInTab='<ENTER>'
 colorscheme minimalist 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
