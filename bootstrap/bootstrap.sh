@@ -48,3 +48,12 @@ brew cask install \
 mkdir -p ~/.bin ~/go/bin ~/config/yarn/global
 
 curl -L https://get.oh-my.fish | fish
+yarn config set prefix ~/.config/yarn/global
+
+yarn global add \
+  eslint \
+  prettier
+
+go get -u github.com/golang/lint/golint
+
+pip3 install neovim
