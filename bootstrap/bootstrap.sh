@@ -40,6 +40,7 @@ brew install \
   pinentry-mac
 
 brew cask install \
+  gitify \
   font-firacode-nerd-font \
   font-hack \
   font-source-code-pro \
@@ -55,5 +56,6 @@ yarn global add \
   prettier
 
 go get -u github.com/golang/lint/golint
+go get -u github.com/alecthomas/gometalinter
 
 pip3 install neovim

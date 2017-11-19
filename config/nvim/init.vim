@@ -41,12 +41,19 @@ call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 
+let g:ale_linters = {'go': ['golint', 'go vet', 'gofmt', 'gosimple', 'gometalinter']}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'json': ['prettier'],
 \   'go': ['gofmt'],
 \}
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_text_changed = 'normal'
 let g:ale_fix_on_save = 1
+let g:ale_go_gometalinter_options = '--disable-all --enable=goimports --enable=gotype --enable=deadcode --enable=errcheck --enable=unused --enable=ineffassign'
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
@@ -81,7 +88,7 @@ endif
 " Search and Replace
 nmap <Leader>s :%s//g<Left><Left>
 
-nmap <Leader>t :Files<CR>
+nmap <Leader>t :GFiles<CR>
 nmap <Leader>r :BTags<CR>
 nmap <Leader>/ :TComment<CR>
 
