@@ -44,7 +44,28 @@ brew cask install \
   font-firacode-nerd-font \
   font-hack \
   font-source-code-pro \
-  font-fira-code
+  font-fira-code \
+  omnigraffle \
+  firefox \
+  the-unarchiver \
+  wavebox \
+  steam \
+  transmission \
+  keybase \
+  kaleidoscope \
+  google-chrome \
+  dropbox \
+  docker \
+  iterm2 \
+  cleanmymac \
+  sketch \
+  slack \
+  spotify \
+  1password \
+  transmit \
+  private-internet-access \
+  virtualbox \
+  virtualbox-extension-pack
 
 mkdir -p ~/.bin ~/go/bin ~/config/yarn/global
 
