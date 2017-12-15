@@ -31,3 +31,5 @@
 	autosetupmerge = true
 [commit]
 	gpgsign = true
+[remote "origin"]
+	prune = true
