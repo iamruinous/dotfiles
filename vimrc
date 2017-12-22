@@ -14,6 +14,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'kburdett/vim-nuuid'
 
 Bundle 'gosukiwi/vim-atom-dark'
 

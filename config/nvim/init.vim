@@ -26,6 +26,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/indentLine'
 Plug 'dbakker/vim-projectroot'
 Plug 'mileszs/ack.vim'
+Plug 'kburdett/vim-nuuid'
 
 "Javascript Plugins
 Plug 'sheerun/vim-polyglot'

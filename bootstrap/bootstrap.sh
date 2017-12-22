@@ -63,6 +63,8 @@ brew cask install \
   spotify \
   1password \
   transmit \
+  obs \
+  vlc \
   private-internet-access \
   virtualbox \
   virtualbox-extension-pack
