@@ -13,6 +13,7 @@ brew install \
   xz \
   jq \
   ipfs \
+  mosh \
   ctags \
   curl \
   dep \
@@ -36,10 +37,14 @@ brew install \
   python3 \
   neovim \
   heroku \
+  shpotify \
   gpg-agent \
   pinentry-mac
 
 brew cask install \
+  little-snitch \
+  teamviewer \
+  screenflow \
   gitify \
   font-firacode-nerd-font \
   font-hack \
