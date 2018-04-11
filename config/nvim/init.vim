@@ -27,6 +27,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'dbakker/vim-projectroot'
 Plug 'mileszs/ack.vim'
 Plug 'kburdett/vim-nuuid'
+" Plug 'lervag/vimtex'
 
 " YAML Plugins
 Plug 'stephpy/vim-yaml'
@@ -90,7 +91,7 @@ if maparg('<C-L>', 'n') ==# ''
 endif
 
 " Search and Replace
-nmap <Leader>s :%s//g<Left><Left>
+nmap <Leader>s :%s//<Left>
 
 nmap <Leader>t :GFiles<CR>
 nmap <Leader>r :BTags<CR>
@@ -135,3 +136,5 @@ colorscheme minimalist
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+" let g:polyglot_disabled = ['latex']
+autocmd bufreadpre *.tex setlocal textwidth=60

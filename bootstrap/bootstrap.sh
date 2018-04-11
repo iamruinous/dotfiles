@@ -4,6 +4,7 @@ brew tap thoughtbot/formulae
 brew tap caskroom/fonts
 
 brew install \
+  awscli \
   direnv \
   rbenv \
   rcm \
@@ -42,6 +43,7 @@ brew install \
   pinentry-mac
 
 brew cask install \
+  fission \
   little-snitch \
   teamviewer \
   screenflow \
@@ -69,10 +71,14 @@ brew cask install \
   1password \
   transmit \
   obs \
+  java \
   vlc \
   private-internet-access \
   virtualbox \
   virtualbox-extension-pack
+
+# after java
+brew install bfg
 
 mkdir -p ~/.bin ~/go/bin ~/config/yarn/global
 
