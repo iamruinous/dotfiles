@@ -1,10 +1,6 @@
 #include "planck.h"
 #include "action_layer.h"
-#ifdef AUDIO_ENABLE
-#include "audio.h"
-#endif
 #include "eeconfig.h"
-#include "keymap_plover.h"
 #include "version.h"
 
 extern keymap_config_t keymap_config;
@@ -12,12 +8,10 @@ extern keymap_config_t keymap_config;
 // Keymap layers
 enum planck_layers {
   BASE_QWERTY_LAYER,
-  BASE_COLEMAK_LAYER,
   LOWER_LAYER,
   RAISE_LAYER,
   NAV_LAYER,
   GUI_LAYER,
-  STENO_LAYER,
   KEYBOARD_LAYER
 };
 
@@ -46,12 +40,8 @@ enum planck_layers {
 // Custom key codes
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
-  COLEMAK,
-  STENO,
   LOWER,
   RAISE,
-  PV_EXIT,
-  PV_LOOK,
   SEND_VERSION,
   SEND_MAKE
 };
@@ -75,24 +65,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {CTL_T(KC_ESC),          KC_A,           KC_S,    KC_D,    KC_F,  KC_G,   KC_H,    KC_J,  KC_K,    KC_L,    LT(NAV_LAYER, KC_SCLN), CTL_T(KC_ENT)},
     {KC_LSPO,                KC_Z,           KC_X,    KC_C,    KC_V,  KC_B,   KC_N,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,                KC_RSPC},
     {LT(GUI_LAYER, KC_LBRC), ALL_T(KC_RBRC), KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_BSPC, RAISE, KC_RGUI, KC_RALT, ALL_T(KC_LBRC),         LT(GUI_LAYER, KC_RBRC)}
-  },
-
-  /* Base layer (Colemak)
-   *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │     │  Q  │  W  │  F  │  P  │  G  │  J  │  L  │  U  │  Y  │  ;  │     │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │  A  │  R  │  S  │  T  │  D  │  H  │  N  │  E  │  I  │O Nav│     │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │  Z  │  X  │  C  │  V  │  B  │  K  │  M  │     │     │     │     │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │     │     │     │           │     │     │     │     │     │
-   *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
-   */
-  [BASE_COLEMAK_LAYER] = {
-    {_______, KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,             _______},
-    {_______, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    LT(NAV_LAYER, KC_O), _______},
-    {_______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    _______, _______, _______,             _______},
-    {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,             _______}
   },
 
   /* Numeric layer
@@ -172,29 +144,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {_______, KC_MPRV, KC_MPLY, KC_MNXT, KC_SLCK, KC_SLEP, KC_SLEP, KC_PAUS, KC_MUTE, KC_VOLD, KC_VOLU, _______}
   },
 
-  /* Base layer (Qwerty-Steno)
-   *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
-   *                │  #  │  #  │  #  │  #  │  #  │  #  │  #  │  #  │  #  │  #  │  #  │  #  │
-   *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
-   *                │Look │     │  T  │  P  │  H  │           │  F  │  P  │  L  │  T  │  D  │
-   *                │ -up │  S  ├─────┼─────┼─────┤     *     ├─────┼─────┼─────┼─────┼─────┤
-   *                │     │     │  K  │  W  │  R  │           │  R  │  B  │  G  │  S  │  Z  │
-   *                ├─────┼─────┼─────┼─────┼─────┼───────────┼─────┼─────┼─────┼─────┼─────┤
-   *                │Exit │     │     │  A  │  O  │           │  E  │  U  │     │     │     │
-   *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
-   */
-  [STENO_LAYER] = {
-    {PV_NUM,  PV_NUM,  PV_NUM,  PV_NUM, PV_NUM, PV_NUM,  PV_NUM,  PV_NUM, PV_NUM, PV_NUM,  PV_NUM,  PV_NUM},
-    {PV_LOOK, PV_LS,   PV_LT,   PV_LP,  PV_LH,  PV_STAR, PV_STAR, PV_RF,  PV_RP,  PV_RL,   PV_RT,   PV_RD},
-    {PV_LOOK, PV_LS,   PV_LK,   PV_LW,  PV_LR,  PV_STAR, PV_STAR, PV_RR,  PV_RB,  PV_RG,   PV_RS,   PV_RZ},
-    {PV_EXIT, ___x___, ___x___, PV_A,   PV_O,   KC_SPC,  KC_BSPC, PV_E,   PV_U,   ___x___, ___x___, ___x___}
-  },
-
   /* Keyboard settings layer
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
    *    Firmware -- │     │Reset│Make │     │     │     │     │     │     │     │Vers │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *   Set layer -- │     │Qwert│Colem│Steno│     │     │     │     │     │     │     │     │
+   *   Set layer -- │     │Qwert│     │     │     │     │     │     │     │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *       Audio -- │     │Voic-│Voic+│Mus +│Mus -│MIDI+│MIDI-│     │     │Aud +│Aud -│     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
@@ -204,73 +158,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [KEYBOARD_LAYER] = {
     {___x___, RESET,   SEND_MAKE, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, SEND_VERSION, ___x___},
-    {___x___, QWERTY,  COLEMAK,   STENO,   ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,      ___x___},
+    {___x___, QWERTY,  ___x___,   ___x___,   ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,      ___x___},
     {___x___, MUV_DE,  MUV_IN,    MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  ___x___, ___x___, AU_ON,   AU_OFF,       ___x___},
     {___x___, ___x___, AG_SWAP,   AG_NORM, LOWER,   BL_TOGG, BL_TOGG, RAISE,   BL_TOGG, BL_DEC,  BL_INC,       ___x___}
   }
 };
-
-#ifdef AUDIO_ENABLE
-float plover_song[][2]    = SONG(PLOVER_SOUND);
-float plover_gb_song[][2] = SONG(PLOVER_GOODBYE_SOUND);
-#endif
-
-// Send PHROPB ({PLOVER:RESUME}).
-void plover_resume(void) {
-  register_code(PV_LP);
-  register_code(PV_LH);
-  register_code(PV_LR);
-  register_code(PV_O);
-  register_code(PV_RP);
-  register_code(PV_RB);
-  unregister_code(PV_LP);
-  unregister_code(PV_LH);
-  unregister_code(PV_LR);
-  unregister_code(PV_O);
-  unregister_code(PV_RP);
-  unregister_code(PV_RB);
-}
-
-// Send PHROF ({PLOVER:SUSPEND}).
-void plover_suspend(void) {
-  register_code(PV_LP);
-  register_code(PV_LH);
-  register_code(PV_LR);
-  register_code(PV_O);
-  register_code(PV_RF);
-  unregister_code(PV_LP);
-  unregister_code(PV_LH);
-  unregister_code(PV_LR);
-  unregister_code(PV_O);
-  unregister_code(PV_RF);
-}
-
-// Send PHROBG ({PLOVER:LOOKUP}).
-void plover_lookup(void) {
-  register_code(PV_LP);
-  register_code(PV_LH);
-  register_code(PV_LR);
-  register_code(PV_O);
-  register_code(PV_RB);
-  register_code(PV_RG);
-  unregister_code(PV_LP);
-  unregister_code(PV_LH);
-  unregister_code(PV_LR);
-  unregister_code(PV_O);
-  unregister_code(PV_RB);
-  unregister_code(PV_RG);
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(BASE_QWERTY_LAYER);
-      }
-      return false;
-    case COLEMAK:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(BASE_COLEMAK_LAYER);
       }
       return false;
     case LOWER:
@@ -289,39 +187,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(RAISE_LAYER);
         update_tri_layer(LOWER_LAYER, RAISE_LAYER, KEYBOARD_LAYER);
-      }
-      return false;
-    case STENO:
-      if (record->event.pressed) {
-#ifdef AUDIO_ENABLE
-        stop_all_notes();
-        PLAY_SONG(plover_song);
-#endif
-        layer_off(RAISE_LAYER);
-        layer_off(LOWER_LAYER);
-        layer_off(KEYBOARD_LAYER);
-        layer_on(STENO_LAYER);
-        if (!eeconfig_is_enabled()) {
-          eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-        plover_resume();
-      }
-      return false;
-    case PV_EXIT:
-      if (record->event.pressed) {
-#ifdef AUDIO_ENABLE
-        PLAY_SONG(plover_gb_song);
-#endif
-        plover_suspend();
-        layer_off(STENO_LAYER);
-      }
-      return false;
-    case PV_LOOK:
-      if (record->event.pressed) {
-        plover_lookup();
       }
       return false;
     case SEND_VERSION:
