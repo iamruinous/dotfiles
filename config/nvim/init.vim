@@ -7,10 +7,6 @@ endif
 
 call plug#begin()
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
 Plug 'dikiaap/minimalist'
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
@@ -21,7 +17,13 @@ Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/indentLine'
 Plug 'dbakker/vim-projectroot'
@@ -68,7 +70,7 @@ let g:deoplete#enable_refresh_always = 1
 let g:deoplete#max_abbr_width = 0
 let g:deoplete#max_menu_width = 0
 let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 
 let g:tern_request_timeout = 1
 let g:tern_request_timeout = 6000
@@ -127,6 +129,7 @@ let g:netrw_browse_split = 3
 let g:gutentags_generate_on_new = 1
 let g:gutentags_project_root_finder = 'ProjectRootGuess'
 let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_file_list_command = 'rg --files'
 set tags=./.tags;./tags
 
 set encoding=utf8

@@ -5,6 +5,7 @@ package config
 package direnv
 package envious
 package foreign-env
+package https://github.com/iamruinous/plugin-cargo-binpath
 package https://github.com/iamruinous/plugin-golang-binpath
 package https://github.com/iamruinous/plugin-home-binpath
 package https://github.com/iamruinous/plugin-yarn-binpath

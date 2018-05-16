@@ -4,6 +4,7 @@ brew tap thoughtbot/formulae
 brew tap caskroom/fonts
 
 brew install \
+  ripgrep \
   awscli \
   direnv \
   rbenv \
