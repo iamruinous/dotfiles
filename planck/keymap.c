@@ -8,6 +8,7 @@ extern keymap_config_t keymap_config;
 // Keymap layers
 enum planck_layers {
   BASE_QWERTY_LAYER,
+  PROGRAM_LAYER,
   LOWER_LAYER,
   RAISE_LAYER,
   NAV_LAYER,
@@ -40,6 +41,7 @@ enum planck_layers {
 // Custom key codes
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
+  PROGRAM,
   LOWER,
   RAISE,
   SEND_VERSION,
@@ -48,6 +50,24 @@ enum planck_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Base layer (Qwerty)
+   *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+   *                │  ⇥  │  Q  │  W  │  E  │  R  │  T  │  Y  │  U  │  I  │  O  │  P  │Bkspc│
+   *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+   *                │ Esc │  A  │  S  │  D  │  F  │  G  │  H  │  J  │  K  │  L  │; Nav│Enter│
+   *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+   *                │  ⇧  │  Z  │  X  │  C  │  V  │  B  │  N  │  M  │  ,  │  .  │  /  │  ⇧  │ 
+   *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
+   *                │ GUI │  ⌃  │  ⌥  │  ⌘  │  ↓  │   Space   │  ↑  │  ←  │  ↓  │  ↑  │  →  │
+   *                └─────┴─────┴─────┴─────┴─────┴───────────┴─────┴─────┴─────┴─────┴─────┘
+   */
+  [BASE_QWERTY_LAYER] = {
+    {KC_TAB,                 KC_Q,           KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,                   KC_BSPC},
+    {KC_ESC,                 KC_A,           KC_S,    KC_D,    KC_F,  KC_G,   KC_H,    KC_J,  KC_K,    KC_L,    LT(NAV_LAYER, KC_SCLN), KC_ENT},
+    {KC_LSPO,                KC_Z,           KC_X,    KC_C,    KC_V,  KC_B,   KC_N,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,                KC_RSPC},
+    {LT(GUI_LAYER, KC_LBRC), KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_BSPC, RAISE, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT},
+  },
+
+  /* Base layer (Qwerty Programmer)
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
    *                │  ⇥  │  Q  │  W  │  E  │  R  │  T  │  Y  │  U  │  I  │  O  │  P  │  '  │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
@@ -60,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                        /                                                     /
    *   Tap for ] [ --------'-----------------------------------------------------'
    */
-  [BASE_QWERTY_LAYER] = {
+  [PROGRAM_LAYER] = {
     {KC_TAB,                 KC_Q,           KC_W,    KC_E,    KC_R,  KC_T,   KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,                   KC_QUOT},
     {CTL_T(KC_ESC),          KC_A,           KC_S,    KC_D,    KC_F,  KC_G,   KC_H,    KC_J,  KC_K,    KC_L,    LT(NAV_LAYER, KC_SCLN), CTL_T(KC_ENT)},
     {KC_LSPO,                KC_Z,           KC_X,    KC_C,    KC_V,  KC_B,   KC_N,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,                KC_RSPC},
@@ -148,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *                ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
    *    Firmware -- │     │Reset│Make │     │     │     │     │     │     │     │Vers │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-   *   Set layer -- │     │Qwert│     │     │     │     │     │     │     │     │     │     │
+   *   Set layer -- │     │Qwert│Prog │     │     │     │     │     │     │     │     │     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
    *       Audio -- │     │Voic-│Voic+│Mus +│Mus -│MIDI+│MIDI-│     │     │Aud +│Aud -│     │
    *                ├─────┼─────┼─────┼─────┼─────┼─────┴─────┼─────┼─────┼─────┼─────┼─────┤
@@ -158,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [KEYBOARD_LAYER] = {
     {___x___, RESET,   SEND_MAKE, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, SEND_VERSION, ___x___},
-    {___x___, QWERTY,  ___x___,   ___x___,   ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,      ___x___},
+    {___x___, QWERTY,  PROGRAM,   ___x___,   ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___,      ___x___},
     {___x___, MUV_DE,  MUV_IN,    MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  ___x___, ___x___, AU_ON,   AU_OFF,       ___x___},
     {___x___, ___x___, AG_SWAP,   AG_NORM, LOWER,   BL_TOGG, BL_TOGG, RAISE,   BL_TOGG, BL_DEC,  BL_INC,       ___x___}
   }
@@ -169,6 +189,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(BASE_QWERTY_LAYER);
+      }
+      return false;
+    case PROGRAM:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(PROGRAM_LAYER);
       }
       return false;
     case LOWER:
