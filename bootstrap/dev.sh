@@ -1,10 +1,9 @@
 #!/bin/bash
 
 brew tap \
-  caskroom/fonts \
   heroku/brew \
   osx-cross/avr \
-  px4/px4 \
+  PX4/homebrew-px4 \
 
 # golang
 brew install \
@@ -20,7 +19,6 @@ brew install \
 
 # rust
 brew install \
-  cargo \
   rust
 
 # python
@@ -44,6 +42,7 @@ brew install \
   gnupg \
   gpg-agent \
   gron \
+  heroku \
   htop \
   jsonlint \
   jq \
