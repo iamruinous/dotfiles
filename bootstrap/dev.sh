@@ -56,3 +56,8 @@ brew install \
   webp \
   wget \
   xz
+
+go get -u github.com/golang/lint/golint
+go get -u github.com/alecthomas/gometalinter
+
+pip3 install neovim yamllint
