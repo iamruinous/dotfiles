@@ -1,19 +1,20 @@
 #!/bin/bash
 
+brew tap thoughtbot/formulae
+brew install rcm
+
 brew tap \
   caskroom/fonts \
   heroku/brew \
   homebrew/core \
   osx-cross/avr \
   px4/px4 \
-  thoughtbot/formulae
 
 brew install \
   ripgrep \
   awscli \
   direnv \
   rbenv \
-  rcm \
   mongodb \
   tmux \
   watch \
