@@ -47,7 +47,7 @@ brew install \
   htop \
   jsonlint \
   jq \
-  pinentry-mac
+  pinentry-mac \
   p7zip \
   ssh-copy-id \
   sqlite \
@@ -55,4 +55,4 @@ brew install \
   watch \
   webp \
   wget \
-  xz \
+  xz
