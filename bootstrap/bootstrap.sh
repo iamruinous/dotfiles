@@ -1,8 +1,6 @@
 #!/bin/bash
 
 brew tap \
-  caskroom/cask \
-  caskroom/drivers \
   caskroom/fonts \
   heroku/brew \
   homebrew/core \
