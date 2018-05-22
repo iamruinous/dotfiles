@@ -1,7 +1,14 @@
 #!/bin/bash
 
-brew tap thoughtbot/formulae
-brew tap caskroom/fonts
+brew tap \
+  caskroom/cask \
+  caskroom/drivers \
+  caskroom/fonts \
+  heroku/brew \
+  homebrew/core \
+  osx-cross/avr \
+  px4/px4 \
+  thoughtbot/formulae
 
 brew install \
   ripgrep \
@@ -22,6 +29,8 @@ brew install \
   elixir \
   fish \
   hub \
+  p7zip \
+  webp \
   ssh-copy-id \
   wget \
   redis \
@@ -29,6 +38,8 @@ brew install \
   node \
   yarn \
   go \
+  gx \
+  gx-go \
   git \
   gnupg \
   gpg-agent \
@@ -36,50 +47,63 @@ brew install \
   jsonlint \
   rust \
   sqlite \
-  python3 \
+  python \
+  python\@2 \
   neovim \
   heroku \
   shpotify \
-  gpg-agent \
+  gron \
+  doctl \
   pinentry-mac
 
+# casks
 brew cask install \
+  1password \
+  alfred \
+  calibre \
+  cleanmymac \
+  docker \
+  dropbox \
+  firefox \
   fission \
-  little-snitch \
-  teamviewer \
-  screenflow \
-  gitify \
+  flycut \
+  font-fira-code \
   font-firacode-nerd-font \
   font-hack \
   font-source-code-pro \
-  font-fira-code \
-  omnigraffle \
-  firefox \
-  the-unarchiver \
-  wavebox \
-  steam \
-  transmission \
-  keybase \
-  kaleidoscope \
+  gitify \
   google-chrome \
-  dropbox \
-  docker \
   iterm2 \
-  cleanmymac \
+  java \
+  kaleidoscope \
+  keybase \
+  little-snitch \
+  mactex \
+  multipatch \
+  obs \
+  omnigraffle \
+  private-internet-access \
+  qmk-toolbox \
   sketch \
   slack \
   spotify \
-  1password \
+  steam \
+  taskwarrior-pomodoro \
+  teamviewer \
+  the-unarchiver \
+  transmission \
   transmit \
-  obs \
-  java \
-  vlc \
-  private-internet-access \
   virtualbox \
-  virtualbox-extension-pack
+  virtualbox-extension-pack \
+  vlc \
+  wavebox
 
 # after java
-brew install bfg
+brew install \
+  bfg \
+  task \
+  tasksh \
+  timewarrior
 
 mkdir -p ~/.bin ~/go/bin ~/config/yarn/global
 
@@ -88,9 +112,11 @@ yarn config set prefix ~/.config/yarn/global
 
 yarn global add \
   eslint \
+  hs \
+  wscat \
   prettier
 
 go get -u github.com/golang/lint/golint
 go get -u github.com/alecthomas/gometalinter
 
-pip3 install neovim
+pip3 install neovim yamllint
