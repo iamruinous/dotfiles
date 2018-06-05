@@ -1,5 +1,4 @@
 package bang-bang
-package battery
 package brew
 package config
 package direnv

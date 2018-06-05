@@ -36,6 +36,7 @@ Plug 'stephpy/vim-yaml'
 
 "Javascript Plugins
 Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install ; npm install -g tern' }
 Plug 'w0rp/ale'
@@ -57,7 +58,7 @@ let g:ale_fixers = {
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_fix_on_save = 1
-let g:ale_go_gometalinter_options = '--disable-all --enable=golint --enable=vet --enable=vetshadow --enable=gosimple --enable=goimports --enable=gotype --enable=deadcode --enable=errcheck --enable=unused --enable=ineffassign'
+let g:ale_go_gometalinter_options = '--disable-all --enable=golint --enable=goimports --enable=vet --enable=vetshadow --enable=gotype --enable=deadcode --enable=errcheck --enable=ineffassign --enable=interfacer --enable=test --enable=megacheck'
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
