@@ -7,7 +7,6 @@ endif
 
 call plug#begin()
 
-Plug 'dikiaap/minimalist'
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
 Plug 'vim-airline/vim-airline'
@@ -43,10 +42,15 @@ Plug 'w0rp/ale'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 
+" Theme
+Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dikiaap/minimalist'
+
 " Load Last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+colorscheme dracula
 let g:airline#extensions#tabline#enabled = 1
 
 let g:ale_linters = {'go': ['gofmt', 'gometalinter']}
@@ -137,7 +141,6 @@ set tags=./.tags;./tags
 set encoding=utf8
 set guifont=FuraCode\ Nerd\ Font\ 18
 let NERDTreeMapOpenInTab='<ENTER>'
-colorscheme minimalist 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif

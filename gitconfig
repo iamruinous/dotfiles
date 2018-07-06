@@ -4,6 +4,7 @@
 	email = jade.meskill@gmail.com
 	editor = nvim
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [push]
 	default = tracking
 [user]
