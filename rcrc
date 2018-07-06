@@ -1,2 +1,2 @@
 DOTFILES_DIRS="/Users/jmeskill/Projects/iamruinous/dotfiles /Users/jmeskill/Dropbox/dotfiles"
-EXCLUDES="README.md LICENSE old rcrc"
+EXCLUDES="README.md LICENSE old rcrc bootstrap"

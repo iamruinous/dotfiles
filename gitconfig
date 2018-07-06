@@ -2,8 +2,8 @@
 [core]
 	user = Jade Meskill
 	email = jade.meskill@gmail.com
-	editor = /usr/local/bin/nvim
-	excludesfile = /Users/jmeskill/.gitignore_global
+	editor = nvim
+	excludesfile = ~/.gitignore_global
 [push]
 	default = tracking
 [user]
