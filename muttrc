@@ -4,7 +4,7 @@ set use_from = yes
 set envelope_from = yes
 
 source ~/.mutt/passwords
-source ~/.mutt/themes/zenburn.muttrc
+source ~/.mutt/theme.muttrc
 
 set text_flowed = yes
 set copy = no
