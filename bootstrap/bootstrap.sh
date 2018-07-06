@@ -1,9 +1,15 @@
 #!/bin/bash
 
 brew tap \
-  heroku/brew \
+  heroku/brew
+
+brew tap
   osx-cross/avr \
   px4/px4 \
+
+# java
+brew cask install \
+  java
 
 # casks
 brew cask install \
@@ -19,7 +25,6 @@ brew cask install \
   gitify \
   google-chrome \
   iterm2 \
-  java \
   kaleidoscope \
   keybase \
   little-snitch \
@@ -28,7 +33,6 @@ brew cask install \
   obs \
   omnigraffle \
   private-internet-access \
-  qmk-toolbox \
   sketch \
   slack \
   spotify \
@@ -49,3 +53,5 @@ brew install \
   task \
   tasksh \
   timewarrior
+
+brew install qmk-toolbox
