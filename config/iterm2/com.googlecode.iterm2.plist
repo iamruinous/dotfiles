@@ -2569,6 +2569,8 @@
 	<true/>
 	<key>EnableRendezvous</key>
 	<false/>
+	<key>FlashTabBarInFullscreen</key>
+	<false/>
 	<key>FocusFollowsMouse</key>
 	<false/>
 	<key>FsTabDelay</key>
@@ -2693,7 +2695,7 @@ New Tab with Current Profile</string>
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
-	<true/>
+	<false/>
 	<key>HighlightTabLabels</key>
 	<true/>
 	<key>HotKeyBookmark</key>
@@ -2764,7 +2766,7 @@ New Tab with Current Profile</string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>424 179 606 469 0 0 1920 1080 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>733 862 918 401 0 0 2560 1440 </string>
+	<string>733 906 770 429 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 80 2560 1337 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
@@ -3642,7 +3644,7 @@ New Tab with Current Profile</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-05-24T16:25:32Z</date>
+	<date>2018-06-07T11:55:54Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3657,6 +3659,8 @@ New Tab with Current Profile</string>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.40000000596046448</real>
+	<key>StretchTabsToFillBar</key>
+	<false/>
 	<key>SwitchTabModifier</key>
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>

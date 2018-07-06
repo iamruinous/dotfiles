@@ -99,6 +99,7 @@ nmap <Leader>s :%s//<Left>
 nmap <Leader>t :GFiles<CR>
 nmap <Leader>r :BTags<CR>
 nmap <Leader>/ :TComment<CR>
+nmap <Leader>T :GoCoverageToggle<CR>
 
 set showmatch           " Show matching brackets.
 set number              " Show the line numbers on the left side.
@@ -142,3 +143,7 @@ if executable('ag')
 endif
 " let g:polyglot_disabled = ['latex']
 autocmd bufreadpre *.tex setlocal textwidth=60
+
+" Turn off vim-go defaults
+let g:go_fmt_autosave = 1
+let g:go_metalinter_autosave_enabled = []
