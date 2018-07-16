@@ -53,11 +53,15 @@ call plug#end()
 colorscheme dracula
 let g:airline#extensions#tabline#enabled = 1
 
-let g:ale_linters = {'go': ['gofmt', 'gometalinter']}
+let g:ale_linters = {
+\   'go': ['gofmt', 'gometalinter'],
+\   'rust': ['rls'],
+\}
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'json': ['prettier'],
 \   'go': ['gofmt'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'normal'
