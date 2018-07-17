@@ -17,10 +17,6 @@ brew install \
 brew install \
   elixir
 
-# rust
-brew install \
-  rust
-
 # python
 brew install \
   python \
@@ -58,5 +54,13 @@ brew install \
 
 go get -u github.com/golang/lint/golint
 go get -u github.com/alecthomas/gometalinter
+go get -u github.com/sourcegraph/go-langserver
 
-pip3 install neovim yamllint
+pip3 install neovim yamllint pyls
+pip install neovim yamllint pyls
+
+curl https://sh.rustup.rs -sSf | sh
+rustup component add rls-preview rust-analysis rust-src rustfmt-preview
+
+yarn global add javascript-typescript-langserver
+

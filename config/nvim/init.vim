@@ -126,8 +126,10 @@ let g:go_fmt_autosave = 1
 let g:go_metalinter_autosave_enabled = []
 
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-au TextChangedI * call ncm2#auto_trigger()
+augroup autocomplete_triggers
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+  autocmd TextChangedI * call ncm2#auto_trigger()
+augroup END
 
 " note that you must keep `noinsert` in completeopt, you must not use
 " `longest`. The others are optional. Read `:help completeopt` for
@@ -148,19 +150,21 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
+let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'go': ['go-langserver', '-gocodecompletion'],
     \ 'rust': ['rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['pyls'],
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> lr :call LanguageClient_textDocument_documentSymbol()<cr>
 
 let g:LanguageClient_loggingFile = '/tmp/lc.log'
 
@@ -174,3 +178,13 @@ let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
+
+augroup filetype_jsx
+  autocmd!
+  au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
+augroup filetype_js
+  autocmd!
+  autocmd BufReadPost *.js setlocal filetype=javascript
+augroup END
