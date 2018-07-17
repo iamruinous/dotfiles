@@ -18,8 +18,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-html-subscope'
+Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'roxma/nvim-yarp'
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 Plug 'dbakker/vim-projectroot'
 Plug 'mileszs/ack.vim'
 Plug 'kburdett/vim-nuuid'
@@ -32,7 +37,6 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
-
 " Theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
@@ -41,6 +45,7 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 colorscheme dracula
+
 let g:airline#extensions#tabline#enabled = 1
 
 let g:ale_linters = {
@@ -51,7 +56,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'json': ['prettier'],
 \   'go': ['gofmt'],
-\   'rust': ['rustfmt'],
+\   'rust': ['rustfmt-nightly'],
 \}
 let g:ale_lint_on_enter = 1
 let g:ale_lint_on_text_changed = 'normal'
@@ -122,18 +127,21 @@ let g:go_metalinter_autosave_enabled = []
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
+au TextChangedI * call ncm2#auto_trigger()
 
 " note that you must keep `noinsert` in completeopt, you must not use
 " `longest`. The others are optional. Read `:help completeopt` for
 " more info
 set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
 set shortmess+=c
 
-au TextChangedI * call ncm2#auto_trigger()
-
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <c-c> <ESC>
 
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
@@ -141,7 +149,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'go': ['go-langserver'],
+    \ 'go': ['go-langserver', '-gocodecompletion'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
@@ -155,3 +163,14 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 let g:LanguageClient_loggingFile = '/tmp/lc.log'
+
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
+" c-j c-k for moving in snippet
+imap <c-u> <Plug>(ultisnips_expand)
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
