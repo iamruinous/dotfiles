@@ -16,35 +16,25 @@ Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'roxma/nvim-yarp'
 Plug 'Yggdroot/indentLine'
 Plug 'dbakker/vim-projectroot'
 Plug 'mileszs/ack.vim'
 Plug 'kburdett/vim-nuuid'
-" Plug 'lervag/vimtex'
-
-" YAML Plugins
 Plug 'stephpy/vim-yaml'
-
-"Javascript Plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'carlitux/deoplete-ternjs'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install ; npm install -g tern' }
 Plug 'w0rp/ale'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 
 " Theme
 Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'dikiaap/minimalist'
 
 " Load Last
 Plug 'ryanoasis/vim-devicons'
@@ -70,25 +60,6 @@ let g:ale_go_gometalinter_options = '--disable-all --enable=golint --enable=goim
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_abbr_width = 0
-let g:deoplete#max_menu_width = 0
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-
-let g:tern_request_timeout = 1
-let g:tern_request_timeout = 6000
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
-let g:deoplete#sources#tss#javascript_support = 1
-
-let g:indentLine_enabled = 1
-let g:indentLine_char = '¦'
 
 let mapleader="\<SPACE>"
 set ignorecase          " Make searching case insensitive
@@ -136,12 +107,6 @@ set nostartofline       " Do not jump to first character with page commands.
 let g:netrw_banner = 0
 let g:netrw_browse_split = 3
 
-let g:gutentags_generate_on_new = 1
-let g:gutentags_project_root_finder = 'ProjectRootGuess'
-let g:gutentags_ctags_tagfile = '.tags'
-let g:gutentags_file_list_command = 'rg --files'
-set tags=./.tags;./tags
-
 set encoding=utf8
 set guifont=FuraCode\ Nerd\ Font\ 18
 let NERDTreeMapOpenInTab='<ENTER>'
@@ -154,3 +119,39 @@ autocmd bufreadpre *.tex setlocal textwidth=60
 " Turn off vim-go defaults
 let g:go_fmt_autosave = 1
 let g:go_metalinter_autosave_enabled = []
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" note that you must keep `noinsert` in completeopt, you must not use
+" `longest`. The others are optional. Read `:help completeopt` for
+" more info
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+au TextChangedI * call ncm2#auto_trigger()
+
+inoremap <c-c> <ESC>
+
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'go': ['go-langserver'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['pyls'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+let g:LanguageClient_loggingFile = '/tmp/lc.log'
