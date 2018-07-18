@@ -131,6 +131,9 @@ augroup autocomplete_triggers
   autocmd TextChangedI * call ncm2#auto_trigger()
 augroup END
 
+let g:ncm2_complete_delay = 200
+let g:ncm2_popup_delay = 200
+
 " note that you must keep `noinsert` in completeopt, you must not use
 " `longest`. The others are optional. Read `:help completeopt` for
 " more info
@@ -150,7 +153,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Required for operations modifying multiple buffers like rename.
 set hidden
 
-let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'go': ['go-langserver', '-gocodecompletion'],
     \ 'rust': ['rls'],
@@ -164,15 +166,17 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-nnoremap <silent> lr :call LanguageClient_textDocument_documentSymbol()<cr>
+nnoremap <silent> gr :call LanguageClient_textDocument_documentSymbol()<cr>
 
-let g:LanguageClient_loggingFile = '/tmp/lc.log'
+" let g:LanguageClient_loggingFile = '/tmp/lc.log'
+" let g:LanguageClient_loggingLevel = 'DEBUG'
 
 " Press enter key to trigger snippet expansion
 " The parameters are the same as `:help feedkeys()`
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 " c-j c-k for moving in snippet
+imap <c-n> <Plug>(ncm2_manual_trigger)
 imap <c-u> <Plug>(ultisnips_expand)
 let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
@@ -188,3 +192,9 @@ augroup filetype_js
   autocmd!
   autocmd BufReadPost *.js setlocal filetype=javascript
 augroup END
+
+
+let g:ale_sign_error = "◉"
+let g:ale_sign_warning = "◉"
+highlight ALEErrorSign ctermfg=9 ctermbg=236
+highlight ALEWarningSign ctermfg=11 ctermbg=236
