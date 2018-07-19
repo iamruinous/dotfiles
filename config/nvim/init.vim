@@ -7,6 +7,7 @@ endif
 
 call plug#begin()
 
+Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
 Plug 'vim-airline/vim-airline'
@@ -30,7 +31,7 @@ Plug 'mileszs/ack.vim'
 Plug 'kburdett/vim-nuuid'
 Plug 'stephpy/vim-yaml'
 Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'w0rp/ale'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -175,10 +176,10 @@ nnoremap <silent> gr :call LanguageClient_textDocument_documentSymbol()<cr>
 " The parameters are the same as `:help feedkeys()`
 inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
-" c-j c-k for moving in snippet
 imap <c-n> <Plug>(ncm2_manual_trigger)
-imap <c-u> <Plug>(ultisnips_expand)
-let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+" c-j c-k for moving in snippet
+"imap <c-u> <Plug>(ultisnips_expand)
+"let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
 let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0

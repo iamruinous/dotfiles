@@ -2978,11 +2978,11 @@ New Tab with Current Profile</string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>424 179 606 469 0 0 1920 1080 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>733 998 928 394 0 0 2560 1440 </string>
+	<string>733 919 796 473 0 0 2560 1440 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>230 833 592 584 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 80 2560 1337 0 0 2560 1440 </string>
+	<string>0 642 1130 775 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>455 788 970 652 0 0 2560 1440 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -3858,7 +3858,7 @@ New Tab with Current Profile</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-07-13T21:24:34Z</date>
+	<date>2018-07-15T00:55:24Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3890,7 +3890,7 @@ New Tab with Current Profile</string>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1531517184</real>
+	<real>1531527296</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseBorder</key>
@@ -3898,6 +3898,8 @@ New Tab with Current Profile</string>
 	<key>UseCompactLabel</key>
 	<true/>
 	<key>UseLionStyleFullscreen</key>
+	<true/>
+	<key>UseMetal</key>
 	<true/>
 	<key>Window Arrangements</key>
 	<dict>
@@ -4855,7 +4857,7 @@ New Tab with Current Profile</string>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.2.0beta6</string>
+	<string>3.1.7</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
