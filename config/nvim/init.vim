@@ -8,6 +8,7 @@ endif
 call plug#begin()
 
 Plug 'jiangmiao/auto-pairs'
+Plug 'whatyouhide/vim-lengthmatters'
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
 Plug 'vim-airline/vim-airline'

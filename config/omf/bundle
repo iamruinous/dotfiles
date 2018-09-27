@@ -2,7 +2,6 @@ package bang-bang
 package brew
 package config
 package direnv
-package envious
 package foreign-env
 package https://github.com/iamruinous/plugin-cargo-binpath
 package https://github.com/iamruinous/plugin-golang-binpath
@@ -10,6 +9,7 @@ package https://github.com/iamruinous/plugin-home-binpath
 package https://github.com/iamruinous/plugin-yarn-binpath
 package hub
 package osx
+package pisces
 package rbenv
 theme default
 theme https://github.com/iamruinous/theme-clearance

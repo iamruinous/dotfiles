@@ -14,7 +14,7 @@ rcup -v
 mkdir -p \
   ~/.bin \
   ~/go/bin \
-  ~/config/yarn/global
+  ~/.config/yarn/global
 
 yarn config set prefix ~/.config/yarn/global
 

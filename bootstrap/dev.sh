@@ -36,7 +36,6 @@ brew install \
   doctl \
   git \
   gnupg \
-  gpg-agent \
   gron \
   heroku \
   htop \
@@ -46,6 +45,7 @@ brew install \
   p7zip \
   ssh-copy-id \
   sqlite \
+  terminal-notifier \
   tmux \
   watch \
   webp \
@@ -56,8 +56,8 @@ go get -u github.com/golang/lint/golint
 go get -u github.com/alecthomas/gometalinter
 go get -u github.com/sourcegraph/go-langserver
 
-pip3 install neovim yamllint pyls
-pip install neovim yamllint pyls
+pip3 install neovim yamllint python-language-server
+pip install neovim yamllint python-language-server
 
 curl https://sh.rustup.rs -sSf | sh
 rustup component add rls-preview rust-analysis rust-src rustfmt-preview
