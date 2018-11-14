@@ -1,1 +1,1 @@
-alias ls="/usr/local/bin/exa --git"
+alias ls="exa --git"
