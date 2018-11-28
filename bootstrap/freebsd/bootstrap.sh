@@ -1,6 +1,7 @@
 #!/usr/local/bin/bash
 
 sudo pkg install -y \
+  cmake \
 	curl \
 	fish \
 	direnv \
