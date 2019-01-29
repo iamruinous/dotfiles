@@ -1,0 +1,11 @@
+{
+  "bgColor": "#611bb8",
+  "textColor": "#37474F",
+  "punctuationColor": "#37474F",
+  "stringAndValueColor": "#ffffff",
+  "keywordTagColor": "#ff8ffd",
+  "commentColor": "#D81B60",
+  "typeColor": "#9C27B0",
+  "numberColor": "#ffd600",
+  "declarationColor": "#7f7f7f"
+}
