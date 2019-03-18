@@ -1,0 +1,72 @@
+# This is Git's per-user configuration file.
+[user]
+  name = Jade Meskill
+  email = jade.meskill@gmail.com
+  signingkey = jade.meskill@gmail.com
+
+[core]
+  editor = vim
+  excludesfile = ~/.config/git/excludes
+  autocrlf = input
+  hooksPath = ~/.config/git/hooks ; use global hooks
+
+[alias]
+  a = add
+  c = commit -v
+  co = checkout
+  d = diff
+  ds = diff --staged
+  s = status
+  secrets = git-secrets
+  crypt = git-crypt
+
+[fetch]
+  prune = true
+
+[push]
+  default = tracking
+
+[merge]
+  tool = vim
+
+[difftool]
+  prompt = false
+
+[mergetool]
+  prompt = false
+
+[status]
+  submoduleSummary = true
+
+[diff]
+  submodule = log
+
+[branch]
+  autosetupmerge = true
+
+[commit]
+  gpgsign = true
+
+[tag]
+  forceSignAnnotated = true
+  gpgsign = true
+
+[secrets]
+  providers = git secrets --aws-provider
+  patterns = [A-Z0-9]{20}
+  patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+  patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+  allowed = AKIAIOSFODNN7EXAMPLE
+  allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[includeIf "gitdir/i:~/Projects/magicverse/"]
+  path = ~/.config/git/config.magicleap
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
