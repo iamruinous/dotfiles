@@ -65,7 +65,7 @@
   process = git-lfs filter-process
   required = true
 
-[includeIf "gitdir/i:~/Projects/magicverse/"]
+[includeIf "gitdir/i:magicverse/"]
   path = ~/.config/git/config.magicleap
 
 [url "git@github.com:"]
