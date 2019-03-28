@@ -28,6 +28,8 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'RRethy/vim-hexokinase'
+
 " Theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
@@ -155,3 +157,8 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
+
+" Setup Hexokinase
+let g:Hexokinase_ftAutoload = ['css', 'xml']
+
+set termguicolors
