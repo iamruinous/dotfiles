@@ -10,6 +10,8 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
 
+Plug 'rbgrouleff/bclose.vim'
+
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
@@ -116,7 +118,7 @@ autocmd bufreadpre *.md setlocal textwidth=80 spell spelllang=en_us
 autocmd FileType gitcommit spell spelllang=en_us
 
 " Commands
-let mapleader="\<SPACE>"
+let mapleader=";"
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
@@ -145,20 +147,31 @@ endif
 " Setup NERDTree
 let NERDTreeMapOpenInTab='<ENTER>'
 
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
 " Setup lightline
 let g:lightline = {
-      \ 'colorscheme': 'Dracula',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cocstatus' ] ],
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
 
 " Setup Hexokinase
 let g:Hexokinase_ftAutoload = ['css', 'xml']
+
+" Use gopls for go
+let g:go_def_mode='gopls'
+
+" handle jsonc format
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 set termguicolors
