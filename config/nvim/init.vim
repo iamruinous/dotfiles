@@ -76,6 +76,9 @@ set hidden              " Required for operations modifying multiple buffers lik
 set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 set encoding=utf8
+set termguicolors
+set listchars=tab:›\ ,eol:¬
+set list
 
 " More natural splits
 set splitbelow          " Horizontal split below current.
@@ -174,4 +177,3 @@ let g:go_def_mode='gopls'
 " handle jsonc format
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-set termguicolors
