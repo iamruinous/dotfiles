@@ -1,2 +1,3 @@
 alias ls="exa --git --icons"
-alias ll="exa --git -laH --icons"
+alias ll="ls -laH"
+alias lt="ls --tree"
