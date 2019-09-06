@@ -12,4 +12,3 @@ package osx
 package pisces
 package rbenv
 theme default
-theme https://github.com/iamruinous/theme-clearance

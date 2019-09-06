@@ -177,3 +177,10 @@ let g:go_def_mode='gopls'
 " handle jsonc format
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
+au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
+    \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
+    \  1,
+    \  0
+    \)
+
+source ~/.config/nvim/coc.vim
