@@ -10,27 +10,25 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'Nopik/vim-nerdtree-direnter'
 
-Plug 'rbgrouleff/bclose.vim'
+"Plug 'rbgrouleff/bclose.vim'
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'tomtom/tcomment_vim'
-Plug 'whatyouhide/vim-lengthmatters'
+"Plug 'jiangmiao/auto-pairs'
+"Plug 'tpope/vim-surround'
+"Plug 'tomtom/tcomment_vim'
+"Plug 'whatyouhide/vim-lengthmatters'
 
 Plug 'itchyny/lightline.vim'
 
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 
-Plug 'dbakker/vim-projectroot'
-Plug 'mileszs/ack.vim'
-Plug 'kburdett/vim-nuuid'
+"Plug 'dbakker/vim-projectroot'
+"Plug 'mileszs/ack.vim'
+"Plug 'kburdett/vim-nuuid'
 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'sheerun/vim-polyglot'
-
-Plug 'RRethy/vim-hexokinase'
+"Plug 'sheerun/vim-polyglot'
 
 " Theme
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -46,9 +44,15 @@ colorscheme dracula
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 0
 
 " Enables cursor similar to gui programs
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
-" Change window title to filename
+" Turn off netrw
+let g:netrw_banner = 0
+let g:netrw_browse_split = 3
+
+" Setup NERDTree
+let NERDTreeMapOpenInTab='<ENTER>'
+
 set title
 set titlestring=%t
 set nocursorcolumn
@@ -80,107 +84,31 @@ set termguicolors
 set listchars=tab:›\ ,eol:¬
 set list
 
-" More natural splits
-set splitbelow          " Horizontal split below current.
-set splitright          " Vertical split to right of current.
-
-if !&scrolloff
-set scrolloff=3       " Show next 3 lines while scrolling.
-endif
-if !&sidescrolloff
-set sidescrolloff=5   " Show next 5 columns while side-scrolling.
-endif
-set nostartofline       " Do not jump to first character with page commands.
-
-" Turn off netrw
-let g:netrw_banner = 0
-let g:netrw_browse_split = 3
-
-" note that you must keep `noinsert` in completeopt, you must not use
-" `longest`. The others are optional. Read `:help completeopt` for
-" more info
-set completeopt=noinsert,menuone,noselect
-
-" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
-set shortmess+=c
-
-" manage filetypes
-augroup filetype_jsx
-  autocmd!
-  au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-augroup END
-
-augroup filetype_js
-  autocmd!
-  autocmd BufReadPost *.js setlocal filetype=javascript
-augroup END
-
-autocmd bufreadpre *.tex setlocal textwidth=80
-autocmd bufreadpre *.md setlocal textwidth=80 spell spelllang=en_us
-autocmd FileType gitcommit spell spelllang=en_us
-
-" Commands
-let mapleader=";"
-
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
-
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
-
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Search and Replace
-nmap <Leader>s :%s//<Left>
-
-nmap <Leader>t :GFiles<CR>
-nmap <Leader>r :BTags<CR>
-nmap <Leader>/ :TComment<CR>
-
-" setup AG for search
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-" Setup NERDTree
-let NERDTreeMapOpenInTab='<ENTER>'
-
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
 " Setup lightline
 let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified', 'cocstatus' ] ],
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
+  \ 'colorscheme': 'dracula',
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'blame' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'blame': 'LightlineGitBlame',
+  \   'cocstatus': 'coc#status',
+  \ }
+\ }
 
-" Setup Hexokinase
-let g:Hexokinase_ftAutoload = ['css', 'xml']
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-" Use gopls for go
-let g:go_def_mode='gopls'
-
-" handle jsonc format
-autocmd FileType json syntax match Comment +\/\/.\+$+
-
-au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
-    \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
-    \  1,
-    \  0
-    \)
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
 
 source ~/.config/nvim/coc.vim
