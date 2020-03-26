@@ -44,6 +44,6 @@ yabai -m config right_padding                10
 yabai -m config window_gap                   5
 
 yabai -m rule --add app="Fantastical" sticky=on topmost=on manage=off
-yabai -m rule --add app="Tweetbot" manage=off
+#yabai -m rule --add app="Tweetbot" manage=off
 
 echo "yabai configuration loaded.."

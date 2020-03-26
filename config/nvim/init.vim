@@ -7,34 +7,20 @@ endif
 
 call plug#begin()
 
-Plug 'scrooloose/nerdtree'
-Plug 'Nopik/vim-nerdtree-direnter'
-
-"Plug 'rbgrouleff/bclose.vim'
-
-"Plug 'jiangmiao/auto-pairs'
-"Plug 'tpope/vim-surround'
-"Plug 'tomtom/tcomment_vim'
-"Plug 'whatyouhide/vim-lengthmatters'
-
-Plug 'itchyny/lightline.vim'
-
-Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
-
-"Plug 'dbakker/vim-projectroot'
-"Plug 'mileszs/ack.vim'
-"Plug 'kburdett/vim-nuuid'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdtree' "file manager
+Plug 'Nopik/vim-nerdtree-direnter' "fix nerdtree behavior
+Plug 'tomtom/tcomment_vim' "commenting support
+Plug 'itchyny/lightline.vim' "statusbar
+Plug 'tpope/vim-fugitive' "git integration
+Plug 'lervag/vimtex' "LaTeX
+Plug 'dense-analysis/ale' "Linting
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocomplete
 
 " Theme
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
 
 " Load Last
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons' "icons
 call plug#end()
 
 " Set colors
