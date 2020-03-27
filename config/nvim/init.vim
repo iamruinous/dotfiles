@@ -70,6 +70,8 @@ set termguicolors
 set listchars=tab:›\ ,eol:¬
 set list
 
+let g:tex_flavor = 'latex' "don't want that plaintex
+
 " Setup lightline
 let g:lightline = {
   \ 'colorscheme': 'dracula',
@@ -97,4 +99,4 @@ function! LightlineGitBlame() abort
   return winwidth(0) > 120 ? blame : ''
 endfunction
 
-source ~/.config/nvim/coc.vim
+source ~/.config/nvim/coc.vim "include coc settings
