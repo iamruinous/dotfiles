@@ -38,6 +38,7 @@ let g:netrw_browse_split = 3
 
 " Setup NERDTree
 let NERDTreeMapOpenInTab='<ENTER>'
+let NERDTreeShowHidden=1
 
 set title
 set titlestring=%t
