@@ -14,20 +14,18 @@ Plug 'itchyny/lightline.vim' "statusbar
 Plug 'tpope/vim-fugitive' "git integration
 Plug 'lervag/vimtex' "LaTeX
 Plug 'dense-analysis/ale' "Linting
+Plug 'junegunn/fzf' "FZF shell stuff
+Plug 'junegunn/fzf.vim' "Actual FZF vim plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocomplete
+Plug 'tpope/vim-unimpaired' "better navigation mapping
 
 " Theme
-Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
+" Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
+Plug 'wadackel/vim-dogrun'
 
 " Load Last
 Plug 'ryanoasis/vim-devicons' "icons
 call plug#end()
-
-" Set colors
-colorscheme dracula
-
-" Enable true color for neovim
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 0
 
 " Enables cursor similar to gui programs
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
@@ -67,37 +65,17 @@ set hidden              " Required for operations modifying multiple buffers lik
 set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 set encoding=utf8
-set termguicolors
+if exists('+termguicolors')
+  set termguicolors
+endif
 set listchars=tab:›\ ,eol:¬
 set list
 
+" Set colors
+colorscheme dogrun
+
 let g:tex_flavor = 'latex' "don't want that plaintex
 
-" Setup lightline
-let g:lightline = {
-  \ 'colorscheme': 'dracula',
-  \ 'active': {
-  \   'left': [
-  \     [ 'mode', 'paste' ],
-  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
-  \   ],
-  \   'right':[
-  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
-  \     [ 'blame' ]
-  \   ],
-  \ },
-  \ 'component_function': {
-  \   'blame': 'LightlineGitBlame',
-  \   'cocstatus': 'coc#status',
-  \ }
-\ }
-
-autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-function! LightlineGitBlame() abort
-  let blame = get(b:, 'coc_git_blame', '')
-  " return blame
-  return winwidth(0) > 120 ? blame : ''
-endfunction
-
+source ~/.config/nvim/lightline.vim "include lightline settings
 source ~/.config/nvim/coc.vim "include coc settings
+source ~/.config/nvim/fzf.vim "include lightline settings
