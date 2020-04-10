@@ -9,6 +9,7 @@ call plug#begin()
 
 Plug 'scrooloose/nerdtree' "file manager
 Plug 'Nopik/vim-nerdtree-direnter' "fix nerdtree behavior
+Plug 'Xuyuanp/nerdtree-git-plugin' "nerdtree+git
 Plug 'tomtom/tcomment_vim' "commenting support
 Plug 'itchyny/lightline.vim' "statusbar
 Plug 'tpope/vim-fugitive' "git integration
@@ -37,6 +38,10 @@ let g:netrw_browse_split = 3
 " Setup NERDTree
 let NERDTreeMapOpenInTab='<ENTER>'
 let NERDTreeShowHidden=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+nnoremap <Leader>F :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 set title
 set titlestring=%t
@@ -64,9 +69,12 @@ set shiftwidth=2        " Indentation amount for < and > commands.
 set hidden              " Required for operations modifying multiple buffers like rename.
 set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
-set encoding=utf8
+set encoding=UTF-8
 if exists('+termguicolors')
   set termguicolors
+else
+  set t_Co=256
+  set notermguicolors
 endif
 set listchars=tab:›\ ,eol:¬
 set list
