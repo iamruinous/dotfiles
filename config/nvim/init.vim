@@ -36,10 +36,10 @@ let g:netrw_banner = 0
 let g:netrw_browse_split = 3
 
 " Setup NERDTree
-let NERDTreeMapOpenInTab='<ENTER>'
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeCustomOpenArgs={'file':{'where': 't'}}
 nnoremap <Leader>F :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
@@ -70,14 +70,17 @@ set hidden              " Required for operations modifying multiple buffers lik
 set linespace=0         " Set line-spacing to minimum.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 set encoding=UTF-8
+set listchars=tab:›\ ,eol:¬
+set list
+set switchbuf+=usetab,newtab
+
+" deal with truecolor
 if exists('+termguicolors')
   set termguicolors
 else
   set t_Co=256
   set notermguicolors
 endif
-set listchars=tab:›\ ,eol:¬
-set list
 
 " Set colors
 colorscheme dogrun
