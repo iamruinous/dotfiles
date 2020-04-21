@@ -19,6 +19,7 @@ Plug 'junegunn/fzf' "FZF shell stuff
 Plug 'junegunn/fzf.vim' "Actual FZF vim plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocomplete
 Plug 'tpope/vim-unimpaired' "better navigation mapping
+Plug 'cespare/vim-toml' "toml support
 
 " Theme
 " Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
