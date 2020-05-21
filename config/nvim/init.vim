@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim' "Actual FZF vim plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocomplete
 Plug 'tpope/vim-unimpaired' "better navigation mapping
 Plug 'cespare/vim-toml' "toml support
+Plug 'evanleck/vim-svelte' "svelte
 
 " Theme
 " Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
@@ -74,6 +75,7 @@ set encoding=UTF-8
 set listchars=tab:›\ ,eol:¬
 set list
 set switchbuf+=usetab,newtab
+set virtualedit=block
 
 " deal with truecolor
 if exists('+termguicolors')
