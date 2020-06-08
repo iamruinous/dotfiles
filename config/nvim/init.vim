@@ -24,7 +24,8 @@ Plug 'evanleck/vim-svelte' "svelte
 
 " Theme
 " Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
-Plug 'wadackel/vim-dogrun'
+" Plug 'wadackel/vim-dogrun'
+Plug 'https://gitlab.com/protesilaos/tempus-themes-vim.git'
 
 " Load Last
 Plug 'ryanoasis/vim-devicons' "icons
@@ -86,7 +87,9 @@ else
 endif
 
 " Set colors
-colorscheme dogrun
+set background=dark
+syntax enable
+colorscheme tempus_winter
 
 let g:tex_flavor = 'latex' "don't want that plaintex
 

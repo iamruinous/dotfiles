@@ -2,42 +2,68 @@
   "diagnostic.virtualText": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
-    "go", 
+    "go",
     "js",
     "json",
     "lua",
-    "rust", 
+    "rust",
     "sh"
   ],
-	"languageserver": {
+  "languageserver": {
     "bash": {
       "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
     },
     "dockerfile": {
       "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
+      "filetypes": [
+        "dockerfile"
+      ],
+      "args": [
+        "--stdio"
+      ]
     },
     "efm": {
       "command": "efm-langserver",
       "args": [],
-      "filetypes": ["vim", "eruby", "markdown", "yaml"]
+      "filetypes": [
+        "vim",
+        "eruby",
+        "markdown",
+        "yaml"
+      ]
     },
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ]
     },
-		"lua": {
-			"command": "lua-lsp",
-			"filetypes": ["lua"]
-		},
-		"rust": {
-			"command": "/Users/jmeskill/.cargo/bin/rls",
-			"filetypes": ["rust"]
-		}
-	}
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": [
+        "lua"
+      ]
+    },
+    "rust": {
+      "command": "$HOME/.cargo/bin/rls",
+      "filetypes": [
+        "rust"
+      ]
+    }
+  }
 }
