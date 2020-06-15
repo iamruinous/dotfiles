@@ -1,6 +1,6 @@
 " Setup lightline
 let g:lightline = {
-  \ 'colorscheme': 'dogrun',
+  \ 'colorscheme': 'tempus_winter',
   \ 'active': {
   \   'left': [
   \     [ 'mode', 'paste' ],
