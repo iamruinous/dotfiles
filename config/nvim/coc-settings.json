@@ -1,5 +1,7 @@
 {
-  "diagnostic.virtualText": true,
+  "diagnostic.virtualText": false,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.messageTarget": "float",
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "go",
@@ -57,12 +59,6 @@
       "command": "lua-lsp",
       "filetypes": [
         "lua"
-      ]
-    },
-    "rust": {
-      "command": "$HOME/.cargo/bin/rls",
-      "filetypes": [
-        "rust"
       ]
     }
   }
