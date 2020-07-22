@@ -20,7 +20,7 @@ Plug 'junegunn/fzf.vim' "Actual FZF vim plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Autocomplete
 Plug 'tpope/vim-unimpaired' "better navigation mapping
 Plug 'cespare/vim-toml' "toml support
-Plug 'evanleck/vim-svelte' "svelte
+Plug 'evanleck/vim-svelte', {'branch': 'main'} "svelte
 
 " Theme
 " Plug 'dracula/vim', { 'as': 'dracula' } "dracula, duh
@@ -92,6 +92,9 @@ syntax enable
 colorscheme tempus_winter
 
 let g:tex_flavor = 'latex' "don't want that plaintex
+
+" svelte stuff
+let g:svelte_preprocessors = ['typescript']
 
 source ~/.config/nvim/lightline.vim "include lightline settings
 source ~/.config/nvim/coc.vim "include coc settings
