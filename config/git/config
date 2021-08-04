@@ -68,8 +68,8 @@
 [includeIf "gitdir/i:magicverse/"]
   path = ~/.config/git/config.magicleap
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/
+#[url "git@github.com:"]
+#  insteadOf = https://github.com/
 
 [pull]
 	rebase = false
