@@ -15,7 +15,7 @@ Plug 'tpope/vim-sensible' "sensible defaults
 
 " Language Support
 Plug 'lervag/vimtex' "LaTeX
-Plug 'cespare/vim-toml' "toml support
+Plug 'cespare/vim-toml', {'branch': 'main'} "toml support
 Plug 'evanleck/vim-svelte', {'branch': 'main'} "svelte
 Plug 'https://tildegit.org/sloum/gemini-vim-syntax'
 
@@ -49,9 +49,9 @@ autocmd VimEnter *
 " Enables cursor similar to gui programs
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
-let g:nvim_tree_gitignore = 1 "0 by default
-let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
-let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+"let g:nvim_tree_gitignore = 1 "0 by default
+"let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+"let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -87,6 +87,7 @@ set nojoinspaces        " Prevents inserting two spaces after punctuation on a j
 set list
 set switchbuf+=usetab,newtab
 set virtualedit=block
+set mouse
 
 " deal with truecolor
 if exists('+termguicolors')
@@ -118,16 +119,14 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fl <cmd>Telescope git_files<cr>
 
+nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>tt :NvimTreeToggle<CR>
 nnoremap <leader>tr :NvimTreeRefresh<CR>
 nnoremap <leader>tn :NvimTreeFindFile<CR>
 
-augroup NvimTreeConfig
-  au!
-  au BufEnter * if isdirectory(expand('%')) | exec("cd " . expand('%')) | exec('NvimTreeOpen') | endif
-augroup END
-
 lua << EOF
+  require'nvim-tree'.setup {
+  }
   require'nvim-tree.events'.on_nvim_tree_ready(function ()
     vim.cmd("NvimTreeRefresh")
   end)

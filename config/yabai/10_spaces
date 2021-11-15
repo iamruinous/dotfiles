@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+# space names
+yabai -m space 1 --label browser
+yabai -m space 2 --label messages
+yabai -m space 3 --label slack
+yabai -m space 4 --label gchat
+yabai -m space 5 --label element
+yabai -m space 6 --label discord
+yabai -m space 7 --label email
+yabai -m space 8 --label calendar
+yabai -m space 9 --label bear
+yabai -m space 10 --label things
+yabai -m space 11 --label books
+yabai -m space 12 --label terminal
+
+# space assignments
+yabai -m rule --add app="^iTerm2$" space=terminal
+yabai -m rule --add app="^Firefox$" space=browser
+yabai -m rule --add app="^Google Chrome$" space=browser
+yabai -m rule --add app="^Slack$" space=slack
+yabai -m rule --add app="^Discord$" space=discord
+yabai -m rule --add app="^Messages$" space=messages
+yabai -m rule --add app="^Element$" space=element
+yabai -m rule --add app="^Bear$" space=bear
+yabai -m rule --add app="^Things$" title="^Inbox$" space=things
+yabai -m rule --add app="^Kindle$" space=books
+yabai -m rule --add app="^Chat$" space=gchat
+yabai -m rule --add app="^Boxy for Gmail$" space=email
+yabai -m rule --add app="^Boxy for Calendar$" space=calendar
+
+echo "yabai spaces configuration loaded."
