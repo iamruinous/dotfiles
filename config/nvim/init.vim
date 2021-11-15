@@ -17,6 +17,7 @@ Plug 'tpope/vim-sensible' "sensible defaults
 Plug 'lervag/vimtex' "LaTeX
 Plug 'cespare/vim-toml' "toml support
 Plug 'evanleck/vim-svelte', {'branch': 'main'} "svelte
+Plug 'https://tildegit.org/sloum/gemini-vim-syntax'
 
 " Code completion & Linting
 Plug 'neovim/nvim-lspconfig'
