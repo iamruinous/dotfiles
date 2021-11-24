@@ -2,6 +2,8 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'  
 
   -- language support
+  use 'https://tildegit.org/sloum/gemini-vim-syntax' -- gemini
+  use 'lervag/vimtex' -- LaTeX
   use {
     'ray-x/go.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },
@@ -47,6 +49,7 @@ return require('packer').startup(function()
           "json",
           "lua",
           "python",
+          "svelte",
           "toml",
           "yaml",
         },
