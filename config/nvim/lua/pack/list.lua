@@ -4,13 +4,6 @@ return require('packer').startup(function()
   -- language support
   use 'https://tildegit.org/sloum/gemini-vim-syntax' -- gemini
   use 'lervag/vimtex' -- LaTeX
-  use {
-    'ray-x/go.nvim',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('go').setup {}
-    end
-  }
 
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -30,7 +23,16 @@ return require('packer').startup(function()
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require'nvim-tree'.setup {}
+      require("nvim-tree").setup {}
+    end
+  }
+
+  use {
+    "folke/which-key.nvim",
+    "b0o/mapx.nvim",
+    config = function()
+      require("which-key").setup {}
+      require("mapx").setup { global = true, whichkey = true }
     end
   }
 
@@ -39,7 +41,7 @@ return require('packer').startup(function()
     -- 'nvim-treesitter/nvim-treesitter-textobjects',
     run = ':TSUpdate',
     config = function()
-      require'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup {
         ensure_installed = { 
           "bash",
           "dockerfile",
@@ -128,16 +130,12 @@ return require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
-    config = function()
-      require("lspconfig").gopls.setup {}
-    end
   }
 
   use {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-    'hrsh7th/cmp-cmdline',
     'hrsh7th/nvim-cmp',
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
@@ -152,4 +150,11 @@ return require('packer').startup(function()
     end
   }
 
+  use {
+    'ray-x/go.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('go').setup {}
+    end
+  }
 end)
