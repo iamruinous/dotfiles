@@ -1,0 +1,10 @@
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'Korrow/tmux-mouse'
+set -g @plugin 'nhdaly/tmux-better-mouse-mode'
+set -g @plugin 'nhdaly/tmux-scroll-copy-mode'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+# set -g @plugin 'iamruinous/tmux-theme-tempus_winter'
