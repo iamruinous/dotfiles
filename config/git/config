@@ -68,6 +68,9 @@
 [includeIf "gitdir/i:magicverse/"]
   path = ~/.config/git/config.magicleap
 
+[includeIf "gitdir/i:ruinous\.social/"]
+  path = ~/.config/git/config.ruinous-social
+
 #[url "git@github.com:"]
 #  insteadOf = https://github.com/
 
