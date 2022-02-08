@@ -1,6 +1,6 @@
 if status --is-interactive; and type -q fortune
-  echo -e "\e[1;30m"
-  fortune
-  echo -e "\e[0m"
+  set_color brblack
   echo ""
+  fortune
+  set_color normal; echo ""
 end
