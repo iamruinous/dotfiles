@@ -1,4 +1,8 @@
 [user]
   name = Jade Meskill
   email = iamruinous@ruinous.social
-  signingkey = 6AD7FC0814C30503
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKsbmIWfuDVK5IvZVzknDU0rLUyRMzwC21KaZ9RonHNM
+
+[gpg]
+  format = ssh
+

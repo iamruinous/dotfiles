@@ -59,5 +59,11 @@
 [includeIf "gitdir/i:ruinous\.social/"]
   path = ~/.config/git/config.ruinous-social
 
+[includeIf "gitdir/i:codeberg/"]
+  path = ~/.config/git/config.codeberg
+
 [pull]
   rebase = false
+
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed_signers
