@@ -49,8 +49,10 @@ cmp.setup {
   formatting = {
     format = require("lspkind").cmp_format(),
   },
+  view = {
+    entries = "native",
+  },
   experimental = {
     ghost_text = true,
-    native_menu = true,
   },
 }

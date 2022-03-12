@@ -50,17 +50,20 @@
   process = git-lfs filter-process
   required = true
 
-[includeIf "gitdir/i:github/"]
+[includeIf "gitdir/i:github\/iamruinous/"]
   path = ~/.config/git/config.github
 
-[includeIf "gitdir/i:magicleap/"]
+[includeIf "gitdir/i:magicleap\/iamruinous/"]
   path = ~/.config/git/config.magicleap
 
-[includeIf "gitdir/i:ruinous\.social/"]
+[includeIf "gitdir/i:ruinous\.social\/iamruinous/"]
   path = ~/.config/git/config.ruinous-social
 
-[includeIf "gitdir/i:codeberg/"]
+[includeIf "gitdir/i:codeberg\/iamruinous/"]
   path = ~/.config/git/config.codeberg
+
+[includeIf "gitdir/i:sourcehut\/iamruinous/"]
+  path = ~/.config/git/config.sourcehut
 
 [pull]
   rebase = false
