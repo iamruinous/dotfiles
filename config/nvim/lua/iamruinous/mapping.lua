@@ -24,3 +24,6 @@ m.nnoremap("<leader>ca", ":lua require('crates').update_all_crates()<cr>", "sile
 m.nnoremap("<leader>cU", ":lua require('crates').upgrade_crate()<cr>", "silent")
 m.vnoremap("<leader>cU", ":lua require('crates').upgrade_crates()<cr>", "silent")
 m.nnoremap("<leader>cA", ":lua require('crates').upgrade_all_crates()<cr>", "silent")
+
+-- nvim-tree keybindings
+m.nnoremap("<C-n>", ":NvimTreeToggle<cr>")

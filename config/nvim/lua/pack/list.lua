@@ -13,7 +13,7 @@ return require('packer').startup(function()
   use {
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
     config = function()
       require('telescope').setup {
         extensions = {
@@ -29,8 +29,8 @@ return require('packer').startup(function()
   }
 
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    'nvim-tree/nvim-tree.lua',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
     config = function()
       require("nvim-tree").setup {}
     end
@@ -85,7 +85,8 @@ return require('packer').startup(function()
 
   use {
     'akinsho/bufferline.nvim',
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    tag = "v3.*",
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
     config = function()
       require("bufferline").setup {}
     end
@@ -106,7 +107,7 @@ return require('packer').startup(function()
 
   use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = {'nvim-tree/nvim-web-devicons', opt = true},
     config = function()
       require("lualine").setup {
         options = {
@@ -162,7 +163,7 @@ return require('packer').startup(function()
 
   use {
     "folke/trouble.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
     config = function()
       require("trouble").setup {}
     end
@@ -184,7 +185,6 @@ return require('packer').startup(function()
       local opts = {
         tools = { -- rust-tools options
           autoSetHints = true,
-          hover_with_actions = true,
           inlay_hints = {
             show_parameter_hints = true,
             parameter_hints_prefix = "",
