@@ -8,4 +8,4 @@ yabai -m rule --add app="^Things$" title="^Quick Entry$" manage=off sticky=on
 #yabai -m rule --add app="^Plex$" manage=off sticky=on
 #yabai -m rule --add app="Tweetbot" manage=off
 
-echo "yabai windows configuration loaded."
+echo "yabai window configuration loaded."

@@ -77,16 +77,19 @@
 # ############################################################### #
 
 # focus window
-# alt - h : yabai -m window --focus west
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus east
 
 # swap managed window
-shift + alt - h : yabai -m window --swap north
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap east
 
 # move managed window
-shift + cmd - h : yabai -m window --warp east
+shift + cmd - h : yabai -m window --warp west
+shift + cmd - j : yabai -m window --warp east
 
 # balance size of windows
-# shift + alt - 0 : yabai -m space --balance
+shift + alt - 0 : yabai -m space --balance
 
 # make floating window fill screen
 # shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
@@ -136,7 +139,7 @@ shift + cmd - h : yabai -m window --warp east
 # alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
-# alt - e : yabai -m window --toggle split
+alt - e : yabai -m window --toggle split
 
 # float / unfloat window and center on screen
 # alt - t : yabai -m window --toggle float;\
