@@ -45,3 +45,4 @@ taskd.key=~/.local/share/task/iamruinous.key.pem
 taskd.ca=~/.local/share/task/ca.cert.pem
 taskd.server=taskd.ruinous.social:53589
 taskd.credentials=ruination/iamruinous/42ff5015-c00c-4f76-8f62-65421259c623
+news.version=2.6.0
