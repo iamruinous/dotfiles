@@ -1,8 +1,8 @@
 format = '''
-[┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$username$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$git_branch$git_commit$git_state$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust
+[┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$username$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$git_branch$git_commit$git_state$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust$fill$git_status${custom.ssh}
 [┕](248)[━](249)[❯](250)$character'''
  
-right_format='''$git_status$jobs$cmd_duration$battery${custom.ssh}'''
+right_format='''$jobs$cmd_duration$battery'''
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
@@ -53,6 +53,10 @@ style_user = "250"
 style_root = "red"
 format = "[$user]($style)[󰁥](241)"
 disabled = false
+
+[fill]
+symbol = ' '
+style = ''
 
 [time]
 disabled = false
