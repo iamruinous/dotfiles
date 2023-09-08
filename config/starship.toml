@@ -1,5 +1,5 @@
 format = '''
-[┏](247)[━](246)[━](245)[━](244)[━](243)$hostname$kubernetes$directory$git_branch$git_commit$git_state$git_status$docker_context$package$golang$helm$java$cmake$julia$kotlin$lua$nim$nodejs$python$ruby$rust$swift$terraform$aws$gcloud$azure $battery 
+[┏](247)[━](246)[━](245)[━](244)[«](243)$hostname[»](243)[━](242)[━](241)[━](240)[━](239) $kubernetes$directory$git_branch$git_commit$git_state$git_status$docker_context$package$golang$helm$java$cmake$julia$kotlin$lua$nim$nodejs$python$ruby$rust$swift$terraform$aws$gcloud$azure $battery 
 [┗](248)[━](249)[❯](250) '''
  
 right_format="""$jobs$cmd_duration"""
@@ -79,10 +79,10 @@ disabled = false
 format = '[\[ $time \]]($style) '
 
 [hostname]
-style = "purple"
+style = "purple bold"
 ssh_only = false
 ssh_symbol = '💻'
-format = '[$ssh_symbol$hostname]($style) '
+format = '[$ssh_symbol$hostname]($style)'
 trim_at = "."
 disabled = false
 
