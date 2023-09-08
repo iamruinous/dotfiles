@@ -74,7 +74,7 @@ disabled = false
 when = 'test "$SSH_CONNECTION" != ""'
 symbol = '󰹑'
 style = "250"
-format = ' [$symbol]($style)'
+format = '[$symbol]($style)'
 
 [status]
 style = "red"
