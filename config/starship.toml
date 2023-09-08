@@ -82,7 +82,7 @@ format = '[\[ $time \]]($style) '
 style = "purple bold"
 ssh_only = false
 ssh_symbol = '󰹑'
-format = '[$ssh_symbol$hostname]($style)'
+format = '[$hostname]($style)'
 trim_at = "."
 disabled = false
 
