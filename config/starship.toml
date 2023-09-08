@@ -1,12 +1,12 @@
 format = '''
-[┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$username$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$git_branch$git_commit$git_state$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust$fill$git_status${custom.ssh}
+[┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$username$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$fill$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust$git_branch $git_status${custom.ssh}
 [┕](248)[━](249)[❯](250)$character'''
  
 right_format='''$jobs$cmd_duration$battery'''
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
-success_symbol = " [λ](white)"
+success_symbol = " [λ](254)"
 error_symbol = ' [✗](bold red) '
 
 [cmd_duration]
@@ -49,7 +49,7 @@ truncation_length = 7
 truncation_symbol = "…/"
 
 [username]
-style_user = "250"
+style_user = "252"
 style_root = "red"
 format = "[$user]($style)[󰁥](241)"
 disabled = false
@@ -95,7 +95,7 @@ conflicted = " "
 untracked = "󰠗"
 stashed = "󰽄 "
 modified = " "
-staged = '[++\($count\)](green)'
+staged = '${count}'
 renamed = ""
 deleted ="󰆴"
 style = "140"
