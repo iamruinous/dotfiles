@@ -79,6 +79,7 @@ format = '[\[ $time \]]($style) '
 
 [hostname]
 ssh_only = false
+ssh_symbol = '🌐 '
 format = '[$hostname](red) '
 trim_at = "."
 disabled = false
