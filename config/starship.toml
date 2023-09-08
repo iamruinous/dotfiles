@@ -79,7 +79,7 @@ disabled = false
 format = '[\[ $time \]]($style) '
 
 [hostname]
-style = "purple italic"
+style = "purple"
 ssh_only = false
 ssh_symbol = '💻'
 format = '[$ssh_symbol$hostname]($style) '
