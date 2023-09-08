@@ -1,12 +1,13 @@
-format = """
-[╭─](bold white)$hostname$kubernetes$directory$git_branch$git_commit$git_state$git_status$docker_context$package$golang$helm$java$cmake$julia$kotlin$lua$nim$nodejs$python$ruby$rust$swift$terraform$aws$gcloud$azure $battery               
-[╰─❯](bold white)"""
+format = '''
+[┏](247)[━](246)[━](245)[━](244)[━](243)$hostname$kubernetes$directory$git_branch$git_commit$git_state$git_status$docker_context$package$golang$helm$java$cmake$julia$kotlin$lua$nim$nodejs$python$ruby$rust$swift$terraform$aws$gcloud$azure $battery 
+[┗](248)[━](249)[❯](250) '''
  
-right_format="""$cmd_duration"""
+right_format="""$jobs$cmd_duration"""
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
 success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = '[✗](bold red) '
 
 [cmd_duration]
 min_time = 0
@@ -78,9 +79,10 @@ disabled = false
 format = '[\[ $time \]]($style) '
 
 [hostname]
+style = "purple italic"
 ssh_only = false
-ssh_symbol = '🌐 '
-format = '[$hostname](red) '
+ssh_symbol = '💻'
+format = '[$ssh_symbol$hostname]($style) '
 trim_at = "."
 disabled = false
 
@@ -116,9 +118,8 @@ format = "go: [🏎💨 $version](bold cyan) "
 format = "helm: [⎈ $version](bold white) "
 
 [jobs]
-symbol = "+ "
-threshold = 4
-format = "background [$symbol$number]($style) "
+symbol = "&"
+format = "[$symbol$number]($style) "
 
 [terraform]
 format = "[🏎💨 $version$workspace]($style) "
@@ -127,7 +128,7 @@ format = "[🏎💨 $version$workspace]($style) "
 full_symbol = "🔋"
 charging_symbol = "🔌 "
 discharging_symbol = "⚡️"
-disabled = true
+disabled = false
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 threshold = 10
@@ -140,3 +141,10 @@ style = "bold yellow"
 [[battery.display]]
 threshold = 100
 style = "bold green"
+
+[nix_shell]
+disabled = true
+impure_msg = '[impure shell](bold red)'
+pure_msg = '[pure shell](bold green)'
+unknown_msg = '[unknown shell](bold yellow)'
+format = 'via [☃️ $state( \($name\))](bold blue) '
