@@ -1,8 +1,8 @@
 format = '''
-[┏](247)[━](246)[━](245)[━](244)[«](243)$hostname[»](243)[━](242)[━](241)[━](240)[━](239) $kubernetes$directory$git_branch$git_commit$git_state$git_status$docker_context$package$golang$helm$java$cmake$julia$kotlin$lua$nim$nodejs$python$ruby$rust$swift$terraform$aws$gcloud$azure $battery 
-[┗](248)[━](249)[❯](250) '''
+[┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$git_branch$git_commit$git_state$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust
+[┕](248)[━](249)[❯](250) '''
  
-right_format='''$jobs$cmd_duration${custom.ssh}'''
+right_format='''$git_status$jobs$cmd_duration$battery${custom.ssh}'''
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
@@ -12,11 +12,11 @@ error_symbol = '[✗](bold red) '
 [cmd_duration]
 min_time = 500
 show_milliseconds = true
-format=' [$duration]($style) '
+format=' [󱎫$duration]($style) '
 style="bold yellow"
 
 [java]
-symbol = "☕"
+symbol = "󰬷"
 style="red"
 format="via [${symbol} (${version} )](208)($style)"
 
@@ -24,7 +24,7 @@ format="via [${symbol} (${version} )](208)($style)"
 style="#7FFFD4"
 
 [cmake]
-symbol = "🌕"
+symbol = ""
 format="via [${symbol} (${version} )]($style)"
 
 [kubernetes]
@@ -40,27 +40,8 @@ threshold = -1
 symbol = " "
 style = "bold dimmed green"
 
-[gcloud]
-style = "blue"
-format = '[$symbol$account(\($project\))]($style) '
-symbol = "️G⅁:☁️"
-[gcloud.region_aliases]
-us-central1 = "uc1"
-asia-northeast1 = "an1"
-
-[aws]
-format = '[$symbol$profile(\($region\))]($style) '
-style = "bold yellow"
-symbol = "∀⍵₷☁️☁️ "
-[aws.region_aliases]
-ap-southeast-2 = "au"
-us-east-1 = "va"
-
-[package]
-format = "on [🎁 $version](208 bold) "
-
 [docker_context]
-format = "docker: [🐋 $context](blue bold)"
+format = "[󰡨 $context](blue bold) "
 disabled = false
 
 [directory]
@@ -94,59 +75,101 @@ format = ' [$symbol]($style)'
 
 [status]
 style = "red"
-symbol = "💥 "
+symbol = " "
 format = '[\[$symbol$status\]]($style) '
 disabled = false
 
 [git_branch]
 always_show_remote = true
 style = "bold blue"
+format = '[─](245)[╼━](246)[┫](247)[$symbol$branch(:$remote_branch)]($style)[┣](247)[━╾](246)[─](245)'
 
 [git_status]
-ahead = "⇡🏎💨${count}"
+ahead = "⇡${count}"
 diverged = "⇕⇡😵${ahead_count}⇣${behind_count}"
 behind = "⇣😰${count}"
-conflicted = "🏳 "
-untracked = "🤷"
-stashed = "📦"
-modified = "📝"
+conflicted = " "
+untracked = "󰠗"
+stashed = "󰽄 "
+modified = " "
 staged = '[++\($count\)](green)'
-renamed = "👅"
-deleted ="🗑 "
+renamed = ""
+deleted ="󰆴"
+style = "140"
+format = '[$all_status$ahead_behind]($style)'
+
+[package]
+style = "208"
+symbol = ''
+format = "[─](238)[╼━](239)[┫](242)[$symbol $version]($style)[─](237)"
 
 [rust]
-format ="via [${symbol}(${version} )](208)($style)"
+style = "208"
+symbol = ''
+format ="[$symbol $version]($style)[┣](242)[━╾](239)[─](238) "
 
 [golang]
-format = "go: [🏎💨 $version](bold cyan) "
-
-[helm]
-format = "helm: [⎈ $version](bold white) "
+symbol = ''
+format = "[─](244)[╼━](243)[┫](242)[$symbol $version](bold cyan)[┣](242)[━╾](243)[─](244) "
 
 [jobs]
 symbol = "󰦖"
 format = "[$symbol$number]($style)"
 
-[terraform]
-format = "[🏎💨 $version$workspace]($style) "
-
 [battery]
-full_symbol = "🔋"
-charging_symbol = "🔌 "
-discharging_symbol = "⚡️"
+full_symbol = "󰁹"
+charging_symbol = "󰚥 "
+discharging_symbol = "󰁺 "
 disabled = false
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 threshold = 10
-style = "bold red"
+discharging_symbol = '󰁺 '
+style = "red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 20
+discharging_symbol = '󰁻 '
+style = "166"
 
 [[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
 threshold = 30
-style = "bold yellow"
+discharging_symbol = '󰁼 '
+style = "yellow"
+
+[[battery.display]]
+threshold = 40
+discharging_symbol = '󰁽 '
+style = "172"
+
+[[battery.display]]
+threshold = 50
+discharging_symbol = '󰁾 '
+style = "170"
+
+[[battery.display]]
+threshold = 60
+discharging_symbol = '󰁿 '
+style = "097"
+
+[[battery.display]]
+threshold = 70
+discharging_symbol = '󰂀 '
+style = "098"
+
+[[battery.display]] 
+threshold = 80
+discharging_symbol = '󰂁 '
+style = "099"
+
+[[battery.display]] 
+threshold = 90
+discharging_symbol = '󰂂 '
+style = "purple"
 
 [[battery.display]]
 threshold = 100
-style = "bold green"
+style = "green"
 
 [nix_shell]
 disabled = true
