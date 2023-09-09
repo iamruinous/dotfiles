@@ -1,13 +1,13 @@
 format = '''
 [┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$username$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$fill$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust$git_branch $git_status${custom.ssh}
-[┕](248)[━](249)[❯](250)$character'''
+[┕](248)[━](249)[❯](250)$jobs$character'''
  
-right_format='''$jobs$cmd_duration$battery'''
+right_format='''$cmd_duration$battery'''
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
-success_symbol = " [λ](254)"
-error_symbol = ' [✗](bold red) '
+success_symbol = ' [λ](254)'
+error_symbol = ' [✗](bold red)'
 
 [cmd_duration]
 min_time = 500
@@ -116,8 +116,8 @@ symbol = ''
 format = "[─](244)[╼━](243)[┫](242)[$symbol $version](bold cyan)[┣](242)[━╾](243)[─](244) "
 
 [jobs]
-symbol = "󰦖"
-format = "[$symbol$number]($style)"
+symbol = "󰬑"
+format = " [$symbol$number]($style)"
 
 [battery]
 full_symbol = "󰁹"
@@ -153,17 +153,17 @@ style = "170"
 [[battery.display]]
 threshold = 60
 discharging_symbol = '󰁿 '
-style = "097"
+style = "purple"
 
 [[battery.display]]
 threshold = 70
 discharging_symbol = '󰂀 '
-style = "098"
+style = "purple"
 
 [[battery.display]] 
 threshold = 80
 discharging_symbol = '󰂁 '
-style = "099"
+style = "purple"
 
 [[battery.display]] 
 threshold = 90
