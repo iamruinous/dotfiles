@@ -92,12 +92,12 @@ ahead = "⇡${count}"
 diverged = "⇕⇡😵${ahead_count}⇣${behind_count}"
 behind = "⇣😰${count}"
 conflicted = " "
-untracked = "󰠗"
+untracked = "󰠗 "
 stashed = "󰽄 "
 modified = " "
-staged = '${count}'
-renamed = ""
-deleted ="󰆴"
+staged = '${count} '
+renamed = " "
+deleted ="󰆴 "
 style = "140"
 format = '[$all_status$ahead_behind]($style)'
 
