@@ -1,1 +1,5 @@
 README.md
+{{ if ne .chezmoi.os "darwin" }}
+.yabairc
+.skhdrc
+{{ end }}

@@ -1,5 +1,5 @@
 if status --is-interactive; and type -q things-cli
-  if [ $ITERM_PROFILE != "Hotkey Window" ]
+  if [ "$ITERM_PROFILE" != "Hotkey Window" ]
     set -l things_today (things-cli today)
     set -l things_count (count $things_today)
     echo ""
