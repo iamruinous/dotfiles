@@ -50,6 +50,9 @@
   process = git-lfs filter-process
   required = true
 
+[includeIf "gitdir/i:chezmoi/"]
+  path = ~/.config/git/config.github
+
 [includeIf "gitdir/i:github\/iamruinous/"]
   path = ~/.config/git/config.github
 

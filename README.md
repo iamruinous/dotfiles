@@ -1,12 +1,7 @@
-# dotfiles
-my dotfiles
+# iamruinous dotfiles
 
-## Install
-* Install
-[rcm](https://github.com/thoughtbot/rcm)
+Now using chezmoi
 
-## Update  ~/.rcrc
-```shell
-DOTFILES_DIRS="/Users/jmeskill/Projects/iamruinous/dotfiles"
-EXCLUDES="README.md LICENSE rcrc"
+```sh
+chezmoi init iamruinous
 ```
