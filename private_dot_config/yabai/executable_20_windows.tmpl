@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.hostname "jbookpro" -}}
+{{-   include "private_dot_config/yabai/machine/20_windows.jbookpro" -}}
+{{- else if eq .chezmoi.hostname "studio" -}}
+{{-   include "private_dot_config/yabai/machine/20_windows.studio" -}}
+{{- end -}}
