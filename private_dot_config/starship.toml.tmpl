@@ -123,7 +123,7 @@ format = " [$symbol$number]($style)"
 full_symbol = "󰁹"
 charging_symbol = "󰚥 "
 discharging_symbol = "󰁺 "
-disabled = false
+disabled = {{ if eq .chezmoi.hostname "jbookpro" }}false{{ else }}true{{ end }}
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 threshold = 10
