@@ -91,6 +91,9 @@ shift + cmd - j : yabai -m window --warp east
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
 
+# move window to topmost
+lalt - t : yabai --message window --layer (if [ (yabai --message query --windows --window | jq --raw-output .layer) = 'below' ]; echo 'normal'; else; echo 'below'; end)
+
 # make floating window fill screen
 # shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
 
