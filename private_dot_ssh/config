@@ -1,0 +1,8 @@
+Include config.d/*.conf
+
+Host *
+   UseKeychain yes
+   AddKeysToAgent yes
+   ForwardAgent yes
+   IdentityFile ~/.ssh/id_ed25519
+   IdentityFile ~/.ssh/id_rsa
