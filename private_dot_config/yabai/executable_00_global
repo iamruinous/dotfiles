@@ -10,7 +10,6 @@ window_placement             second_child
 window_shadow                off
 window_opacity               off
 window_opacity_duration      0.0
-active_window_opacity        1
 normal_window_opacity        1.00
 
 split_ratio                  0.50
