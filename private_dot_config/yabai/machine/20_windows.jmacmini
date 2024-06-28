@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 # window rules
+yabai -m rule --add app="^Infuse$" manage=off sticky=on
 yabai -m rule --add app="^Fantastical Helper$" manage=off sticky=on
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off

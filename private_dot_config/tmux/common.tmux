@@ -14,3 +14,7 @@ set -as terminal-features ",xterm-256color:RGB"
 bind R \
   move-window -r\; \
   display-message "Windows reordered..."
+
+bind -n S-PPage copy-mode -u
+bind -T copy-mode S-PPage send -X page-up
+bind -T copy-mode S-NPage send -X page-down
