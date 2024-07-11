@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+# space names
+yabai -m space 1 --label terminal
+yabai -m space 2 --label browser
+yabai -m space 3 --label messages
+yabai -m space 4 --label slack
+yabai -m space 5 --label gchat
+yabai -m space 6 --label obsidian
+yabai -m space 7 --label email
+yabai -m space 8 --label calendar
+yabai -m space 9 --label things
+yabai -m space 10 --label books
+yabai -m space 11 --label bear
+yabai -m space 12 --label element
+yabai -m space 13 --label music
+
+# space assignments
+yabai -m rule --add app="^iTerm2$" space=terminal
+yabai -m rule --add app="^Spotify$" space=music
+yabai -m rule --add app="^Messages$" space=messages
+yabai -m rule --add app="^Slack$" space=slack
+yabai -m rule --add app="^Element$" space=personal_chat
+yabai -m rule --add app="^Discord$" space=personal_chat
+yabai -m rule --add app="^Fantastical$" space=calendar
+yabai -m rule --add app="^Mimestream$" space=email
+#yabai -m rule --add app="^Boxy for Gmail$" space=email
+#yabai -m rule --add app="^Boxy for Calendar$" space=email
+yabai -m rule --add app="^Google Chrome$" space=browser
+yabai -m rule --add app="^Google Chat$" space=gchat
+yabai -m rule --add app="^Slack$" space=slack
+yabai -m rule --add app="^Messages$" space=messages
+yabai -m rule --add app="^Element$" space=element
+yabai -m rule --add app="^Obsidian$" space=obsidian
+# yabai -m rule --add app="^Bear$" space=bear
+yabai -m rule --add app="^Spark$" space=email
+yabai -m rule --add app="^Things$" space=things
+yabai -m rule --add app="^Kindle$" space=books
+
+echo "yabai spaces configuration loaded."
