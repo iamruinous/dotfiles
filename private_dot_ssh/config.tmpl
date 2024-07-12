@@ -1,7 +1,9 @@
 Include config.d/*.conf
 
 Host *
+{{- if eq .chezmoi.os "darwin" }}
    UseKeychain yes
+{{- end }}
    AddKeysToAgent yes
    ForwardAgent yes
    IdentityFile ~/.ssh/id_ed25519
