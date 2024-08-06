@@ -149,7 +149,5 @@ alt - e : yabai -m window --toggle split
 #           yabai -m window --grid 4:4:1:1:2:2
 
 # toggle sticky(+float), topmost, border and picture-in-picture
-# alt - p : yabai -m window --toggle sticky;\
-#           yabai -m window --toggle topmost;\
-#           yabai -m window --toggle border;\
-#           yabai -m window --toggle pip
+ctrl + alt - p : yabai -m window --toggle sticky \
+                                 --toggle pip
