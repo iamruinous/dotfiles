@@ -49,13 +49,12 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    promptInit = (builtins.readFile ./../mac-dot-zshrc);
+    #promptInit = (builtins.readFile ./../mac-dot-zshrc);
     #interactiveShellInit = "figurine -f \"3d.flf\" ${customArgs.hostname}";
   };
 
   programs.fish = {
     enable = true;
-    enableCompletion = true;
   };
 
   homebrew = {
@@ -64,19 +63,32 @@ in
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     taps = [
-      #"homebrew/cask-fonts"
+      "homebrew/cask-fonts"
     ];
+
     brews = [
     ];
+
     casks = [
       "1password-cli"
+      "blockblock"
       "dropbox"
       "font-bigblue-terminal-nerd-font"
       "font-fira-code-nerd-font"
+      "keka"
+      "knockknock"
+      "lulu"
       "mimestream"
+      "obsidian"
+      "oversight"
+      "soundsource"
       "todoist"
     ];
+
     masApps = {
+      "Amphetamine" = 937984704;
+      "Fantastical" = 975937182;
+      "Todoist" = 585829637;
     };
   };
 
