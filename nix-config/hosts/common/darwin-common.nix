@@ -83,6 +83,7 @@ in
       "oversight"
       "soundsource"
       "todoist"
+      "wezterm"
     ];
 
     masApps = {

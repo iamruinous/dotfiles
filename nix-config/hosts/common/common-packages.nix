@@ -13,6 +13,7 @@
     chezmoi
 
     # utils
+    bat
     btop
     cargo-binstall
     duf
