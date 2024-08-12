@@ -2,33 +2,42 @@
   description = "Darwin configuration for jbookair";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+
+    nix-darwin.url = "github:lnl7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
+
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # disko.url = "github:nix-community/disko";
+    # disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin }:
   let
+    inputs = { inherit home-manager nixpkgs nixpkgs-unstable nix-darwin; };
+
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages = with pkgs;
-        [ 
-          vim
-        ];
-
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
+      # environment.systemPackages = with pkgs;
+      #   [ 
+      #     vim
+      #   ];
+      #
+      # # Auto upgrade nix package and the daemon service.
+      # services.nix-daemon.enable = true;
       nix.package = pkgs.nixVersions.latest;
 
       # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+      # nix.settings.experimental-features = "nix-command flakes";
 
       # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
-      programs.fish.enable = true;
+      # programs.zsh.enable = true;  # default shell on catalina
+      # programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -37,55 +46,34 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 4;
 
-      fonts.packages = with pkgs; [
-        fira-code
-        fira-code-nerdfont
-        fira-mono
-        monaspace
-      ];
 
-      homebrew = {
-        enable = true;
 
-        casks = [
-          "1password-cli"
-          "dropbox"
-          "font-bigblue-terminal-nerd-font"
-          "font-fira-code-nerd-font"
-          "mimestream"
-          "todoist"
-        ];
-
-        masApps = {
-        };
-      };
-
-      system.defaults = {
-        # minimal dock
-        dock = {
-          autohide = true;
-          magnification = true;
-          largesize = 96;
-          orientation = "bottom";
-          static-only = false;
-          show-process-indicators = true;
-          show-recents = true;
-        };
-        # a finder that tells me what I want to know and lets me work
-        finder = {
-          AppleShowAllExtensions = true;
-          ShowPathbar = true;
-          FXEnableExtensionChangeWarning = false;
-        };
-        # Tab between form controls and F-row that behaves as F1-F12
-        NSGlobalDomain = {
-          AppleKeyboardUIMode = 3;
-          "com.apple.keyboard.fnState" = true;
-        };
-      };
+      # system.defaults = {
+      #   # minimal dock
+      #   dock = {
+      #     autohide = true;
+      #     magnification = true;
+      #     largesize = 96;
+      #     orientation = "bottom";
+      #     static-only = false;
+      #     show-process-indicators = true;
+      #     show-recents = true;
+      #   };
+      #   # a finder that tells me what I want to know and lets me work
+      #   finder = {
+      #     AppleShowAllExtensions = true;
+      #     ShowPathbar = true;
+      #     FXEnableExtensionChangeWarning = false;
+      #   };
+      #   # Tab between form controls and F-row that behaves as F1-F12
+      #   NSGlobalDomain = {
+      #     AppleKeyboardUIMode = 3;
+      #     "com.apple.keyboard.fnState" = true;
+      #   };
+      # };
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      # nixpkgs.hostPlatform = "x86_64-darwin";
     };
 
     homeconfig = { pkgs, ... }: {
@@ -93,58 +81,6 @@
       programs.home-manager.enable = true;
 
       home.packages = with pkgs; [
-        # config management
-        age
-        chezmoi
-
-        # utils
-        btop
-        cargo-binstall
-        duf
-        dust
-        eza
-        khal
-        fd
-        fzf
-        gnupg
-        htop
-        keychain
-        mas
-        moar
-        mosh
-        procs
-        tmux
-        xplr
-        xz
-
-        # dev tools
-        jq
-        just
-        neovim
-        git
-        git-secrets
-
-
-        # languages
-        go
-        nodejs
-        pipx
-        python3
-        rye
-        zig
-
-        # window manager
-        jankyborders
-        skhd
-        yabai
-
-        # prompt stuff
-        figlet
-        fortune
-        lolcat
-        neofetch
-        starship
-        toilet
       ];
 
       home.sessionVariables = {
@@ -253,26 +189,75 @@
         enableZshIntegration = true;
       };
     };
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#jbookair
-    darwinConfigurations.jbookair = nix-darwin.lib.darwinSystem {
-      modules = [ 
-        configuration
-        {
-          users.users.jmeskill.home = "/Users/jmeskill";
-        }
-        home-manager.darwinModules.home-manager  {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.verbose = true;
-          home-manager.users.jmeskill = homeconfig;
-        }
-      ];
+
+    genPkgs = system: import nixpkgs { inherit system; config.allowUnfree = true; };
+    genUnstablePkgs = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
+    genDarwinPkgs = system: import nixpkgs-darwin { inherit system; config.allowUnfree = true; };
+
+    # creates a nixos system config
+    nixosSystem = system: hostname: username:
+      let
+        pkgs = genPkgs system;
+        unstablePkgs = genUnstablePkgs system;
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit pkgs unstablePkgs;
+            # lets us use these things in modules
+            customArgs = { inherit system hostname username pkgs unstablePkgs; };
+          };
+          modules = [
+            #disko.nixosModules.disko
+            #./hosts/nixos/${hostname}/disko-config.nix
+
+            ./hosts/nixos/${hostname}
+
+            home-manager.nixosModules.home-manager {
+              networking.hostName = hostname;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = { imports = [ ./home/${username}.nix ]; };
+            }
+            ./hosts/common/nixos-common.nix
+          ];
+        };
+
+    # creates a macos system config
+    darwinSystem = system: hostname: username:
+      let
+        pkgs = genDarwinPkgs system;
+      in
+        nix-darwin.lib.darwinSystem {
+          inherit system inputs;
+          specialArgs = {
+            # adds unstable to be available in top-level evals (like in common-packages)
+            unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+
+            # lets us use these things in modules
+            customArgs = { inherit system hostname username pkgs; };
+          };
+          modules = [
+            ./hosts/darwin/${hostname} # ip address, host specific stuff
+            home-manager.darwinModules.home-manager {
+              networking.hostName = hostname;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = { imports = [ ./home/${username}.nix ]; };
+            }
+            ./hosts/common/darwin-common.nix
+          ];
+        };
+  in {
+    darwinConfigurations = {
+      jbookair = darwinSystem "aarch64-darwin" "jbookair" "jmeskill";
+      jmacmini = darwinSystem "aarch64-darwin" "jmacmini" "jmeskill";
+      studio = darwinSystem "x86_64-darwin" "studio" "jmeskill";
     };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."jbookair".pkgs;
+    nixosConfigurations = {
+      # use this for a blank ISO + disko to work
+      nixos = nixosSystem "x86_64-linux" "nixos" "jmeskill";
+    };
   };
 }
