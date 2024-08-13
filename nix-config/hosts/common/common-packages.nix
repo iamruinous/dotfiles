@@ -19,15 +19,16 @@
     duf
     dust
     eza
-    khal
     fd
     fzf
     gnupg
     htop
     keychain
+    khal
     mas
     moar
     mosh
+    pinentry_mac
     procs
     tmux
     xplr
@@ -39,7 +40,6 @@
     neovim
     git
     git-secrets
-
 
     # languages
     go

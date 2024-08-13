@@ -5,9 +5,12 @@ in
 {
   # Nix configuration ------------------------------------------------------------------------------
   users.users.jmeskill.home = "/Users/jmeskill";
+  users.users.jmeskill.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rjXP/sjewv6kM1aTtNWkVZKJpZvIAXIRqL81IyEsm iamruinous@ruinous.social"
+  ];
 
   nix = {
-    #package = lib.mkDefault pkgs.unstable.nix;
+    package = pkgs.nixVersions.git;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
@@ -57,6 +60,21 @@ in
     enable = true;
   };
 
+  programs.gnupg = {
+    agent = {
+      enable = true;
+      enableSSHSupport = true;
+      # pinentryPackage = pkgs.pinentry_mac;
+    };
+  };
+
+  programs.direnv = {
+    enable = true;
+    # enableBashIntegration = true;
+    # enableFishIntegration = true;
+    # enableZshIntegration = true;
+  };
+ 
   homebrew = {
     enable = true;
     onActivation.upgrade = true;

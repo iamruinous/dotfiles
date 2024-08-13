@@ -10,6 +10,25 @@
     EDITOR = "nvim";
   }; 
 
+  programs.keychain = {
+    enable = true;
+    inheritType = "any";
+    agents = [
+      "ssh"
+      "gpg"
+    ];
+    keys = [
+      "~/.ssh/id_ed25519"
+      "~/.ssh/id_jademeskill_ed25519"
+      "~/.ssh/id_rsa"
+      "00AB98E4EDFA6211"
+      "CA5500A8F3A920A0"
+    ];
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.fish = {
     enable = true;
     shellAbbrs = {
@@ -108,6 +127,7 @@
   programs.starship = {
     enable = true;
     enableTransience = true;
+    enableBashIntegration = true;
     enableFishIntegration = true;
     enableZshIntegration = true;
   };
