@@ -15,6 +15,7 @@ yabai -m space 11 --label music
 
 # space assignments
 yabai -m rule --add app="^iTerm2$" space=terminal
+yabai -m rule --add app="^WezTerm$" space=terminal
 yabai -m rule --add app="^Spotify$" space=music
 yabai -m rule --add app="^Messages$" space=messages
 yabai -m rule --add app="^Slack$" space=slack
