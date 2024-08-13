@@ -10,19 +10,26 @@
     EDITOR = "nvim";
   }; 
 
+  # programs.gpg.enable = true;
+
   programs.keychain = {
     enable = true;
-    inheritType = "any";
+    inheritType = "any-once";
+    extraFlags = [
+      "--ignore-missing"
+      "--quiet"
+    ];
     agents = [
       "ssh"
-      "gpg"
+      # "gpg"
     ];
     keys = [
       "~/.ssh/id_ed25519"
       "~/.ssh/id_jademeskill_ed25519"
+      "~/.ssh/id_ruinous_computer_ed25519"
       "~/.ssh/id_rsa"
-      "00AB98E4EDFA6211"
-      "CA5500A8F3A920A0"
+      # "00AB98E4EDFA6211"
+      # "CA5500A8F3A920A0"
     ];
     enableBashIntegration = true;
     enableFishIntegration = true;
@@ -68,6 +75,11 @@
       cat = {
         wraps = "bat";
         body = "bat $argv";
+      };
+
+      less = {
+        wraps = "moar";
+        body = "moar $argv";
       };
 
       top = {
@@ -139,8 +151,10 @@
     extraConfig = ''
     StrictHostKeyChecking no
     UseKeychain yes
+    IgnoreUnknown UseKeychain
     IdentityFile ~/.ssh/id_ed25519
     IdentityFile ~/.ssh/id_jademeskill_ed25519
+    IdentityFile ~/.ssh/id_ruinous_computer_ed25519
     IdentityFile ~/.ssh/id_rsa
     '';
     matchBlocks = {

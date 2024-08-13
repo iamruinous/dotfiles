@@ -60,13 +60,13 @@ in
     enable = true;
   };
 
-  programs.gnupg = {
-    agent = {
-      enable = true;
-      enableSSHSupport = true;
-      # pinentryPackage = pkgs.pinentry_mac;
-    };
-  };
+  # programs.gnupg = {
+  #   agent = {
+  #     enable = true;
+  #     enableSSHSupport = true;
+  #     # pinentryPackage = pkgs.pinentry_mac;
+  #   };
+  # };
 
   programs.direnv = {
     enable = true;

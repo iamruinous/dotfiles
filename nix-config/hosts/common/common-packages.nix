@@ -23,12 +23,11 @@
     fzf
     gnupg
     htop
-    keychain
+    # keychain
     khal
-    mas
     moar
     mosh
-    pinentry_mac
+    # pinentry_mac
     procs
     tmux
     xplr

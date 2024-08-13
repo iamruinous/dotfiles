@@ -43,6 +43,7 @@
 
             home-manager.nixosModules.home-manager {
               networking.hostName = hostname;
+              home-manager.backupFileExtension = "hm-backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = { imports = [ ./home/${username}.nix ]; };
@@ -69,6 +70,7 @@
             ./hosts/darwin/${hostname} # ip address, host specific stuff
             home-manager.darwinModules.home-manager {
               networking.hostName = hostname;
+              home-manager.backupFileExtension = "hm-backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = { imports = [ ./home/${username}.nix ]; };
