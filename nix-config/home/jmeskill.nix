@@ -232,9 +232,9 @@
         };
       };
 
-      # mgmt
+      # manage
       "freenas" = {
-        hostname = "freenas.mgmt.farmhouse.meskill.network";
+        hostname = "freenas.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -242,7 +242,7 @@
         };
       };
       "graf" = {
-        hostname = "graf.mgmt.farmhouse.meskill.network";
+        hostname = "graf.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -250,7 +250,7 @@
         };
       };
       "it" = {
-        hostname = "it.mgmt.farmhouse.meskill.network";
+        hostname = "it.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -258,7 +258,7 @@
         };
       };
       "moonstone" = {
-        hostname = "moonstone.mgmt.farmhouse.meskill.network";
+        hostname = "moonstone.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -266,7 +266,7 @@
         };
       };
       "nut" = {
-        hostname = "nut.mgmt.farmhouse.meskill.network";
+        hostname = "nut.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -274,7 +274,7 @@
         };
       };
       "obelisk" = {
-        hostname = "obelisk.mgmt.farmhouse.meskill.network";
+        hostname = "obelisk.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -282,7 +282,7 @@
         };
       };
       "obsidian" = {
-        hostname = "obsidian.mgmt.farmhouse.meskill.network";
+        hostname = "obsidian.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -290,7 +290,7 @@
         };
       };
       "onyx" = {
-        hostname = "onyx.mgmt.farmhouse.meskill.network";
+        hostname = "onyx.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -298,7 +298,7 @@
         };
       };
       "pbs" = {
-        hostname = "pbs.mgmt.farmhouse.meskill.network";
+        hostname = "pbs.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -306,7 +306,7 @@
         };
       };
       "pit" = {
-        hostname = "pit.mgmt.farmhouse.meskill.network";
+        hostname = "pit.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -314,7 +314,7 @@
         };
       };
       "spinel" = {
-        hostname = "spinel.mgmt.farmhouse.meskill.network";
+        hostname = "spinel.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -322,7 +322,7 @@
         };
       };
       "truenas" = {
-        hostname = "truenas.mgmt.farmhouse.meskill.network";
+        hostname = "truenas.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
