@@ -191,6 +191,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "etv" = {
+        hostname = "etv.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "frigate" = {
         hostname = "frigate.svc.farmhouse.meskill.network";
         user = "root";
@@ -201,6 +209,14 @@
       };
       "getterr" = {
         hostname = "getterr.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "jellyfin" = {
+        hostname = "jellyfin.svc.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -391,6 +407,14 @@
       };
       "ts-deluger" = {
         hostname = "deluger.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-etv" = {
+        hostname = "etv.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
