@@ -223,6 +223,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "kodi" = {
+        hostname = "kodi.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "plex" = {
         hostname = "plex.svc.farmhouse.meskill.network";
         user = "root";
