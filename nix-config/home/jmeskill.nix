@@ -239,6 +239,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "remote" = {
+        hostname = "remote.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "tip" = {
         hostname = "tip.svc.farmhouse.meskill.network";
         user = "root";
@@ -479,6 +487,14 @@
       };
       "ts-plex" = {
         hostname = "plex.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-remote" = {
+        hostname = "remote.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
