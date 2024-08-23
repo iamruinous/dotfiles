@@ -46,7 +46,7 @@
               home-manager.backupFileExtension = "hm-backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = { imports = [ ./home/${username}.nix ]; };
+              home-manager.users.${username} = { imports = [ ./home/${username} ]; };
             }
             ./hosts/common/nixos-common.nix
           ];
@@ -73,7 +73,7 @@
               home-manager.backupFileExtension = "hm-backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = { imports = [ ./home/${username}.nix ]; };
+              home-manager.users.${username} = { imports = [ ./home/${username} ]; };
             }
             ./hosts/common/darwin-common.nix
           ];
