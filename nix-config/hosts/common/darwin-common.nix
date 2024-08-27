@@ -90,8 +90,10 @@ in
     ];
 
     casks = [
+      "alfred"
       "1password-cli"
       "blockblock"
+      "cyberduck"
       "dropbox"
       "font-bigblue-terminal-nerd-font"
       "font-fira-code-nerd-font"
@@ -107,12 +109,14 @@ in
     ];
 
     masApps = {
-      "ASpicePro" = 1560593107;
       "Amphetamine" = 937984704;
+      "aSPICEPro" = 1560593107;
+      "Bitwarden" = 1352778147;
       "Fantastical" = 975937182;
-      "PCalc" = 403504866;
       "Paprika3" = 1303222628;
+      "PCalc" = 403504866;
       "PixelmatorPro" = 1289583905;
+      "reMarkable" = 1276493162;
       "Tailscale" = 1475387142;
       "Todoist" = 585829637;
     };
