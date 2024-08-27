@@ -51,11 +51,6 @@
     unstablePkgs.uv
     zig
 
-    # window manager
-    unstablePkgs.jankyborders
-    unstablePkgs.skhd
-    unstablePkgs.yabai
-
     # prompt stuff
     figlet
     fortune

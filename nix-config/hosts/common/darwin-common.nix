@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, customArgs, ... }:
+{ pkgs, unstablePkgs, lib, inputs, customArgs, ... }:
 let
   inherit (inputs) nixpkgs nixpkgs-unstable;
 in
@@ -48,6 +48,13 @@ in
 
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
+
+  environment.systemPackages = with unstablePkgs; [
+    # window manager
+    jankyborders
+    skhd
+    yabai
+  ];
 
   programs.zsh = {
     enable = true;
