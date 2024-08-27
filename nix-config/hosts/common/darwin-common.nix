@@ -82,9 +82,11 @@ in
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     taps = [
       "homebrew/cask-fonts"
+      "radulucut/cleed"
     ];
 
     brews = [
+      "cleed"
     ];
 
     casks = [
@@ -105,8 +107,13 @@ in
     ];
 
     masApps = {
+      "ASpicePro" = 1560593107;
       "Amphetamine" = 937984704;
       "Fantastical" = 975937182;
+      "PCalc" = 403504866;
+      "Paprika3" = 1303222628;
+      "PixelmatorPro" = 1289583905;
+      "Tailscale" = 1475387142;
       "Todoist" = 585829637;
     };
   };
