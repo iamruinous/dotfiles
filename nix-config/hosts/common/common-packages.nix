@@ -1,10 +1,14 @@
 { pkgs, unstablePkgs, ... }:
 {
   fonts.packages = with pkgs; [
-    fira-code
-    fira-code-nerdfont
-    fira-mono
-    monaspace
+    (nerdfonts.override { 
+      fonts = [ 
+        "BigBlueTerminal"
+        "DroidSansMono"
+        "FiraCode"
+        "Monaspace"
+      ];
+    })
   ];
 
   environment.systemPackages = with pkgs; [
@@ -36,22 +40,21 @@
     # dev tools
     jq
     just
-    neovim
+    unstablePkgs.neovim
     git
     git-secrets
 
     # languages
     go
     nodejs
-    pipx
     python3
-    rye
+    unstablePkgs.uv
     zig
 
     # window manager
-    jankyborders
-    skhd
-    yabai
+    unstablePkgs.jankyborders
+    unstablePkgs.skhd
+    unstablePkgs.yabai
 
     # prompt stuff
     figlet

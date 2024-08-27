@@ -13,7 +13,7 @@ config.set_environment_variables = {
 config.color_scheme = 'Tokyo Night'
 
 -- Choose your favourite font, make sure it's installed on your machine
-config.font = wezterm.font({ family = 'FiraCode Nerd Font Mono' })
+config.font = wezterm.font({ family = 'FiraCode Nerd Font' })
 -- And a font size that won't have you squinting
 config.font_size = 18
 
@@ -30,8 +30,8 @@ config.window_decorations = 'RESIZE'
 config.window_frame = {
   -- Berkeley Mono for me again, though an idea could be to try a
   -- serif font here instead of monospace for a nicer look?
-  font = wezterm.font({ family = 'Menlo' }),
-  font_size = 11,
+  font = wezterm.font({ family = 'MonaspiceNe Nerd Font' }),
+  font_size = 13,
 }
 
 local function segments_for_right_status(window)
