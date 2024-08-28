@@ -18,6 +18,7 @@
 
     # utils
     bat
+    bottom
     btop
     cargo-binstall
     duf
@@ -40,6 +41,8 @@
     # dev tools
     jq
     just
+    ripgrep
+    lazygit
     unstablePkgs.neovim
     git
     git-secrets
