@@ -6,9 +6,9 @@
 }: let
   homeDir = config.home.homeDirectory;
 in {
-  home.packages = with pkgs; [
-    chezmoi
-  ];
+  # home.packages = with pkgs; [
+  #   chezmoi
+  # ];
 
   home.activation.chezmoi = lib.hm.dag.entryAfter ["writeBoundary"] ''
     # echo -e "\033[0;34mActivating chezmoi"

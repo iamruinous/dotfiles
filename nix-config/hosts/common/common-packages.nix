@@ -14,7 +14,7 @@
   environment.systemPackages = with pkgs; [
     # config management
     age
-    chezmoi
+    unstablePkgs.chezmoi
 
     # utils
     bat
