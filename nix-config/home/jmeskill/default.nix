@@ -4,7 +4,7 @@
       ./../common/chezmoi.nix
       ./packages.nix
       ./fish.nix
-      ./neovim.nix
+      # ./neovim.nix
       ./ssh-hosts.nix
     ];
 
