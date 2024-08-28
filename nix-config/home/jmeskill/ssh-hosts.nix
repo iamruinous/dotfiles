@@ -6,9 +6,9 @@
     forwardAgent = true;
     addKeysToAgent = "yes";
     extraConfig = ''
+    IgnoreUnknown AddKeysToAgent,UseKeychain
     StrictHostKeyChecking no
     UseKeychain yes
-    IgnoreUnknown UseKeychain
     IdentityFile ~/.ssh/id_ed25519
     IdentityFile ~/.ssh/id_jademeskill_ed25519
     IdentityFile ~/.ssh/id_ruinous_computer_ed25519

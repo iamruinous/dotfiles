@@ -8,6 +8,7 @@ in
   users.users.jmeskill.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rjXP/sjewv6kM1aTtNWkVZKJpZvIAXIRqL81IyEsm iamruinous@ruinous.social"
   ];
+  users.users.jmeskill.shell = pkgs.fish;
 
   nix = {
     package = pkgs.nixVersions.git;
