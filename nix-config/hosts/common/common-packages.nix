@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, ... }:
+{ pkgs, unstablePkgs, system, fenix, ... }:
 {
   fonts.packages = with pkgs; [
     (nerdfonts.override { 
@@ -34,7 +34,6 @@
     mosh
     # pinentry_mac
     procs
-    tmux
     xplr
     xz
 
@@ -53,6 +52,16 @@
     python3
     unstablePkgs.uv
     zig
+
+    # rust
+    # (fenix.complete.withComponents [
+    #   "cargo"
+    #   "clippy"
+    #   "rust-src"
+    #   "rustc"
+    #   "rustfmt"
+    # ])
+    # rust-analyzer-nightly
 
     # prompt stuff
     figlet

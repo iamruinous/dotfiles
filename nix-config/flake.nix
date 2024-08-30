@@ -10,11 +10,14 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
+
     # disko.url = "github:nix-community/disko";
     # disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, fenix }:
   let
     inputs = { inherit home-manager nixpkgs nixpkgs-unstable nix-darwin; };
 
@@ -32,9 +35,11 @@
           inherit system;
           specialArgs = {
             inherit pkgs unstablePkgs;
+
             # lets us use these things in modules
-            customArgs = { inherit system hostname username pkgs unstablePkgs; };
+            customArgs = { inherit system hostname username pkgs unstablePkgs fenix; };
           };
+
           modules = [
             #disko.nixosModules.disko
             #./hosts/nixos/${hostname}/disko-config.nix
@@ -48,6 +53,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.${username} = { imports = [ ./home/${username} ]; };
             }
+
             ./hosts/common/nixos-common.nix
           ];
         };
@@ -66,8 +72,12 @@
             # lets us use these things in modules
             customArgs = { inherit system hostname username pkgs; };
           };
+
+          # nixpkgs.overlays = [ fenix.overlays.default ];
+
           modules = [
             ./hosts/darwin/${hostname} # ip address, host specific stuff
+
             home-manager.darwinModules.home-manager {
               networking.hostName = hostname;
               home-manager.backupFileExtension = "hm-backup";
@@ -75,6 +85,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.${username} = { imports = [ ./home/${username} ]; };
             }
+
             ./hosts/common/darwin-common.nix
           ];
         };

@@ -2,10 +2,11 @@
 {
   imports = [
       ./../common/chezmoi.nix
-      ./packages.nix
       ./fish.nix
       # ./neovim.nix
+      ./packages.nix
       ./ssh-hosts.nix
+      ./tmux.nix
     ];
 
   home.stateVersion = "24.05";
