@@ -42,6 +42,7 @@
     just
     ripgrep
     lazygit
+    luarocks
     unstablePkgs.neovim
     git
     git-secrets
