@@ -45,6 +45,30 @@
             #./hosts/nixos/${hostname}/disko-config.nix
 
             ./hosts/nixos/${hostname}
+            ./hosts/common/nixos-common.nix
+          ];
+        };
+
+    # creates a nixos home-manager system config
+    nixosHMSystem = system: hostname: username:
+      let
+        pkgs = genPkgs system;
+        unstablePkgs = genUnstablePkgs system;
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit pkgs unstablePkgs;
+
+            # lets us use these things in modules
+            customArgs = { inherit system hostname username pkgs unstablePkgs fenix; };
+          };
+
+          modules = [
+            #disko.nixosModules.disko
+            #./hosts/nixos/${hostname}/disko-config.nix
+
+            ./hosts/nixos/${hostname}
 
             home-manager.nixosModules.home-manager {
               networking.hostName = hostname;
@@ -94,11 +118,14 @@
       studio = darwinSystem "x86_64-darwin" "studio" "jmeskill";
     };
 
-    nixosConfigurations = {
+    nixosHMConfigurations = {
       # use this for a blank ISO + disko to work
-      nixos = nixosSystem "x86_64-linux" "nixos" "jmeskill";
-      nixie = nixosSystem "x86_64-linux" "nixie" "jmeskill";
-      nixai = nixosSystem "x86_64-linux" "nixai" "jmeskill";
+      nixos = nixosHMSystem "x86_64-linux" "nixos" "jmeskill";
+      nixie = nixosHMSystem "x86_64-linux" "nixie" "jmeskill";
+      nixai = nixosHMSystem "x86_64-linux" "nixai" "jmeskill";
+    };
+
+    nixosConfigurations = {
       touchstone = nixosSystem "x86_64-linux" "touchstone" "xfer";
     };
   };
