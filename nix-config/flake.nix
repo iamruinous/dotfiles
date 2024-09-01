@@ -100,6 +100,7 @@
       # use this for a blank ISO + disko to work
       nixos = nixosSystem "x86_64-linux" "nixos" "jmeskill";
       nixie = nixosSystem "x86_64-linux" "nixie" "jmeskill";
+      nixai = nixosSystem "x86_64-linux" "nixai" "jmeskill";
     };
   };
 }

@@ -34,6 +34,7 @@
     mosh
     # pinentry_mac
     procs
+    tmux
     xplr
     xz
 
