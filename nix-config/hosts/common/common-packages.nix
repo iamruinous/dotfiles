@@ -34,6 +34,7 @@
     mosh
     # pinentry_mac
     procs
+    rsync
     tmux
     xplr
     xz
