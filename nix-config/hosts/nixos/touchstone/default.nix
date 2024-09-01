@@ -22,7 +22,6 @@
     isSystemUser = true;
     createHome = false;
     home = "/home/xfer";
-    shell = "/run/current-system/sw/bin/bash";
     uid = 351;
     group = "xfer";
   };
