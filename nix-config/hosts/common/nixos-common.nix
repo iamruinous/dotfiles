@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, lib, inputs, username, ... }:
+{ pkgs, unstablePkgs, lib, inputs, customArgs, ... }:
 let
   inherit (inputs) nixpkgs nixpkgs-unstable;
   username = customArgs.username;
