@@ -1,14 +1,17 @@
 { pkgs, unstablePkgs, lib, inputs, customArgs, ... }:
 let
   inherit (inputs) nixpkgs nixpkgs-unstable;
+  username = "${customArgs.username}";
 in
 {
   # Nix configuration ------------------------------------------------------------------------------
-  users.users.jmeskill.home = "/Users/jmeskill";
-  users.users.jmeskill.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rjXP/sjewv6kM1aTtNWkVZKJpZvIAXIRqL81IyEsm iamruinous@ruinous.social"
-  ];
-  users.users.jmeskill.shell = pkgs.fish;
+  users.users.${username} = {
+    home = "/Users/${username}";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rjXP/sjewv6kM1aTtNWkVZKJpZvIAXIRqL81IyEsm iamruinous@ruinous.social"
+    ];
+    shell = pkgs.fish;
+  };
 
   nix = {
     package = pkgs.nixVersions.git;

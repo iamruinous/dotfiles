@@ -1,4 +1,4 @@
-{ pkgs, unstablePkgs, system, fenix, ... }:
+{ pkgs, unstablePkgs, system, ... }:
 {
   fonts.packages = with pkgs; [
     (nerdfonts.override { 

@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./../../common/common-packages.nix
+      ./../../common/common-minimal.nix
     ];
 
   networking.hostName = "touchstone"; # Define your hostname.

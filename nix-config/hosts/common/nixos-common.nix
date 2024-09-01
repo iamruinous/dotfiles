@@ -1,12 +1,15 @@
-{ pkgs, unstablePkgs, lib, inputs, ... }:
+{ pkgs, unstablePkgs, lib, inputs, username, ... }:
 let
   inherit (inputs) nixpkgs nixpkgs-unstable;
+  username = customArgs.username;
 in
 {
-  users.users.jmeskill.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rjXP/sjewv6kM1aTtNWkVZKJpZvIAXIRqL81IyEsm iamruinous@ruinous.social"
-  ];
-  users.users.jmeskill.shell = pkgs.fish;
+  users.users.${username} = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL8rjXP/sjewv6kM1aTtNWkVZKJpZvIAXIRqL81IyEsm iamruinous@ruinous.social"
+    ];
+    shell = pkgs.fish;
+  };
 
   time.timeZone = "America/Phoenix";
 

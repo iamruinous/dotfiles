@@ -73,8 +73,6 @@
             customArgs = { inherit system hostname username pkgs; };
           };
 
-          # nixpkgs.overlays = [ fenix.overlays.default ];
-
           modules = [
             ./hosts/darwin/${hostname} # ip address, host specific stuff
 
