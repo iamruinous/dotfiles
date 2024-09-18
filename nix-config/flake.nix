@@ -68,13 +68,13 @@
         };
 
     # creates a nixos home-manager system config
-    nixosHMSystem = system: hostname: username:
+    nixosHMSystem = system: hostname: username: extraModules:
       let
         pkgs = genPkgs system;
         unstablePkgs = genUnstablePkgs system;
       in
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          inherit system extraModules;
           specialArgs = {
             inherit pkgs unstablePkgs inputs;
 
@@ -85,8 +85,6 @@
           modules = [
             #disko.nixosModules.disko
             #./hosts/nixos/${hostname}/disko-config.nix
-
-            nixos-hardware.nixosModules.framework-13th-gen-intel
 
             lanzaboote.nixosModules.lanzaboote
             ./hosts/nixos/${hostname}
@@ -101,7 +99,7 @@
             }
 
             ./hosts/common/nixos-common.nix
-          ];
+          ] ++ extraModules;
         };
 
     # creates a macos system config
@@ -149,7 +147,7 @@
       # home managed systems
       nixie = nixosHMSystem "x86_64-linux" "nixie" "jmeskill";
       nixai = nixosHMSystem "x86_64-linux" "nixai" "jmeskill";
-      framework = nixosHMSystem "x86_64-linux" "framework" "jmeskill";
+      framework = nixosHMSystem "x86_64-linux" "framework" "jmeskill" [nixos-hardware.nixosModules.framework-13th-gen-intel];
     };
   };
 }

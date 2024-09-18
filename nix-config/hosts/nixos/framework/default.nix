@@ -138,12 +138,6 @@ in
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -182,6 +176,17 @@ in
   services.fprintd.enable = true;
   security.pam.services.login.fprintAuth = true;
 
+  # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
+  programs._1password = {
+    enable = true;
+  };
+
+  # Enable the 1Passsword GUI with myself as an authorized user for polkit
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["jmeskill"];
+  };
+ 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

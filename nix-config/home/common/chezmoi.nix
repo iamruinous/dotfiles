@@ -13,7 +13,7 @@ in {
   home.activation.chezmoi = lib.hm.dag.entryAfter ["writeBoundary"] ''
     # echo -e "\033[0;34mActivating chezmoi"
     # echo -e "\033[0;34m=================="
-    echo ${pkgs.chezmoi}/bin/chezmoi apply --source=${homeDir}/Projects/github/iamruinous/dotfiles/config --verbose --no-tty --keep-going --refresh-externals=never
+    ${pkgs.chezmoi}/bin/chezmoi apply --source=${homeDir}/Projects/github/iamruinous/dotfiles/config --verbose --no-tty --keep-going --refresh-externals=never
     # echo -e "\033[0;34m=================="
   '';
 }

@@ -89,7 +89,10 @@
         body = "nvim $argv";
       };
 
-      vi = "vim";
+      vi = {
+        wraps = "nvim";
+        body = "nvim $argv";
+      };
     };
 
     plugins = with pkgs.fishPlugins; [

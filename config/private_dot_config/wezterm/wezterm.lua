@@ -3,9 +3,9 @@
 local wezterm = require 'wezterm'
 -- Creates a config object which we will be adding our config to
 local config = wezterm.config_builder()
-config.set_environment_variables = {
-  PATH = '/run/current-system/sw/bin:' .. os.getenv('PATH')
-}
+-- config.set_environment_variables = {
+--   PATH = '/run/current-system/sw/bin:' .. os.getenv('PATH')
+-- }
 
 -- (This is where our config will go)
 -- Pick a colour scheme. WezTerm ships with more than 1,000!
@@ -25,7 +25,7 @@ config.macos_window_background_blur = 30
 -- On macOS, 'RESIZE|INTEGRATED_BUTTONS' also looks nice if
 -- you want to keep the window controls visible and integrate
 -- them into the tab bar.
-config.window_decorations = 'RESIZE'
+-- config.window_decorations = 'RESIZE'
 -- Sets the font for the window frame (tab bar)
 config.window_frame = {
   -- Berkeley Mono for me again, though an idea could be to try a

@@ -29,15 +29,11 @@ in
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-24.8.6"
+    "1password"
+    "1password-gui"
   ];
 
   environment.systemPackages = with pkgs; [
-    # intel-gpu-tools
-    # libva-utils
-    # intel-media-driver
-    # jellyfin-ffmpeg
-    # hddtemp
-    # synergy
   ];
 
   programs.fish = {
