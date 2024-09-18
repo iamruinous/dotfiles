@@ -1,4 +1,10 @@
-{ pkgs, unstablePkgs, system, ... }:
+{ pkgs, unstablePkgs, inputs, system, ... }:
+let
+  inherit (inputs) fenix;
+  nixpkgs.overlays = [
+    fenix.overlay
+  ];
+in
 {
   fonts.packages = with pkgs; [
     (nerdfonts.override { 

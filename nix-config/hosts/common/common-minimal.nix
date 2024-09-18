@@ -5,6 +5,7 @@
     # utils
     git
     rsync
+    tmux
     vim
   ];
 }
