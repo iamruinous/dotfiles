@@ -8,6 +8,9 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
+    extra-trusted-users = [
+      "jmeskill"
+    ];
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -42,8 +45,8 @@
   outputs = inputs@{ self, nixos-hardware, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, disko, lanzaboote, fenix, ... }:
   let
     genPkgs = system: import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
-    genUnstablePkgs = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
-    genDarwinPkgs = system: import nixpkgs-darwin { inherit system; config.allowUnfree = true; };
+    genUnstablePkgs = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default]; };
+    genDarwinPkgs = system: import nixpkgs-darwin { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
 
     # creates a nixos system config
     nixosSystem = system: hostname: username:
@@ -109,15 +112,18 @@
     darwinSystem = system: hostname: username:
       let
         pkgs = genDarwinPkgs system;
+        unstablePkgs = genUnstablePkgs system;
       in
         nix-darwin.lib.darwinSystem {
-          inherit system inputs;
+          inherit system;
           specialArgs = {
+            inherit pkgs unstablePkgs inputs;
+
             # adds unstable to be available in top-level evals (like in common-packages)
-            unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+            # unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
 
             # lets us use these things in modules
-            customArgs = { inherit system hostname username pkgs; };
+            customArgs = { inherit system hostname username pkgs unstablePkgs; };
           };
 
           modules = [

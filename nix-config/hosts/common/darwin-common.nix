@@ -13,18 +13,16 @@ in
     shell = pkgs.fish;
   };
 
-  nix = {
-    package = pkgs.nixVersions.git;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      warn-dirty = false;
-    };
-  };
+  nix.package = pkgs.nixVersions.git;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.warn-dirty = false;
+  nix.settings.trusted-users = [ "root" "jmeskill" ];
+
   services.nix-daemon.enable = true;
 
   # pins to stable as unstable updates very often
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.registry = {
+    nixpkgs.flake = inputs.nixpkgs;
     n.to = {
       type = "path";
       path = inputs.nixpkgs;
