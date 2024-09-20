@@ -56,6 +56,6 @@
     enable = true;
     # the specified packages as well as 1Password CLI will be
     # automatically installed and configured to use shell plugins
-    plugins = with pkgs; [ gh awscli2 cachix ];
+    # plugins = with pkgs; [ gh awscli2 cachix ];
   };
 }

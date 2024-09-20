@@ -91,6 +91,7 @@ in
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # hardware.opengl.enable = true; 
   # programs.hyprland = {
   #   enable = true;
   #   # set the flake package
@@ -132,10 +133,7 @@ in
     isNormalUser = true;
     description = "Jade Meskill";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
+    # packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -143,11 +141,6 @@ in
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    vim
-    rsync
-    wget
-    git
-    tmux
     sbctl
     fastfetch
     google-chrome

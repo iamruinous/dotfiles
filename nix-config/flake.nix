@@ -2,11 +2,11 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://hyprland.cachix.org"
+      # "https://hyprland.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
   inputs = {
@@ -20,8 +20,9 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     fenix.url = "github:nix-community/fenix";
     fenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -30,14 +31,15 @@
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
+    naersk.url = "github:nix-community/naersk";
 
-    # disko.url = "github:nix-community/disko";
-    # disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixos-hardware, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, lanzaboote, fenix, ... }:
+  outputs = inputs@{ self, nixos-hardware, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, disko, lanzaboote, fenix, ... }:
   let
     genPkgs = system: import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
     genUnstablePkgs = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
@@ -59,7 +61,7 @@
           };
 
           modules = [
-            #disko.nixosModules.disko
+            disko.nixosModules.disko
             #./hosts/nixos/${hostname}/disko-config.nix
             
             lanzaboote.nixosModules.lanzaboote
@@ -84,7 +86,7 @@
           };
 
           modules = [
-            #disko.nixosModules.disko
+            disko.nixosModules.disko
             #./hosts/nixos/${hostname}/disko-config.nix
 
             lanzaboote.nixosModules.lanzaboote
