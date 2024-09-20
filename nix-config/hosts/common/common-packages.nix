@@ -1,10 +1,4 @@
-{ pkgs, unstablePkgs, inputs, system, ... }:
-let
-  inherit (inputs) fenix;
-  nixpkgs.overlays = [
-    fenix.overlay
-  ];
-in
+{ pkgs, unstablePkgs, system, ... }:
 {
   fonts.packages = with pkgs; [
     (nerdfonts.override { 
@@ -63,14 +57,14 @@ in
     zig
 
     # rust
-    # (fenix.complete.withComponents [
-    #   "cargo"
-    #   "clippy"
-    #   "rust-src"
-    #   "rustc"
-    #   "rustfmt"
-    # ])
-    # rust-analyzer-nightly
+    (fenix.stable.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer-nightly
 
     # prompt stuff
     figlet

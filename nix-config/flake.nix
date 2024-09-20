@@ -13,6 +13,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    flake-utils.url = "github:numtide/flake-utils";
 
     nix-darwin.url = "github:lnl7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,9 +37,9 @@
     # disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixos-hardware, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, lanzaboote, ... }:
+  outputs = inputs@{ self, nixos-hardware, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, lanzaboote, fenix, ... }:
   let
-    genPkgs = system: import nixpkgs { inherit system; config.allowUnfree = true; };
+    genPkgs = system: import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
     genUnstablePkgs = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
     genDarwinPkgs = system: import nixpkgs-darwin { inherit system; config.allowUnfree = true; };
 
@@ -90,8 +91,8 @@
             ./hosts/nixos/${hostname}
 
             home-manager.nixosModules.home-manager {
-              home-manager.extraSpecialArgs = { inherit inputs; };
               networking.hostName = hostname;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.backupFileExtension = "hm-backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -121,8 +122,8 @@
             ./hosts/darwin/${hostname} # ip address, host specific stuff
 
             home-manager.darwinModules.home-manager {
-              home-manager.extraSpecialArgs = { inherit inputs; };
               networking.hostName = hostname;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.backupFileExtension = "hm-backup";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
