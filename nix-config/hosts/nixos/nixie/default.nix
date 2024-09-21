@@ -51,10 +51,8 @@ in
   services.xserver.desktopManager.budgie.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+  services.xserver.xkb.variant = "";
+  services.xserver.xkb.layout = "us";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -91,8 +89,8 @@ in
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "jmeskill";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "jmeskill";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
