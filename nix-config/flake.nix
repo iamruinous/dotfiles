@@ -8,9 +8,6 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
-    extra-trusted-users = [
-      "jmeskill"
-    ];
   };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -149,13 +146,13 @@
     };
 
     nixosConfigurations = {
-      # use this for a blank ISO + disko to work
-      nixos = nixosHMSystem "x86_64-linux" "nixos" "jmeskill";
       # non-home managed systems
       touchstone = nixosSystem "x86_64-linux" "touchstone" "xfer";
+      # use this for a blank ISO + disko to work
+      nixos = nixosHMSystem "x86_64-linux" "nixos" "jmeskill" [];
       # home managed systems
-      nixie = nixosHMSystem "x86_64-linux" "nixie" "jmeskill";
-      nixai = nixosHMSystem "x86_64-linux" "nixai" "jmeskill";
+      nixie = nixosHMSystem "x86_64-linux" "nixie" "jmeskill" [];
+      nixai = nixosHMSystem "x86_64-linux" "nixai" "jmeskill" [];
       framework = nixosHMSystem "x86_64-linux" "framework" "jmeskill" [nixos-hardware.nixosModules.framework-13th-gen-intel];
     };
   };

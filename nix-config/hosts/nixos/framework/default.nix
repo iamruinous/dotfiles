@@ -4,7 +4,7 @@
 
 { config, pkgs, unstablePkgs, lib, inputs, ... }:
 let
-  inherit (inputs) wezterm hyprland;
+  inherit (inputs) wezterm;
 in
 {
   imports =
@@ -82,29 +82,10 @@ in
   ];
   boot.loader.timeout = 3;
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-
-  # hardware.opengl.enable = true; 
-  # programs.hyprland = {
-  #   enable = true;
-  #   # set the flake package
-  #   package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  #   # make sure to also set the portal package, so that they are in sync
-  #   portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  # };
-
-  # Configure keymap in X11
-  #services.xserver = {
-  #  layout = "us";
-  #  xkbVariant = "";
-  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -124,9 +105,6 @@ in
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jmeskill = {

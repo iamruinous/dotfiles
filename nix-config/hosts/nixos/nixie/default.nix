@@ -3,7 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, unstablePkgs, ... }:
-
+let
+  inherit (inputs) wezterm;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -102,6 +104,9 @@
     tmux
     vim
     wget
+    fastfetch
+    google-chrome
+    wezterm.packages.${pkgs.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
