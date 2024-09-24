@@ -196,7 +196,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace T' # mnemonics T - Terminal
+run = 'move-node-to-workspace W' # mnemonics W - WezTerm
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
@@ -212,4 +212,12 @@ run = 'move-node-to-workspace M' # mnemonics M - Mail
 
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace T' # mnemonics T - Todoist
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace S' # mnemonics S - Slack
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace 1' 
