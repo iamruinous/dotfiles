@@ -9,7 +9,8 @@ after-login-command = []
 after-startup-command = [
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+  'exec-and-forget borders'
+  # active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
 # Start AeroSpace at login
@@ -80,8 +81,7 @@ outer.right =      5
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
 alt-enter = '''exec-and-forget osascript -e '
-tell application "Terminal"
-    do script
+tell application "WezTerm"
     activate
 end tell'
 '''
@@ -221,3 +221,12 @@ run = 'move-node-to-workspace S' # mnemonics S - Slack
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace 1' 
+
+# per-machine config below
+{{ if eq .chezmoi.hostname "jbookair" }}
+{{-   include "private_dot_config/aerospace/machine/window-detected.jbookair" -}}
+{{- else if eq .chezmoi.hostname "studio" -}}
+{{-   include "private_dot_config/aerospace/machine/window-detected.studio" -}}
+{{- else if eq .chezmoi.hostname "jmacmini" -}}
+{{-   include "private_dot_config/aerospace/machine/window-detected.jmacmini" -}}
+{{- end -}}
