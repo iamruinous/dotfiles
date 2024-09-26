@@ -1,0 +1,5 @@
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
+run = 'move-node-to-workspace C' # mnemonics C - Chat
+

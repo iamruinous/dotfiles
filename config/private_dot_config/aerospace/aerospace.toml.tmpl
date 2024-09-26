@@ -180,6 +180,15 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
+# per-machine main config below
+{{ if eq .chezmoi.hostname "jbookair" }}
+{{-   include "private_dot_config/aerospace/machine/_main.jbookair" -}}
+{{- else if eq .chezmoi.hostname "studio" -}}
+{{-   include "private_dot_config/aerospace/machine/_main.studio" -}}
+{{- else if eq .chezmoi.hostname "jmacmini" -}}
+{{-   include "private_dot_config/aerospace/machine/_main.jmacmini" -}}
+{{- end -}}
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -222,12 +231,12 @@ run = 'move-node-to-workspace T' # mnemonics T - Todoist
 if.app-id = 'com.github.wez.wezterm'
 run = 'move-node-to-workspace W' # mnemonics W - WezTerm
 
-
 # per-machine config below
 {{ if eq .chezmoi.hostname "jbookair" }}
-{{-   include "private_dot_config/aerospace/machine/window-detected.jbookair" -}}
+{{-   include "private_dot_config/aerospace/machine/_window-detected.jbookair" -}}
 {{- else if eq .chezmoi.hostname "studio" -}}
-{{-   include "private_dot_config/aerospace/machine/window-detected.studio" -}}
+{{-   include "private_dot_config/aerospace/machine/_window-detected.studio" -}}
 {{- else if eq .chezmoi.hostname "jmacmini" -}}
-{{-   include "private_dot_config/aerospace/machine/window-detected.jmacmini" -}}
+{{-   include "private_dot_config/aerospace/machine/_window-detected.jmacmini" -}}
 {{- end -}}
+

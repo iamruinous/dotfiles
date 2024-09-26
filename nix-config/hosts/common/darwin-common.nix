@@ -103,6 +103,7 @@ in
       "blockblock"
       "cyberduck"
       "dropbox"
+      "felixkratz/formulae/sketchybar"
       "keka"
       "knockknock"
       "lulu"
