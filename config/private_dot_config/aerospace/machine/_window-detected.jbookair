@@ -1,3 +1,4 @@
+# vi: ft=toml
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
