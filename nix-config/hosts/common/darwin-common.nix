@@ -54,8 +54,6 @@ in
   environment.systemPackages = with unstablePkgs; [
     # window manager
     jankyborders
-    skhd
-    yabai
   ];
 
   programs.zsh = {
