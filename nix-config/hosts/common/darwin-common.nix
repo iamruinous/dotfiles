@@ -92,7 +92,7 @@ in
     ];
 
     brews = [
-      "cleed"
+      # "cleed"
     ];
 
     casks = [
@@ -101,7 +101,7 @@ in
       "blockblock"
       "cyberduck"
       "dropbox"
-      "felixkratz/formulae/sketchybar"
+      # "felixkratz/formulae/sketchybar"
       "keka"
       "knockknock"
       "lulu"

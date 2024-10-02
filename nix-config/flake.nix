@@ -142,6 +142,7 @@
     darwinConfigurations = {
       jbookair = darwinSystem "aarch64-darwin" "jbookair" "jmeskill";
       jmacmini = darwinSystem "aarch64-darwin" "jmacmini" "jmeskill";
+      jmacminiest = darwinSystem "aarch64-darwin" "jmacminiest" "jmeskill";
       studio = darwinSystem "x86_64-darwin" "studio" "jmeskill";
     };
 
