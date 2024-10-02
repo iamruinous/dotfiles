@@ -1,15 +1,13 @@
 # vi: ft=toml
 
 [[on-window-detected]]
+if.app-id = 'com.anongecko.gemini-desktop'
+run = 'move-node-to-workspace A' # mnemonics A - AI
+
+[[on-window-detected]]
 if.app-id = 'com.flexibits.fantastical2.mac'
 run = 'move-node-to-workspace M' # mnemonics M - Mimestream
 
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 1' # with Messages
-
-[[on-window-detected]]
 if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
 run = 'move-node-to-workspace S' # with Slack
-
-
