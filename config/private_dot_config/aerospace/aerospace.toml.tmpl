@@ -97,6 +97,7 @@ alt-h = 'move left'
 alt-j = 'move down'
 alt-k = 'move up'
 alt-l = 'move right'
+alt-f = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 ## alt-shift-h = 'move left'
@@ -211,6 +212,12 @@ run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'Picture in Picture'
+run = 'layout floating'
+check-further-callbacks = true
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace B' # mnemonics B - Browser 
 
 [[on-window-detected]]
@@ -232,6 +239,11 @@ run = 'move-node-to-workspace T' # mnemonics T - Todoist
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
 run = 'move-node-to-workspace W' # mnemonics W - WezTerm
+
+[[on-window-detected]]
+if.app-id = 'tv.plex.desktop'
+run = 'layout floating'
+check-further-callbacks = true
 
 # per-machine config below
 {{ if eq .chezmoi.hostname "jbookair" }}

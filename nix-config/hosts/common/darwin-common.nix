@@ -88,7 +88,8 @@ in
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     taps = [
-      "radulucut/cleed"
+      # "radulucut/cleed"
+      "nikitabobko/tap"
     ];
 
     brews = [
@@ -100,8 +101,10 @@ in
       "1password-cli"
       "blockblock"
       "cyberduck"
+      "deskpad"
       "dropbox"
       # "felixkratz/formulae/sketchybar"
+      "jellyfin"
       "keka"
       "knockknock"
       "lulu"
@@ -109,6 +112,7 @@ in
       "nikitabobko/tap/aerospace"
       "obsidian"
       "oversight"
+      "plex"
       "raycast"
       "soundsource"
       "todoist"
