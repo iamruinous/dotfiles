@@ -22,11 +22,20 @@
       options = [ "subvol=@" ];
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D5A9-CA1B";
+  fileSystems."/efi" =
+    { device = "/dev/disk/by-uuid/CED1-6282";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/12CE-A600";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/efi/EFI/Linux" = { device = "/boot/EFI/Linux"; options = ["bind"];};
+  fileSystems."/efi/EFI/nixos" = { device = "/boot/EFI/nixos"; options = ["bind"];};
 
   swapDevices = [ ];
 
