@@ -72,24 +72,8 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "jellyfin" = {
-        hostname = "jellyfin.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
       "kodi" = {
         hostname = "kodi.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "plex" = {
-        hostname = "plex.svc.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -122,14 +106,6 @@
       };
 
       # manage
-      "freenas" = {
-        hostname = "freenas.manage.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
       "graf" = {
         hostname = "graf.manage.farmhouse.meskill.network";
         user = "root";
@@ -204,6 +180,14 @@
       };
       "spinel" = {
         hostname = "spinel.manage.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "terranas" = {
+        hostname = "terranas.manage.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -302,14 +286,6 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "ts-jellyfin" = {
-        hostname = "jellyfin.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
       "ts-moonstone" = {
         hostname = "moonstone.greyhound-triceratops.ts.net";
         user = "root";
@@ -342,16 +318,24 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "ts-plex" = {
-        hostname = "plex.greyhound-triceratops.ts.net";
+      "ts-remote" = {
+        hostname = "remote.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "ts-remote" = {
-        hostname = "remote.greyhound-triceratops.ts.net";
+      "ts-terranas" = {
+        hostname = "terranas.greyhound-triceratops.ts.net";
+        user = "admin";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-truenas" = {
+        hostname = "truenas.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
