@@ -302,6 +302,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "ts-nut" = {
+        hostname = "nut.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "ts-obelisk" = {
         hostname = "obelisk.greyhound-triceratops.ts.net";
         user = "root";
@@ -326,6 +334,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "ts-pit" = {
+        hostname = "pit.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "ts-remote" = {
         hostname = "remote.greyhound-triceratops.ts.net";
         user = "root";
@@ -334,8 +350,24 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "ts-romm" = {
+        hostname = "romm.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "ts-terranas" = {
         hostname = "terranas.greyhound-triceratops.ts.net";
+        user = "admin";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-tip" = {
+        hostname = "tip.greyhound-triceratops.ts.net";
         user = "admin";
         extraOptions = {
           RequestTTY = "yes";
