@@ -32,6 +32,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "calibre" = {
+        hostname = "calibre.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "crew" = {
         hostname = "crew.svc.farmhouse.meskill.network";
         user = "root";
@@ -66,6 +74,14 @@
       };
       "getterr" = {
         hostname = "getterr.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "kavita" = {
+        hostname = "kavita.svc.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -262,6 +278,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "ts-calibre" = {
+        hostname = "calibre.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "ts-crew" = {
         hostname = "crew.greyhound-triceratops.ts.net";
         user = "root";
@@ -288,6 +312,14 @@
       };
       "ts-getterr" = {
         hostname = "getterr.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-kavita" = {
+        hostname = "kavita.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";

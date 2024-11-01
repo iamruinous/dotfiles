@@ -94,6 +94,7 @@ in
 
     brews = [
       # "cleed"
+      "boring"
     ];
 
     casks = [

@@ -4,3 +4,12 @@
 if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
 run = 'move-node-to-workspace C' # mnemonics C - Chat
 
+[[on-window-detected]]
+if.app-id = 'com.anongecko.gemini-desktop'
+run = 'move-node-to-workspace A' # mnemonics A - AI
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace A' # mnemonics A - AI
+
+
