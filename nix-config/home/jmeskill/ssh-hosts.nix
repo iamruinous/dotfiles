@@ -32,6 +32,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "ca" = {
+        hostname = "ca.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "calibre" = {
         hostname = "calibre.svc.farmhouse.meskill.network";
         user = "root";
@@ -212,7 +220,7 @@
       };
       "terranas" = {
         hostname = "terranas.manage.farmhouse.meskill.network";
-        user = "root";
+        user = "admin";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -220,7 +228,7 @@
       };
       "truenas" = {
         hostname = "truenas.manage.farmhouse.meskill.network";
-        user = "root";
+        user = "admin";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -272,6 +280,14 @@
       };
       "ts-ai" = {
         hostname = "ai.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-ca" = {
+        hostname = "ca.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
