@@ -88,19 +88,19 @@ in
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     taps = [
-      # "radulucut/cleed"
       "nikitabobko/tap"
     ];
 
     brews = [
-      # "cleed"
       "boring"
     ];
 
     casks = [
+      "aerospace"
       "alfred"
       "1password-cli"
       "blockblock"
+      "claude"
       "cyberduck"
       "deskpad"
       "dropbox"
@@ -110,13 +110,11 @@ in
       "knockknock"
       "lulu"
       "mimestream"
-      "nikitabobko/tap/aerospace"
       "obsidian"
       "oversight"
       "plex"
       "raycast"
       "soundsource"
-      "todoist"
       "wezterm"
     ];
 
