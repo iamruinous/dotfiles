@@ -104,6 +104,22 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "ranch-obsidian" = {
+        hostname = "ranch-obsidian.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ranch-onxy" = {
+        hostname = "ranch-onyx.svc.farmhouse.meskill.network";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "remote" = {
         hostname = "remote.svc.farmhouse.meskill.network";
         user = "root";
@@ -384,6 +400,22 @@
       };
       "ts-pit" = {
         hostname = "pit.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-ranch-obsidian" = {
+        hostname = "ranch-obsidian.greyhound-triceratops.ts.net";
+        user = "root";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+      "ts-ranch-onyx" = {
+        hostname = "ranch-onyx.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";

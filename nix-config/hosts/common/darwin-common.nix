@@ -93,6 +93,10 @@ in
 
     brews = [
       "boring"
+      "helm"
+      "k9s"
+      "kubernetes-cli"
+      "step"
     ];
 
     casks = [
