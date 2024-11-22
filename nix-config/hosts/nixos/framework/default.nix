@@ -126,6 +126,7 @@ in
     fastfetch
     google-chrome
     wezterm.packages.${pkgs.system}.default
+    kdePackages.merkuro
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
