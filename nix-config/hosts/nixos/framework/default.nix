@@ -152,7 +152,7 @@ in
   security.pam.services.login.fprintAuth = true;
 
   # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
-  programs._1password = {
+  programs._1password-cli = {
     enable = true;
   };
 
