@@ -36,6 +36,7 @@
     procs
     rsync
     tmux
+    vdirsyncer
     xplr
     xz
 
