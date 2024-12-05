@@ -12,4 +12,7 @@ run = 'move-node-to-workspace A' # mnemonics A - AI
 if.app-id = 'com.anthropic.claudefordesktop'
 run = 'move-node-to-workspace A' # mnemonics A - AI
 
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari.WebApp.9800FCCF-798C-4F96-9828-DC5B66963E2C'
+run = 'move-node-to-workspace G' # mnemonics G - Glance
 
