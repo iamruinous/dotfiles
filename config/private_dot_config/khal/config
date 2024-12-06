@@ -1,7 +1,7 @@
 [calendars]
 
 [[private]]
-path = /Users/jmeskill/.local/share/khal/calendars/private
+path = ~/.local/share/khal/calendars/private
 type = calendar
 
 # [[teamsnap]]
