@@ -1,22 +1,36 @@
 { config, pkgs, inputs, lib, ... }:
 {
   imports = [
-      inputs._1password-shell-plugins.hmModules.default
-      ./../common/chezmoi.nix
-      ./fish.nix
-      # ./neovim.nix
-      ./packages.nix
-      ./ssh-hosts.nix
-      ./tmux.nix
-    ];
+    inputs._1password-shell-plugins.hmModules.default
+    inputs.agenix.homeManagerModules.default
+    ./../common/chezmoi.nix
+    ./fish.nix
+    # ./neovim.nix
+    ./packages.nix
+    ./ssh-hosts.nix
+    ./tmux.nix
+  ];
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
-  }; 
+  };
 
+  age.secrets.vdirsyncer-google-jadeisfalling-client-secret = {
+    file = ./secrets/vdirsyncer-google-jadeisfalling-client-secret.age;
+  };
+
+  # age-template.files."vdirsyncer-google-jadeisfalling-client-secret" = {
+  #   vars.password = config.age.secrets.vdirsyncer-google-jadeisfalling-client-secret.path;
+  #   content = ''$password'';
+  # };
+
+  programs.vdirsyncer = {
+    enable = true;
+
+  };
   # programs.gpg.enable = true;
 
   programs.keychain = {
