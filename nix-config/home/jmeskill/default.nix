@@ -18,19 +18,19 @@
     EDITOR = "nvim";
   };
 
-  age.secrets.vdirsyncer-google-jadeisfalling-client-secret = {
-    file = ./secrets/vdirsyncer-google-jadeisfalling-client-secret.age;
+  launchd.agents.vdirsyncer = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
+      StartInterval = 900;
+    };
   };
 
-  # age-template.files."vdirsyncer-google-jadeisfalling-client-secret" = {
-  #   vars.password = config.age.secrets.vdirsyncer-google-jadeisfalling-client-secret.path;
-  #   content = ''$password'';
+  # age.secrets.vdirsyncer = {
+  #   file = ./secrets/vdirsyncer.age;
+  #   path = "$HOME/.config/vdirsyncer/config";
   # };
 
-  programs.vdirsyncer = {
-    enable = true;
-
-  };
   # programs.gpg.enable = true;
 
   programs.keychain = {
