@@ -4,38 +4,31 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ 
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
-
   services.fwupd.enable = true;
 
-  boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "6.9") (lib.mkDefault pkgs.linuxPackages_latest);
-  # boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  # boot.initrd.kernelModules = [ ];
-  # boot.kernelModules = [ "kvm-intel" ];
-  # boot.extraModulePackages = [ ];
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/13f4c197-72aa-4ce3-8945-6954b9073bf9";
+    {
+      device = "/dev/disk/by-uuid/13f4c197-72aa-4ce3-8945-6954b9073bf9";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/efi" =
-    { device = "/dev/disk/by-uuid/CED1-6282";
+    {
+      device = "/dev/disk/by-uuid/CED1-6282";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/12CE-A600";
+    {
+      device = "/dev/disk/by-uuid/12CE-A600";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
-  fileSystems."/efi/EFI/Linux" = { device = "/boot/EFI/Linux"; options = ["bind"];};
-  fileSystems."/efi/EFI/nixos" = { device = "/boot/EFI/nixos"; options = ["bind"];};
+  fileSystems."/efi/EFI/Linux" = { device = "/boot/EFI/Linux"; options = [ "bind" ]; };
+  fileSystems."/efi/EFI/nixos" = { device = "/boot/EFI/nixos"; options = [ "bind" ]; };
 
   swapDevices = [ ];
 

@@ -8,7 +8,8 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./../../common/common-packages.nix
     ];
@@ -66,9 +67,9 @@ in
     enable = true;
     theme = "motion";
     themePackages = with pkgs; [
-    (adi1090x-plymouth-themes.override {
-      selected_themes = ["motion"];
-    })
+      (adi1090x-plymouth-themes.override {
+        selected_themes = [ "motion" ];
+      })
     ];
   };
   # enable silent boot
@@ -120,8 +121,8 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     sbctl
     fastfetch
     google-chrome
@@ -129,6 +130,8 @@ in
     kdePackages.merkuro
     obsidian
     todoist-electron
+    dwarf-fortress
+    gcc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -161,9 +164,13 @@ in
   # Enable the 1Passsword GUI with myself as an authorized user for polkit
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = ["jmeskill"];
+    polkitPolicyOwners = [ "jmeskill" ];
   };
- 
+
+  programs.steam = {
+    enable = true;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

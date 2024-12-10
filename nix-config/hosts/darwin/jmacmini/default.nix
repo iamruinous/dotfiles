@@ -1,5 +1,5 @@
 { config, ... }: {
   imports = [
-      ./../../common/common-packages.nix
-    ];
+    ./../../common/common-packages.nix
+  ];
 }

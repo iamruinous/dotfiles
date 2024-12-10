@@ -18,13 +18,13 @@
     EDITOR = "nvim";
   };
 
-#  launchd.agents.vdirsyncer = {
-#    enable = true;
-#    config = {
-#      ProgramArguments = [ "${pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
-#      StartInterval = 900;
-#    };
-#  };
+  #  launchd.agents.vdirsyncer = {
+  #    enable = true;
+  #    config = {
+  #      ProgramArguments = [ "${pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
+  #      StartInterval = 900;
+  #    };
+  #  };
 
   # age.secrets.vdirsyncer = {
   #   file = ./secrets/vdirsyncer.age;

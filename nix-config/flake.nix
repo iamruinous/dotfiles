@@ -20,8 +20,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # home-manager.url = "github:nix-community/home-manager/release-24.05";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     fenix.url = "github:nix-community/fenix";
@@ -180,7 +179,7 @@
         # home managed systems
         nixie = nixosHMSystem "x86_64-linux" "nixie" "jmeskill" [ ];
         nixai = nixosHMSystem "x86_64-linux" "nixai" "jmeskill" [ ];
-        framework = nixosHMSystem "x86_64-linux" "framework" "jmeskill" [ nixos-hardware.nixosModules.framework-13th-gen-intel ];
+        framework = nixosHMSystem "x86_64-linux" "framework" "jmeskill" [ nixos-hardware.nixosModules.framework-intel-core-ultra-series1 ];
       };
     };
 }

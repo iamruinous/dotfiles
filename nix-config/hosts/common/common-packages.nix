@@ -1,8 +1,8 @@
 { pkgs, unstablePkgs, system, ... }:
 {
   fonts.packages = with pkgs; [
-    (nerdfonts.override { 
-      fonts = [ 
+    (nerdfonts.override {
+      fonts = [
         "BigBlueTerminal"
         "DroidSansMono"
         "FiraCode"

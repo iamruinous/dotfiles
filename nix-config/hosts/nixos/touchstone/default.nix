@@ -6,14 +6,15 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./../../common/common-minimal.nix
     ];
 
   networking.hostName = "touchstone"; # Define your hostname.
   networking.hosts = {
-    "10.55.20.55" = ["touchstone"];
+    "10.55.20.55" = [ "touchstone" ];
   };
 
   users.groups.xfer.gid = 351;
