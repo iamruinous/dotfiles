@@ -127,6 +127,8 @@ in
     google-chrome
     wezterm.packages.${pkgs.system}.default
     kdePackages.merkuro
+    obsidian
+    todoist-electron
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -152,7 +154,7 @@ in
   security.pam.services.login.fprintAuth = true;
 
   # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
-  programs._1password-cli = {
+  programs._1password = {
     enable = true;
   };
 
