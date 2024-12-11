@@ -4,6 +4,8 @@
     inputs._1password-shell-plugins.hmModules.default
     inputs.agenix.homeManagerModules.default
     ./../common/chezmoi.nix
+    ./../common/vdirsyncer-systemd.nix
+    ./../common/vdirsyncer-launchd.nix
     ./fish.nix
     # ./neovim.nix
     ./packages.nix
@@ -13,6 +15,8 @@
 
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
+  services.vdirsyncer-systemd.enable = pkgs.stdenv.isLinux;
+  services.vdirsyncer-launchd.enable = pkgs.stdenv.isDarwin;
 
   home.sessionVariables = {
     EDITOR = "nvim";
