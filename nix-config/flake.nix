@@ -1,185 +1,109 @@
 {
+  description = "NixOS and nix-darwin configs for my machines";
   nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-      # "https://hyprland.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    flake-utils.url = "github:numtide/flake-utils";
+    # Nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    nix-darwin.url = "github:lnl7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # NixOS profiles to optimize settings for different hardware
+    hardware.url = "github:nixos/nixos-hardware";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # Nix Darwin (for MacOS machines)
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    fenix.url = "github:nix-community/fenix";
-    fenix.inputs.nixpkgs.follows = "nixpkgs";
-
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
-    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
-
-    wezterm.url = "github:wez/wezterm?dir=nix";
-    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    _1password-shell-plugins.url = "github:1Password/shell-plugins";
-    naersk.url = "github:nix-community/naersk";
-
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
-
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-
-    agenix-template.url = "github:jhillyerd/agenix-template/1.0.0";
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  outputs = inputs@{ self, nixos-hardware, home-manager, nix-darwin, nixpkgs, nixpkgs-unstable, nixpkgs-darwin, disko, lanzaboote, fenix, agenix, agenix-template, ... }:
+  outputs =
+    { self
+    , darwin
+    , home-manager
+    , nix-homebrew
+    , nixpkgs
+    , ...
+    } @ inputs:
     let
-      genPkgs = system: import nixpkgs { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
-      genUnstablePkgs = system: import nixpkgs-unstable { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
-      genDarwinPkgs = system: import nixpkgs-darwin { inherit system; config.allowUnfree = true; overlays = [ fenix.overlays.default ]; };
+      inherit (self) outputs;
 
-      # creates a nixos system config
-      nixosSystem = system: hostname: username:
-        let
-          pkgs = genPkgs system;
-          unstablePkgs = genUnstablePkgs system;
-        in
+      # Define user configurations
+      users = {
+        jmeskill = {
+          #avatar = ./files/avatar/face;
+          email = "jade.meskill@gmail.com";
+          fullName = "Jade Meskill";
+          #gitKey = "C5810093";
+          name = "jmeskill";
+        };
+      };
+
+      # Function for NixOS system configuration
+      mkNixosConfiguration = hostname: username:
         nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+          };
+          modules = [ ./hosts/${hostname}/configuration.nix ];
+        };
+
+      # Function for nix-darwin system configuration
+      mkDarwinConfiguration = system: hostname: username:
+        darwin.lib.darwinSystem {
           inherit system;
           specialArgs = {
-            inherit pkgs unstablePkgs inputs;
-
-            # lets us use these things in modules
-            customArgs = { inherit system hostname username pkgs unstablePkgs; };
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
           };
-
           modules = [
-            disko.nixosModules.disko
-            agenix.nixosModules.default
-            agenix-template.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-            }
-
-            #./hosts/nixos/${hostname}/disko-config.nix
-
-            lanzaboote.nixosModules.lanzaboote
-            ./hosts/nixos/${hostname}
-            ./hosts/common/nixos-common.nix
+            ./hosts/${hostname}/configuration.nix
+            home-manager.darwinModules.home-manager
+            nix-homebrew.darwinModules.nix-homebrew
           ];
         };
 
-      # creates a nixos home-manager system config
-      nixosHMSystem = system: hostname: username: extraModules:
-        let
-          pkgs = genPkgs system;
-          unstablePkgs = genUnstablePkgs system;
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit system extraModules;
-          specialArgs = {
-            inherit pkgs unstablePkgs inputs;
-
-            # lets us use these things in modules
-            customArgs = { inherit system hostname username pkgs unstablePkgs; };
+      # Function for Home Manager configuration
+      mkHomeConfiguration = system: username: hostname:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          extraSpecialArgs = {
+            inherit inputs outputs;
+            userConfig = users.${username};
           };
-
           modules = [
-            disko.nixosModules.disko
-            agenix.nixosModules.default
-            agenix-template.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-            }
-
-            #./hosts/nixos/${hostname}/disko-config.nix
-
-            lanzaboote.nixosModules.lanzaboote
-            ./hosts/nixos/${hostname}
-
-            home-manager.nixosModules.home-manager
-            {
-              networking.hostName = hostname;
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.backupFileExtension = "hm-backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = { imports = [ ./home/${username} ]; };
-            }
-
-            ./hosts/common/nixos-common.nix
-          ] ++ extraModules;
-        };
-
-      # creates a macos system config
-      darwinSystem = system: hostname: username:
-        let
-          pkgs = genDarwinPkgs system;
-          unstablePkgs = genUnstablePkgs system;
-        in
-        nix-darwin.lib.darwinSystem {
-          inherit system;
-          specialArgs = {
-            inherit pkgs unstablePkgs inputs;
-
-            # adds unstable to be available in top-level evals (like in common-packages)
-            # unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-
-            # lets us use these things in modules
-            customArgs = { inherit system hostname username pkgs unstablePkgs; };
-          };
-
-          modules = [
-            agenix.nixosModules.default
-            agenix-template.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-            }
-
-            ./hosts/darwin/${hostname} # ip address, host specific stuff
-
-            home-manager.darwinModules.home-manager
-            {
-              networking.hostName = hostname;
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.backupFileExtension = "hm-backup";
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = { imports = [ ./home/${username} ]; };
-            }
-
-            ./hosts/common/darwin-common.nix
+            ./home/${username}/${hostname}.nix
           ];
         };
     in
     {
-      darwinConfigurations = {
-        jbookair = darwinSystem "aarch64-darwin" "jbookair" "jmeskill";
-        jmacmini = darwinSystem "aarch64-darwin" "jmacmini" "jmeskill";
-        jmacminiest = darwinSystem "aarch64-darwin" "jmacminiest" "jmeskill";
-        studio = darwinSystem "x86_64-darwin" "studio" "jmeskill";
+      nixosConfigurations = {
+        #   energy = mkNixosConfiguration "energy" "nabokikh";
+        #   nabokikh-z13 = mkNixosConfiguration "nabokikh-z13" "nabokikh";
       };
 
-      nixosConfigurations = {
-        # non-home managed systems
-        touchstone = nixosSystem "x86_64-linux" "touchstone" "xfer";
-        # use this for a blank ISO + disko to work
-        nixos = nixosHMSystem "x86_64-linux" "nixos" "jmeskill" [ ];
-        # home managed systems
-        nixie = nixosHMSystem "x86_64-linux" "nixie" "jmeskill" [ ];
-        nixai = nixosHMSystem "x86_64-linux" "nixai" "jmeskill" [ ];
-        framework = nixosHMSystem "x86_64-linux" "framework" "jmeskill" [ nixos-hardware.nixosModules.framework-intel-core-ultra-series1 ];
+      darwinConfigurations = {
+        "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
       };
+
+      homeConfigurations = {
+        # "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
+        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "jmeskill" "studio";
+        # "nabokikh@nabokikh-z13" = mkHomeConfiguration "x86_64-linux" "nabokikh" "nabokikh-z13";
+      };
+
+      overlays = import ./overlays { inherit inputs; };
     };
 }
