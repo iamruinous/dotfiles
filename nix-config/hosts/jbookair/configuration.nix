@@ -8,6 +8,7 @@
     ../modules/developer.nix
     ../modules/darwin/common.nix
     ../modules/darwin/system.nix
+    ../modules/darwin/touch.nix
     ../modules/darwin/user.nix
   ];
 

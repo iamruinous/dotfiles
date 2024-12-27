@@ -1,23 +1,23 @@
 { outputs, ... }: {
   imports = [
-    # ../modules/alacritty.nix
-    # ../modules/atuin.nix
     ../modules/bat.nix
-    # ../modules/btop.nix
-    # ../modules/fastfetch.nix
-    # ../modules/fzf.nix
-    # ../modules/git.nix
-    # ../modules/go.nix
-    # ../modules/gpg.nix
-    # ../modules/home.nix
-    # ../modules/krew.nix
-    # ../modules/lazygit.nix
-    # ../modules/neovim.nix
-    # ../modules/saml2aws.nix
-    # ../modules/scripts.nix
-    # ../modules/starship.nix
-    # ../modules/tmux.nix
-    # ../modules/zsh.nix
+    ../modules/bottom.nix
+    ../modules/btop.nix
+    #    ../modules/chezmoi.nix
+    ../modules/eza.nix
+    ../modules/fish.nix
+    ../modules/fzf.nix
+    ../modules/git.nix
+    ../modules/go.nix
+    ../modules/home.nix
+    ../modules/keychain.nix
+    ../modules/khal.nix
+    ../modules/neovim.nix
+    ../modules/ssh.nix
+    ../modules/starship.nix
+    ../modules/tmux.nix
+    ../modules/vdirsyncer.nix
+    ../modules/vdirsyncer-auto.nix
   ];
 
   # Nixpkgs configuration

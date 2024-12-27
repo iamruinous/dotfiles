@@ -26,6 +26,12 @@
 
     # Homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    # Fenix for rust
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -33,6 +39,7 @@
     , darwin
     , home-manager
     , nix-homebrew
+    , fenix
     , nixpkgs
     , ...
     } @ inputs:
@@ -96,11 +103,13 @@
 
       darwinConfigurations = {
         "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
+        "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
       };
 
       homeConfigurations = {
         # "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
         "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "jmeskill" "studio";
+        "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jmeskill" "jbookair";
         # "nabokikh@nabokikh-z13" = mkHomeConfiguration "x86_64-linux" "nabokikh" "nabokikh-z13";
       };
 
