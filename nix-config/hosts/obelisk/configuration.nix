@@ -37,8 +37,10 @@ in
     dwarf-fortress
     gcc
     kitty
-    tailscale
   ];
+
+  # Enable tailscale
+  services.tailscale.enable = true;
 
   # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
   programs._1password = {
