@@ -32,12 +32,12 @@ in
     fastfetch
     google-chrome
     wezterm.packages.${pkgs.system}.default
-    #kdePackages.merkuro
     obsidian
     todoist-electron
     dwarf-fortress
     gcc
     kitty
+    tailscale
   ];
 
   # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
