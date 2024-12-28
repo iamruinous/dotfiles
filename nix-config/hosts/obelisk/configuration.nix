@@ -19,6 +19,8 @@ in
     ../modules/nixos/hyprland.nix
     ../modules/nixos/pipewire.nix
     ../modules/nixos/steam.nix
+    ../modules/nixos/tailscale.nix
+    ../modules/nixos/ollama.nix
   ];
 
   networking.hostName = "obelisk"; # Define your hostname.
@@ -38,9 +40,6 @@ in
     gcc
     kitty
   ];
-
-  # Enable tailscale
-  services.tailscale.enable = true;
 
   # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
   programs._1password = {

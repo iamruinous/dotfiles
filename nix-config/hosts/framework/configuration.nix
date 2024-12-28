@@ -21,6 +21,7 @@ in
     ../modules/nixos/kde.nix
     ../modules/nixos/pipewire.nix
     ../modules/nixos/steam.nix
+    ../modules/nixos/tailscale.nix
   ];
 
   networking.hostName = "framework"; # Define your hostname.
