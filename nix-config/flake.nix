@@ -32,6 +32,8 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs =
@@ -97,8 +99,7 @@
     in
     {
       nixosConfigurations = {
-        #   energy = mkNixosConfiguration "energy" "nabokikh";
-        #   nabokikh-z13 = mkNixosConfiguration "nabokikh-z13" "nabokikh";
+        "obelisk" = mkNixosConfiguration "obelisk" "jmeskill";
       };
 
       darwinConfigurations = {
@@ -107,10 +108,9 @@
       };
 
       homeConfigurations = {
-        # "nabokikh@energy" = mkHomeConfiguration "x86_64-linux" "nabokikh" "energy";
         "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "jmeskill" "studio";
         "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jmeskill" "jbookair";
-        # "nabokikh@nabokikh-z13" = mkHomeConfiguration "x86_64-linux" "nabokikh" "nabokikh-z13";
+        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "jmeskill" "obelisk";
       };
 
       overlays = import ./overlays { inherit inputs; };
