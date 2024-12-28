@@ -34,6 +34,12 @@
     };
 
     wezterm.url = "github:wez/wezterm?dir=nix";
+
+    # Secureboot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -42,6 +48,7 @@
     , home-manager
     , nix-homebrew
     , fenix
+    , lanzaboote
     , nixpkgs
     , ...
     } @ inputs:
@@ -66,7 +73,10 @@
             inherit inputs outputs hostname;
             userConfig = users.${username};
           };
-          modules = [ ./hosts/${hostname}/configuration.nix ];
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            lanzaboote.nixosModules.lanzaboote
+          ];
         };
 
       # Function for nix-darwin system configuration
@@ -99,6 +109,7 @@
     in
     {
       nixosConfigurations = {
+        "framework" = mkNixosConfiguration "framework" "jmeskill";
         "obelisk" = mkNixosConfiguration "obelisk" "jmeskill";
       };
 
@@ -110,6 +121,7 @@
       homeConfigurations = {
         "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "jmeskill" "studio";
         "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jmeskill" "jbookair";
+        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "jmeskill" "framework";
         "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "jmeskill" "obelisk";
       };
 
