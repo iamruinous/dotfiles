@@ -111,6 +111,7 @@
       nixosConfigurations = {
         "framework" = mkNixosConfiguration "framework" "jmeskill";
         "obelisk" = mkNixosConfiguration "obelisk" "jmeskill";
+        "moonstone" = mkNixosConfiguration "moonstone" "jmeskill";
       };
 
       darwinConfigurations = {
@@ -123,6 +124,7 @@
         "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jmeskill" "jbookair";
         "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "jmeskill" "framework";
         "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "jmeskill" "obelisk";
+        "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "jmeskill" "moonstone";
       };
 
       overlays = import ./overlays { inherit inputs; };
