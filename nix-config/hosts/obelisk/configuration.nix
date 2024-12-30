@@ -39,6 +39,7 @@ in
     dwarf-fortress
     gcc
     kitty
+    caddy
   ];
 
   # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app

@@ -170,7 +170,7 @@
       };
       "moonstone" = {
         hostname = "moonstone.manage.farmhouse.meskill.network";
-        user = "root";
+        user = "moonstone";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -186,7 +186,7 @@
       };
       "obelisk" = {
         hostname = "obelisk.manage.farmhouse.meskill.network";
-        user = "root";
+        user = "jmeskill";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -358,7 +358,7 @@
       };
       "ts-moonstone" = {
         hostname = "moonstone.greyhound-triceratops.ts.net";
-        user = "root";
+        user = "moonstone";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -374,7 +374,7 @@
       };
       "ts-obelisk" = {
         hostname = "obelisk.greyhound-triceratops.ts.net";
-        user = "root";
+        user = "jmeskill";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";

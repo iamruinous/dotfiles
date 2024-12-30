@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ../modules/common.nix
+    ../modules/darwin/common.nix
   ];
 
   # Enable home-manager
