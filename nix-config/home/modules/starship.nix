@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, hostname, config, ... }: {
   # Starship configuration
   programs.starship = {
     enable = true;
@@ -34,11 +34,11 @@
         "\${custom.ssh}"
         "$line_break"
         "[┕](248)[━](249)[❯](250)"
+        " "
         "$jobs"
         "$character"
       ];
-      # [┍](247)[━](246)[━](245)[━](244)[━](243)[━](242)[┫](241)$username$hostname[┣](241)[━](240)[━](239)[━](238)[━](237)[╾](236)[╶](236) $directory$fill$docker_context$package$golang$java$cmake$julia$kotlin$lua$nodejs$python$ruby$rust$git_branch $git_status${custom.ssh}
-      # [┕](248)[━](249)[❯](250)$jobs$character'''
+      right_format = "$cmd_duration$battery";
       character = {
         success_symbol = "[λ](254)";
         error_symbol = " [✗](bold red)";
@@ -135,6 +135,7 @@
         full_symbol = "󰁹";
         charging_symbol = "󰚥 ";
         discharging_symbol = "󰁺 ";
+        disabled = (if hostname == "jbookair" then false else true);
       };
       battery.display = [
         {
