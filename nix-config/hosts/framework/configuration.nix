@@ -14,6 +14,7 @@ in
     ../modules/common.nix
     ../modules/developer.nix
     ../modules/nixos/common.nix
+    ../modules/nixos/latest-kernel.nix
     ../modules/nixos/print.nix
     ../modules/nixos/sudoless.nix
     ../modules/nixos/docker.nix
