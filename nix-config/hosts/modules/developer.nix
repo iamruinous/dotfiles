@@ -10,12 +10,12 @@
   # System packages
   environment.systemPackages = with pkgs; [
     # dev tools
+    git-secrets
     jq
     just
-    ripgrep
     lazygit
     luarocks
-    git-secrets
+    ripgrep
 
     # languages
     go

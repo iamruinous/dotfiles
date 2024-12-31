@@ -18,16 +18,17 @@
       "step"
     ];
     casks = [
-      "aerospace"
       "1password"
       "1password-cli"
+      "aerospace"
+      "balenaetcher"
       "blockblock"
       "claude"
       "cyberduck"
       "deskpad"
       "dropbox"
+      "element"
       "google-chrome"
-      # "felixkratz/formulae/sketchybar"
       "jellyfin"
       "keka"
       "knockknock"
@@ -36,6 +37,7 @@
       "obsidian"
       "oversight"
       "plex"
+      "private-internet-access"
       "raycast"
       "soundsource"
       "wezterm"
@@ -46,15 +48,16 @@
     onActivation.cleanup = "zap";
     masApps = {
       "Amphetamine" = 937984704;
-      "aSPICEPro" = 1560593107;
       "Bitwarden" = 1352778147;
       "Fantastical" = 975937182;
-      "Paprika3" = 1303222628;
+      "Kindle" = 302584613;
       "PCalc" = 403504866;
+      "Paprika3" = 1303222628;
       "PixelmatorPro" = 1289583905;
-      "reMarkable" = 1276493162;
       "Tailscale" = 1475387142;
       "Todoist" = 585829637;
+      "aSPICEPro" = 1560593107;
+      "reMarkable" = 1276493162;
     };
   };
 }

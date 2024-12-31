@@ -6,6 +6,15 @@
 , pkgs
 , ...
 }: {
+  imports = [
+    ./brew.nix
+    ./fonts.nix
+    ./system.nix
+    ./shell.nix
+    ./touch.nix
+    ./user.nix
+  ];
+
   # Nixpkgs configuration
   nixpkgs = {
     overlays = [

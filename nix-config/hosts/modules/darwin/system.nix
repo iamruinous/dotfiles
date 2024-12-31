@@ -95,7 +95,7 @@
       trackpad = {
         TrackpadRightClick = true;
         TrackpadThreeFingerDrag = true;
-        Clicking = true;
+        Clicking = false;
       };
       dock = {
         autohide = true;
@@ -130,22 +130,5 @@
   # System packages
   environment.systemPackages = with pkgs; [
     jankyborders
-  ];
-
-  # Zsh configuration
-  programs.zsh.enable = true;
-
-  # Fish configuration
-  programs.fish.enable = true;
-
-  # direnv configuration
-  programs.direnv.enable = true;
-
-  # Fonts configuration
-  fonts.packages = with pkgs; [
-    pkgs.nerd-fonts.bigblue-terminal
-    pkgs.nerd-fonts.droid-sans-mono
-    pkgs.nerd-fonts.fira-code
-    pkgs.nerd-fonts.monaspace
   ];
 }
