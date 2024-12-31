@@ -6,17 +6,6 @@
 , pkgs
 , ...
 }: {
-  # Add nix-homebrew configuration
-  nix-homebrew = {
-    enable = true;
-    enableRosetta =
-      if pkgs.system == "aarch64-darwin"
-      then true
-      else false;
-    user = "${userConfig.name}";
-    autoMigrate = true;
-  };
-
   # Nixpkgs configuration
   nixpkgs = {
     overlays = [

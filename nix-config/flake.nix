@@ -95,7 +95,7 @@
         };
 
       # Function for Home Manager configuration
-      mkHomeConfiguration = system: username: hostname:
+      mkHomeConfiguration = system: hostname: username:
         home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs { inherit system; };
           extraSpecialArgs = {
@@ -117,16 +117,19 @@
       darwinConfigurations = {
         "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
         "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+        "jmacmini" = mkDarwinConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
       };
 
       homeConfigurations = {
-        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "jmeskill" "studio";
-        "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jmeskill" "jbookair";
-        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "jmeskill" "framework";
-        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "jmeskill" "obelisk";
-        "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "jmeskill" "moonstone";
+        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
+        "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+        "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
+        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
+        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
       };
 
       overlays = import ./overlays { inherit inputs; };
     };
 }
+
