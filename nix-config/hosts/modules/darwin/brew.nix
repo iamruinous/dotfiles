@@ -19,6 +19,7 @@
     ];
     casks = [
       "aerospace"
+      "1password"
       "1password-cli"
       "blockblock"
       "claude"
