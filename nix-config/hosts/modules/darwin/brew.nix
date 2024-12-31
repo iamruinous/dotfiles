@@ -39,6 +39,7 @@
       "plex"
       "private-internet-access"
       "raycast"
+      "slack"
       "soundsource"
       "wezterm"
     ];
