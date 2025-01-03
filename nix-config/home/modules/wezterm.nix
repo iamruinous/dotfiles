@@ -1,7 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   # Install wezterm via home-manager module
   programs.wezterm = {
     enable = true;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
     extraConfig = ''
       -- Creates a config object which we will be adding our config to
       local config = wezterm.config_builder()
@@ -15,7 +16,7 @@
       config.color_scheme = 'Tokyo Night'
 
       -- Choose your favourite font, make sure it's installed on your machine
-      config.font = wezterm.font({ family = 'FiraCode Nerd Font' })
+      config.font = wezterm.font({ family = 'FiraCode Nerd Font Mono' })
       -- And a font size that won't have you squinting
       config.font_size = 18
 
@@ -27,7 +28,7 @@
       -- On macOS, 'RESIZE|INTEGRATED_BUTTONS' also looks nice if
       -- you want to keep the window controls visible and integrate
       -- them into the tab bar.
-      config.window_decorations = 'RESIZE|INTEGRATED_BUTTONS'
+      config.window_decorations = 'RESIZE'
       -- Sets the font for the window frame (tab bar)
       config.window_frame = {
         -- Berkeley Mono for me again, though an idea could be to try a

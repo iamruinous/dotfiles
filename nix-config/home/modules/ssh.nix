@@ -11,6 +11,7 @@
       IdentityFile ~/.ssh/id_jademeskill_ed25519
       IdentityFile ~/.ssh/id_ruinous_computer_ed25519
       IdentityFile ~/.ssh/id_rsa
+      IdentityAgent ~/.1password/agent.sock
     '';
     matchBlocks = {
       "*.meskill.network 10.55.*" = {

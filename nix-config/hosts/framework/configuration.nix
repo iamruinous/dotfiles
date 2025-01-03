@@ -4,7 +4,7 @@
 
 { config, pkgs, unstablePkgs, lib, inputs, ... }:
 let
-  inherit (inputs) wezterm;
+  inherit (inputs) wezterm hyprswitch walker;
 in
 {
   imports = [
@@ -59,6 +59,12 @@ in
     dwarf-fortress
     gcc
     kitty
+    hypridle
+    hyprlock
+    hyprpaper
+    hyprpicker
+    hyprswitch.packages.${pkgs.system}.default
+    walker.packages.${pkgs.system}.default
   ];
 
   # Enable login with fingerprint reader
@@ -73,6 +79,25 @@ in
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "jmeskill" ];
+  };
+
+  # Enable the Hyprland DM
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  # Enable the UWSM
+  # programs.uwsm = {
+  #   enable = true;
+  #   waylandCompositors = "hyprland";
+  # };
+
+  services.xserver.updateDbusEnvironment = true;
+  # Enable security services
+  security.polkit.enable = true;
+  security.pam.services = {
+    hyprlock = { };
   };
 
   # This value determines the NixOS release from which the default

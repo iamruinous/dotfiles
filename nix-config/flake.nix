@@ -1,8 +1,23 @@
 {
   description = "NixOS and nix-darwin configs for my machines";
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://wezterm.cachix.org"
+      "https://walker.cachix.org"
+      "https://walker-git.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
+    ];
+    extra-trusted-users = [
+      "root"
+      "jmeskill"
+      "@wheel"
+    ];
   };
   inputs = {
     # Nixpkgs
@@ -34,6 +49,8 @@
     };
 
     wezterm.url = "github:wez/wezterm?dir=nix";
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
+    walker.url = "github:abenz1267/walker";
 
     # Secureboot
     lanzaboote = {
@@ -49,6 +66,7 @@
     , nix-homebrew
     , fenix
     , lanzaboote
+    , walker
     , nixpkgs
     , ...
     } @ inputs:
@@ -113,6 +131,7 @@
         "obelisk" = mkNixosConfiguration "obelisk" "jmeskill";
         "moonstone" = mkNixosConfiguration "moonstone" "jmeskill";
       };
+
 
       darwinConfigurations = {
         "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
