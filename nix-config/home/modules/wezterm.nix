@@ -28,7 +28,7 @@
       -- On macOS, 'RESIZE|INTEGRATED_BUTTONS' also looks nice if
       -- you want to keep the window controls visible and integrate
       -- them into the tab bar.
-      config.window_decorations = 'RESIZE'
+      config.window_decorations = 'NONE'
       -- Sets the font for the window frame (tab bar)
       config.window_frame = {
         -- Berkeley Mono for me again, though an idea could be to try a

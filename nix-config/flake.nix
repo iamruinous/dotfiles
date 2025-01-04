@@ -50,6 +50,7 @@
 
     wezterm.url = "github:wez/wezterm?dir=nix";
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
     walker.url = "github:abenz1267/walker";
 
     # Secureboot

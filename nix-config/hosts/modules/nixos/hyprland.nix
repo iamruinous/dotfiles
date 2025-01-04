@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ inputs, pkgs, ... }:
+let
+  inherit (inputs) hyprswitch walker hyprland-qtutils;
+in
+{
   # Input settings
   services.libinput.enable = true;
 
@@ -30,6 +34,9 @@
     hyprlock
     hyprpaper
     hyprpicker
+    hyprswitch.packages.${pkgs.system}.default
+    walker.packages.${pkgs.system}.default
+    hyprland-qtutils.packages."${pkgs.system}".default
   ];
 
   # Fonts configuration

@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }:
 let
   wallpaper_dir = ./../../../files/wallpapers/nixos;
+  space-wallpaper = "${wallpaper_dir}/space1-wallpaper.jpg";
 in
 {
   imports = [
@@ -22,6 +23,9 @@ in
         gaps_in = 3;
         gaps_out = 3;
         layout = "master";
+      };
+      opengl = {
+        nvidia_anti_flicker = false;
       };
 
       # Window decorations settings
@@ -149,7 +153,7 @@ in
           "SHIFT, XF86MonBrightnessDown, exec, brightnessctl -d tpacpi::kbd_backlight set 33%-"
 
           # Switch applications
-          "$mainMod, TAB, exec, hyprswitch gui --mod-key $mainMod --key TAB --max-switch-offset 9 --hide-active-window-border"
+          "$mainMod, TAB, exec, hyprswitch gui --mod-key super --key tab --max-switch-offset 9 --hide-active-window-border"
         ]
         ++ (
           # workspaces
@@ -216,7 +220,7 @@ in
     settings = {
       background = {
         monitor = "";
-        path = "${wallpaper_dir}/space1-wallpaper.jpg";
+        path = "${space-wallpaper}";
         blur_passes = 3;
         contrast = 0.8916;
         brightness = 0.8172;
@@ -230,28 +234,83 @@ in
         disable_loading_bar = true;
       };
 
-      # eDP-1 Conifg
-      input-field = {
-        monitor = "";
-        size = "500, 120";
-        outline_thickness = 2;
-        dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
-        dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
-        dots_center = true;
-        outer_color = "rgba(0, 0, 0, 0)";
-        inner_color = "rgba(0, 0, 0, 0.5)";
-        font_color = "rgb(200, 200, 200)";
-        fade_on_empty = false;
-        capslock_color = -1;
-        placeholder_text = "<i><span foreground=\"##e6e9ef\">Password</span></i>";
-        fail_text = "<i>\$FAIL <b>(\$ATTEMPTS)</b></i>";
-        hide_input = false;
-        position = "0, -120";
-        halign = "center";
-        valign = "center";
-      };
+      input-field = [
+        # DP-1 Config
+        {
+          monitor = "DP-1";
+          size = "250, 60";
+          outline_thickness = 2;
+          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true;
+          outer_color = "rgba(0, 0, 0, 0)";
+          inner_color = "rgba(0, 0, 0, 0.5)";
+          font_color = "rgb(200, 200, 200)";
+          fade_on_empty = false;
+          capslock_color = -1;
+          placeholder_text = "<i><span foreground=\"##e6e9ef\">Password</span></i>";
+          fail_text = "<i>\$FAIL <b>(\$ATTEMPTS)</b></i>";
+          hide_input = false;
+          position = "0, -60";
+          halign = "center";
+          valign = "center";
+        }
+        # eDP-1 Config
+        {
+          monitor = "eDP-1";
+          size = "500, 120";
+          outline_thickness = 2;
+          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true;
+          outer_color = "rgba(0, 0, 0, 0)";
+          inner_color = "rgba(0, 0, 0, 0.5)";
+          font_color = "rgb(200, 200, 200)";
+          fade_on_empty = false;
+          capslock_color = -1;
+          placeholder_text = "<i><span foreground=\"##e6e9ef\">Password</span></i>";
+          fail_text = "<i>\$FAIL <b>(\$ATTEMPTS)</b></i>";
+          hide_input = false;
+          position = "0, -120";
+          halign = "center";
+          valign = "center";
+        }
+      ];
 
       label = [
+        # Date
+        {
+          monitor = "DP-1";
+          text = "cmd[update:1000] echo \"<span>\$(date '+%A, %d %B')</span>\"";
+          color = "rgba(255, 255, 255, 0.8)";
+          font_size = 30;
+          font_family = "BigBlueTermPlus Nerd Font";
+          position = "0, -200";
+          halign = "center";
+          valign = "top";
+        }
+        # Time
+        {
+          monitor = "DP-1";
+          text = "cmd[update:1000] echo \"<span>\$(date '+%H:%M')</span>\"";
+          color = "rgba(255, 255, 255, 0.8)";
+          font_size = 240;
+          font_family = "BigBlueTerm437 Nerd Font";
+          position = "0, -220";
+          halign = "center";
+          valign = "top";
+        }
+        # Keyboard layout
+        {
+          monitor = "DP-1";
+          text = "\$LAYOUT";
+          color = "rgba(255, 255, 255, 0.9)";
+          font_size = 20;
+          font_family = "BigBlueTermPlus Nerd Font";
+          position = "0, -180";
+          halign = "center";
+          valign = "center";
+        }
         # Date
         {
           monitor = "eDP-1";
@@ -298,6 +357,7 @@ in
       preload = "${wallpaper_dir}/space1-wallpaper.jpg";
       wallpaper = [
         "eDP-1,${wallpaper_dir}/space1-wallpaper.jpg"
+        "DP-1,${wallpaper_dir}/space1-wallpaper.jpg"
       ];
     };
   };

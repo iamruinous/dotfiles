@@ -1,11 +1,4 @@
-{ inputs
-, outputs
-, lib
-, config
-, userConfig
-, pkgs
-, ...
-}: {
+{ pkgs, ... }: {
 
   # System packages
   environment.systemPackages = with pkgs; [
