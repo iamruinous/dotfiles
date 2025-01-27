@@ -18,6 +18,7 @@
     ./vdirsyncer.nix
     ./vdirsyncer-auto.nix
     ./wezterm.nix
+    ./zed-editor.nix
   ];
 
   # Nixpkgs configuration
