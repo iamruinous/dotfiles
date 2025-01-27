@@ -74,7 +74,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = true;
+  networking.firewall.enable = false;
 
   # Set your time zone.
   time.timeZone = "America/Phoenix";
@@ -103,7 +103,6 @@
 
   # Additional services
   services.locate.enable = true;
-  services.locate.localuser = null;
 
   # OpenSSH daemon
   services.openssh.enable = true;

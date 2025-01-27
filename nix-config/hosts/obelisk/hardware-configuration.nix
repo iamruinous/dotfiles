@@ -10,7 +10,7 @@
     ];
 
   services.fwupd.enable = true;
-  boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "8021q" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -35,17 +35,24 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   # networking.useDHCP = lib.mkDefault true;
-  networking.interfaces.enp2s0 = {
-    ipv4 = {
-      addresses = [{
-        address = "10.55.10.52";
-        prefixLength = 24;
-      }];
+  networking = {
+    dhcpcd.enable = false;
+    interfaces.enp2s0.ipv4.addresses = [{
+      address = "10.55.10.52";
+      prefixLength = 24;
+    }];
+    defaultGateway = "10.55.10.1";
+    nameservers = [ "10.55.10.35" ];
+    # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
+    vlans.vlan2 = {
+      id = 2;
+      interface = "enp2s0";
     };
+    interfaces.vlan2.ipv4.addresses = [{
+      address = "10.55.20.22";
+      prefixLength = 24;
+    }];
   };
-  networking.defaultGateway = "10.55.10.1";
-  networking.nameservers = [ "10.55.10.35" ];
-  # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.enableRedistributableFirmware = true;
@@ -64,4 +71,10 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 }
