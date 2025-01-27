@@ -29,9 +29,4 @@
     '';
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
-  networking.firewall.logRefusedConnections = true;
-
-  environment.systemPackages = with pkgs; [
-    oterm
-  ];
 }
