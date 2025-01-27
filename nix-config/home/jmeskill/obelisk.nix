@@ -2,6 +2,7 @@
   imports = [
     ../modules/common.nix
     ../modules/nixos/hyprland.nix
+    ../modules/nixos/oterm.nix
   ];
 
   # Enable home-manager

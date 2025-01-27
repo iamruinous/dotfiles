@@ -16,6 +16,7 @@
     brews = [
       "boring"
       "step"
+      "oterm"
     ];
     casks = [
       "1password"
@@ -45,6 +46,7 @@
     ];
     taps = [
       "nikitabobko/tap"
+      "ggozad/formulas"
     ];
     onActivation.cleanup = "zap";
     masApps = {
