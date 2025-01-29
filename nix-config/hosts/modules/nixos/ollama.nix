@@ -9,6 +9,12 @@
     enable = true;
   };
 
+  age.secrets.caddy_root_ca = {
+    file = ../../../files/configs/caddy/root_ca.crt.age;
+    path = "/etc/caddy/root_ca.crt";
+    mode = "600";
+  };
+
   services.caddy = {
     enable = true;
     acmeCA = "https://ca.svc.farmhouse.meskill.network/acme/acme/directory";
