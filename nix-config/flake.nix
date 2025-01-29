@@ -48,16 +48,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm.url = "github:wez/wezterm?dir=nix";
-    hyprswitch.url = "github:h3rmt/hyprswitch/release";
-    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
-    walker.url = "github:abenz1267/walker";
-
     # Secureboot
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Wezterm
+    wezterm.url = "github:wez/wezterm?dir=nix";
+
+    # Hyprland
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
+    walker.url = "github:abenz1267/walker";
+
+    # Agenix for secrets
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
@@ -68,6 +74,7 @@
     , fenix
     , lanzaboote
     , walker
+    , agenix
     , nixpkgs
     , ...
     } @ inputs:
@@ -86,8 +93,9 @@
       };
 
       # Function for NixOS system configuration
-      mkNixosConfiguration = hostname: username:
+      mkNixosConfiguration = system: hostname: username:
         nixpkgs.lib.nixosSystem {
+          inherit system;
           specialArgs = {
             inherit inputs outputs hostname;
             userConfig = users.${username};
@@ -95,6 +103,10 @@
           modules = [
             ./hosts/${hostname}/configuration.nix
             lanzaboote.nixosModules.lanzaboote
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [ agenix.packages.${system}.default ];
+            }
           ];
         };
 
@@ -110,6 +122,10 @@
             ./hosts/${hostname}/configuration.nix
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [ agenix.packages.${system}.default ];
+            }
           ];
         };
 
@@ -123,14 +139,15 @@
           };
           modules = [
             ./home/${username}/${hostname}.nix
+            agenix.homeManagerModules.age
           ];
         };
     in
     {
       nixosConfigurations = {
-        "framework" = mkNixosConfiguration "framework" "jmeskill";
-        "obelisk" = mkNixosConfiguration "obelisk" "jmeskill";
-        "moonstone" = mkNixosConfiguration "moonstone" "jmeskill";
+        "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
+        "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
       };
 
 
