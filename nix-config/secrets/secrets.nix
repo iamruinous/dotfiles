@@ -7,7 +7,6 @@ let
   systems = [ jbookair obelisk ];
 in
 {
-  "files/configs/caddy/root_ca.crt.age".publicKeys = users ++ [ obelisk ];
   "files/configs/caddy/caddy.env.age".publicKeys = users ++ [ obelisk ];
 }
 
