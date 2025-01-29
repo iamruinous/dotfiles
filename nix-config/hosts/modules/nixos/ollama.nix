@@ -27,8 +27,8 @@
         header_down X-Forwarded-For {http.request.remote}
       }
     '';
-    virtualHosts."obelisk.manage.farmhouse.meskill.network".extraConfig = ''
-      reverse_proxy http://localhost:8080 {
+    virtualHosts."ollama.svc.farmhouse.meskill.network".extraConfig = ''
+      reverse_proxy http://localhost:11434 {
         header_down X-Real-IP {http.request.remote}
         header_down X-Forwarded-For {http.request.remote}
       }
