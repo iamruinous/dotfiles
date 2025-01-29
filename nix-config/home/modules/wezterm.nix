@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, lib, inputs, ... }:
+let
+  window_decorations = if pkgs.stdenv.isDarwin then "RESIZE" else "NONE";
+in
+{
   # Install wezterm via home-manager module
   programs.wezterm = {
     enable = true;
@@ -28,7 +32,7 @@
       -- On macOS, 'RESIZE|INTEGRATED_BUTTONS' also looks nice if
       -- you want to keep the window controls visible and integrate
       -- them into the tab bar.
-      config.window_decorations = 'NONE'
+      config.window_decorations = '${window_decorations}'
       -- Sets the font for the window frame (tab bar)
       config.window_frame = {
         -- Berkeley Mono for me again, though an idea could be to try a
