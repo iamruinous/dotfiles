@@ -1,4 +1,4 @@
-{ outputs, ... }: {
+{ age, config, outputs, ... }: {
   imports = [
     ./bat.nix
     ./bottom.nix
@@ -31,4 +31,6 @@
       allowUnfree = true;
     };
   };
+
+  age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_dotfiles_ed25519" ];
 }

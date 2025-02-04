@@ -139,7 +139,7 @@
           };
           modules = [
             ./home/${username}/${hostname}.nix
-            agenix.homeManagerModules.age
+            agenix.homeManagerModules.default
           ];
         };
     in
