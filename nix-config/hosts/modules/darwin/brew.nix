@@ -41,6 +41,7 @@
       "raycast"
       "slack"
       "soundsource"
+      "spotify"
       "wezterm"
     ];
     taps = [
