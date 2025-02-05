@@ -15,9 +15,7 @@
     onActivation.upgrade = true;
     brews = [
       "boring"
-      "oterm"
       "step"
-      "todoist"
     ];
     casks = [
       "1password"
@@ -48,7 +46,6 @@
     taps = [
       "ggozad/formulas"
       "nikitabobko/tap"
-      "sachaos/todoist"
     ];
     onActivation.cleanup = "zap";
     masApps = {

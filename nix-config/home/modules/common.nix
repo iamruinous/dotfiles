@@ -12,10 +12,12 @@
     ./keychain.nix
     ./khal.nix
     ./neovim.nix
+    ./oterm.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
     ./todoist.nix
+    ./todoist-auto.nix
     ./vdirsyncer.nix
     ./vdirsyncer-auto.nix
     ./wezterm.nix
