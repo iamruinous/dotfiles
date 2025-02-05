@@ -51,7 +51,7 @@ in
       launchd.agents.vdirsyncer = {
         enable = true;
         config = {
-          ProgramArguments = [ "$[pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
+          ProgramArguments = [ "${pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
           StartInterval = 900;
         };
       };

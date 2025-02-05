@@ -51,7 +51,7 @@ in
       launchd.agents.todoist = {
         enable = true;
         config = {
-          ProgramArguments = [ "$[pkgs.todoist}/bin/todoist" "sync" ];
+          ProgramArguments = [ "${pkgs.todoist}/bin/todoist" "sync" ];
           StartInterval = 900;
         };
       };
