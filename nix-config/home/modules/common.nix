@@ -15,6 +15,7 @@
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
+    ./todoist.nix
     ./vdirsyncer.nix
     ./vdirsyncer-auto.nix
     ./wezterm.nix

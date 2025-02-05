@@ -11,5 +11,6 @@ in
 {
   "files/configs/caddy/caddy.env.age".publicKeys = users ++ [ obelisk ];
   "files/configs/vdirsyncer/config.age".publicKeys = users ++ systems;
+  "files/configs/todoist/config.json.age".publicKeys = users ++ systems;
 }
 

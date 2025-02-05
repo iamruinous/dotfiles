@@ -108,8 +108,14 @@
         minimize-to-application = true;
         mineffect = "scale";
         persistent-apps = [
+          "/System/Applications/Messages.app"
           "/Applications/Google Chrome.app"
+          "/Users/jmeskill/Applications/Chrome Apps.localized/Google Chat.app"
           "${pkgs.wezterm}/Applications/WezTerm.app"
+          "/Applications/Obsidian.app"
+          "/Applications/Mimestream.app"
+          "/Applications/Todoist.app"
+          "/Applications/Spotify.app"
         ];
         wvous-bl-corner = 1;
         wvous-br-corner = 1;

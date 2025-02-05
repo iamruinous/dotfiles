@@ -12,6 +12,7 @@
     ];
     keys = [
       "~/.ssh/id_ed25519"
+      "~/.ssh/id_dotfiles_ed25519"
       "~/.ssh/id_jademeskill_ed25519"
       "~/.ssh/id_ruinous_computer_ed25519"
       "~/.ssh/id_rsa"
