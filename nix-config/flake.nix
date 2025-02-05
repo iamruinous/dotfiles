@@ -1,278 +1,173 @@
 {
-  description = "Darwin configuration for jbookair";
-
+  description = "NixOS and nix-darwin configs for my machines";
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://wezterm.cachix.org"
+      "https://walker.cachix.org"
+      "https://walker-git.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
+      "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
+      "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
+    ];
+    extra-trusted-users = [
+      "root"
+      "jmeskill"
+      "@wheel"
+    ];
+  };
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Nixpkgs
+    # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?rev=d2faa1bbca1b1e4962ce7373c5b0879e5b12cef2";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    # Home manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # NixOS profiles to optimize settings for different hardware
+    hardware.url = "github:nixos/nixos-hardware";
+
+    # Nix Darwin (for MacOS machines)
+    darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Homebrew
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    # Fenix for rust
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Secureboot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Wezterm
+    wezterm.url = "github:wez/wezterm?dir=nix";
+
+    # Hyprland
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
+    walker.url = "github:abenz1267/walker";
+
+    # Agenix for secrets
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }:
-  let
-    configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages = with pkgs;
-        [ 
-          vim
-        ];
+  outputs =
+    { self
+    , darwin
+    , home-manager
+    , nix-homebrew
+    , fenix
+    , lanzaboote
+    , walker
+    , agenix
+    , nixpkgs
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      nix.package = pkgs.nixVersions.latest;
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
-      programs.fish.enable = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 4;
-
-      fonts.packages = with pkgs; [
-        fira-code
-        fira-code-nerdfont
-        fira-mono
-        monaspace
-      ];
-
-      homebrew = {
-        enable = true;
-
-        casks = [
-          "1password-cli"
-          "dropbox"
-          "font-bigblue-terminal-nerd-font"
-          "font-fira-code-nerd-font"
-          "mimestream"
-          "todoist"
-        ];
-
-        masApps = {
+      # Define user configurations
+      users = {
+        jmeskill = {
+          #avatar = ./files/avatar/face;
+          email = "jade.meskill@gmail.com";
+          fullName = "Jade Meskill";
+          #gitKey = "C5810093";
+          name = "jmeskill";
         };
       };
 
-      system.defaults = {
-        # minimal dock
-        dock = {
-          autohide = true;
-          magnification = true;
-          largesize = 96;
-          orientation = "bottom";
-          static-only = false;
-          show-process-indicators = true;
-          show-recents = true;
+      # Function for NixOS system configuration
+      mkNixosConfiguration = system: hostname: username:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+          };
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            lanzaboote.nixosModules.lanzaboote
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [ agenix.packages.${system}.default ];
+            }
+          ];
         };
-        # a finder that tells me what I want to know and lets me work
-        finder = {
-          AppleShowAllExtensions = true;
-          ShowPathbar = true;
-          FXEnableExtensionChangeWarning = false;
+
+      # Function for nix-darwin system configuration
+      mkDarwinConfiguration = system: hostname: username:
+        darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+          };
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            home-manager.darwinModules.home-manager
+            nix-homebrew.darwinModules.nix-homebrew
+            agenix.nixosModules.default
+            {
+              environment.systemPackages = [ agenix.packages.${system}.default ];
+            }
+          ];
         };
-        # Tab between form controls and F-row that behaves as F1-F12
-        NSGlobalDomain = {
-          AppleKeyboardUIMode = 3;
-          "com.apple.keyboard.fnState" = true;
+
+      # Function for Home Manager configuration
+      mkHomeConfiguration = system: hostname: username:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs { inherit system; };
+          extraSpecialArgs = {
+            inherit inputs outputs hostname;
+            userConfig = users.${username};
+          };
+          modules = [
+            ./home/${username}/${hostname}.nix
+            agenix.homeManagerModules.default
+          ];
         };
+    in
+    {
+      nixosConfigurations = {
+        "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
+        "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
       };
 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+
+      darwinConfigurations = {
+        "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
+        "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+        "jmacmini" = mkDarwinConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
+      };
+
+      homeConfigurations = {
+        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
+        "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+        "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
+        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
+        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
+      };
+
+      overlays = import ./overlays { inherit inputs; };
     };
-
-    homeconfig = { pkgs, ... }: {
-      home.stateVersion = "24.05";
-      programs.home-manager.enable = true;
-
-      home.packages = with pkgs; [
-        # config management
-        age
-        chezmoi
-
-        # utils
-        btop
-        cargo-binstall
-        duf
-        dust
-        eza
-        khal
-        fd
-        fzf
-        gnupg
-        htop
-        keychain
-        mas
-        moar
-        mosh
-        procs
-        tmux
-        xplr
-        xz
-
-        # dev tools
-        jq
-        just
-        neovim
-        git
-        git-secrets
-
-
-        # languages
-        go
-        nodejs
-        pipx
-        python3
-        rye
-        zig
-
-        # window manager
-        jankyborders
-        skhd
-        yabai
-
-        # prompt stuff
-        figlet
-        fortune
-        lolcat
-        neofetch
-        starship
-        toilet
-      ];
-
-      home.sessionVariables = {
-        EDITOR = "nvim";
-      }; 
-
-      programs.fish = {
-        enable = true;
-        shellAbbrs = {
-          dl = "curl --create-dirs -O --output-dir /tmp/";
-        };
-
-        functions = {
-          fish_user_key_bindings = ''
-            bind \t complete-and-search
-            bind \cw backward-kill-word
-
-            # Alt+left
-            bind \e\[1\;3D backward-kill-bigword
-            bind \ek kill-whole-line
-          '';
-
-          ls = {
-            wraps = "eza";
-            body = "eza --git --icons -ga --group-directories-first $argv";
-          };
-
-          ll = {
-            wraps = "ls";
-            body = "ls -lahF $argv";
-          };
-
-          l = {
-            wraps = "xplr";
-            body = "xplr $argv";
-          };
-
-          find = {
-            wraps = "fd";
-            body = "fd --follow --hidden $argv";
-          };
-
-          cat = {
-            wraps = "bat";
-            body = "bat $argv";
-          };
-
-          top = {
-            wraps = "btop";
-            body = "btop $argv";
-          };
-
-          history = "builtin history --show-time='%h/%d - %H:%M:%S ' | moar";
-
-          tree = {
-            wraps = "eza";
-            body = "eza --git --icons --tree $argv";
-          };
-
-          ps = {
-            wraps = "procs";
-            body = "procs $argv";
-          };
-
-          pkill = "command pkill -f -e $argv";
-
-          df = {
-            wraps = "duf";
-            body = "duf --hide-fs tmpfs,vfat,devfs,devtmpfs $argv";
-          };
-
-          du = {
-            wraps = "dust";
-            body = "dust -b $argv";
-          };
-
-          cal = {
-            wraps = "khal";
-            body = "khal $argv";
-          };
-
-          call = "cal list";
-          cala = "cal calendar";
-          cali = "ikhal";
-
-          vim = {
-            wraps = "nvim";
-            body = "nvim $argv";
-          };
-
-          vi = "vim";
-        };
-
-        plugins = with pkgs.fishPlugins; [
-          {
-            name = "fzf-fish";
-            src = fzf-fish.src;
-          }
-        ];
-      };
-
-      programs.starship = {
-        enable = true;
-        enableTransience = true;
-        enableFishIntegration = true;
-        enableZshIntegration = true;
-      };
-    };
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#jbookair
-    darwinConfigurations.jbookair = nix-darwin.lib.darwinSystem {
-      modules = [ 
-        configuration
-        {
-          users.users.jmeskill.home = "/Users/jmeskill";
-        }
-        home-manager.darwinModules.home-manager  {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.verbose = true;
-          home-manager.users.jmeskill = homeconfig;
-        }
-      ];
-    };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."jbookair".pkgs;
-  };
 }
+

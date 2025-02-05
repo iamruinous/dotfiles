@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-# startup options
-sudo yabai --load-sa
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-
-# load everything in .config/yabai
-find -L "${HOME}/.config/yabai" -type f -perm +111 -exec {} \;
