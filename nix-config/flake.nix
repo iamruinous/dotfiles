@@ -147,24 +147,26 @@
     {
       nixosConfigurations = {
         "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
-        "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "jmacnix" = mkNixosConfiguration "x86_64-linux" "jmacnix" "jmeskill";
         "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
+        "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
       };
 
 
       darwinConfigurations = {
-        "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
         "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
         "jmacmini" = mkDarwinConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
+        "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
       };
 
       homeConfigurations = {
-        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
+        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
         "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
         "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
-        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
-        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "jmeskill@jmacnix" = mkHomeConfiguration "x86_64-linux" "jmacnix" "jmeskill";
         "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
+        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
+        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
       };
 
       overlays = import ./overlays { inherit inputs; };
