@@ -4,16 +4,6 @@
 path = ~/.local/share/khal/calendars/private
 type = calendar
 
-# [[teamsnap]]
-# path = ~/.local/state/vdir/calendars/teamsnap/
-# color = dark green
-# priority = 70
-
-#[[intermiami]]
-#path = ~/.local/state/vdir/calendars/intermiami/
-#color = dark magenta
-#priority = 90
-
 [[google_jadeisfalling]]
 path = ~/.local/state/vdir/calendars/google_jadeisfalling/jadeisfalling@gmail.com/
 readonly = true
@@ -24,7 +14,7 @@ path = ~/.local/state/vdir/calendars/google_jadeisfalling/f7b80c1dfcc628035cd7ac
 readonly = true
 priority = 20
 
-[[google_teamsnap]]
+[[google_teamsnap_vargas]]
 path = ~/.local/state/vdir/calendars/google_jadeisfalling/q6an98nfal3adbtfcctnmkqb9ne9mfee@import.calendar.google.com/
 readonly = true
 priority = 50
@@ -38,6 +28,16 @@ priority = 60
 path = ~/.local/state/vdir/calendars/google_jadeisfalling/bkkc5ho5r78k6npbshsk8n037uda6dmj@import.calendar.google.com/
 readonly = true
 priority = 70
+
+[[google_volleyball_bryan]]
+path = ~/.local/state/vdir/calendars/google_jadeisfalling/6bbgpd9li4mo63kcu22pishg11fiopae@import.calendar.google.com/
+readonly = true
+priority = 80
+
+[[google_intermiami]]
+path = ~/.local/state/vdir/calendars/google_jadeisfalling/lro6ebgamdh6uh5h11t2cdqhlf69jni5@import.calendar.google.com/
+readonly = true
+priority = 90
 
 [locale]
 firstweekday = 6
