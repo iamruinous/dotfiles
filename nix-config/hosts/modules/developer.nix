@@ -15,7 +15,11 @@
     nodejs
     (python3.withPackages (ps: with ps; [ pip virtualenv ]))
     basedpyright
+    lua-language-server
+    nil
     uv
+    stylua
+    selene
     zig
 
     # rust

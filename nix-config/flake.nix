@@ -1,21 +1,21 @@
 {
   description = "NixOS and nix-darwin configs for my machines";
   nixConfig = {
-    substituters = [
+    extra-substituters = [
       "https://cache.nixos.org?priority=10"
       "https://nix-community.cachix.org"
       "https://wezterm.cachix.org"
       "https://walker.cachix.org"
       "https://walker-git.cachix.org"
     ];
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0="
       "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
       "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
     ];
-    trusted-users = [
+    extra-trusted-users = [
       "root"
       "jmeskill"
       "@wheel"
