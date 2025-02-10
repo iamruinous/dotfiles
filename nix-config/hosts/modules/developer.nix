@@ -14,6 +14,7 @@
     go
     nodejs
     (python3.withPackages (ps: with ps; [ pip virtualenv ]))
+    basedpyright
     uv
     zig
 

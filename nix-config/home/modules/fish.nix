@@ -83,16 +83,6 @@
       call = "cal list";
       cala = "cal calendar";
       cali = "ikhal";
-
-      vim = {
-        wraps = "nvim";
-        body = "nvim $argv";
-      };
-
-      vi = {
-        wraps = "nvim";
-        body = "nvim $argv";
-      };
     };
 
     plugins = with pkgs.fishPlugins; [

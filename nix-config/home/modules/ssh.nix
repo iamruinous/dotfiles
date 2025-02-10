@@ -171,7 +171,7 @@
       };
       "moonstone" = {
         hostname = "moonstone.manage.farmhouse.meskill.network";
-        user = "moonstone";
+        user = "jmeskill";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -359,7 +359,7 @@
       };
       "ts-moonstone" = {
         hostname = "moonstone.greyhound-triceratops.ts.net";
-        user = "moonstone";
+        user = "jmeskill";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";

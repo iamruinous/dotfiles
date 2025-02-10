@@ -37,6 +37,10 @@
     auto-optimise-store = true;
   };
 
+  nix.extraOptions = ''
+    trusted-users = root jmeskill
+  '';
+
   boot = {
     # Bootloader.
     loader.systemd-boot.enable = true;
@@ -107,4 +111,6 @@
   # OpenSSH daemon
   services.openssh.enable = true;
 }
+
+
 
