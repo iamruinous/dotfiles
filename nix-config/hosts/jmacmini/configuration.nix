@@ -1,8 +1,4 @@
-{ pkgs
-, outputs
-, userConfig
-, ...
-}: {
+{ ... }: {
   imports = [
     ../modules/common.nix
     ../modules/developer.nix

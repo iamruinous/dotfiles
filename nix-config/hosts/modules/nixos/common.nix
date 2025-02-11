@@ -6,17 +6,6 @@
 , pkgs
 , ...
 }: {
-  # Nixpkgs configuration
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.stable-packages
-      inputs.fenix.overlays.default
-    ];
-
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   # Register flake inputs for nix commands
   nix.registry = lib.mapAttrs (_: flake: { inherit flake; }) (lib.filterAttrs (_: lib.isType "flake") inputs);
@@ -30,16 +19,6 @@
         value.source = value.flake;
       })
       config.nix.registry;
-
-  # Nix settings
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    auto-optimise-store = true;
-  };
-
-  nix.extraOptions = ''
-    trusted-users = root jmeskill
-  '';
 
   boot = {
     # Bootloader.

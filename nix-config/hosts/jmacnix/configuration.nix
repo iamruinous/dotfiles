@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, unstablePkgs, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 let
   inherit (inputs) wezterm;
 in
 {
-  imports = [
+    imports = [
     inputs.hardware.nixosModules.apple-imac-14-2
     ./hardware-configuration.nix
     ../modules/common.nix

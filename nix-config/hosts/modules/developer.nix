@@ -17,6 +17,7 @@
     basedpyright
     lua-language-server
     nil
+    nixfmt
     uv
     stylua
     selene

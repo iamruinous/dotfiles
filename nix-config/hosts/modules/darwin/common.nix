@@ -1,11 +1,4 @@
-{ inputs
-, outputs
-, lib
-, config
-, userConfig
-, pkgs
-, ...
-}: {
+{ pkgs, ... }: {
   imports = [
     ./brew.nix
     ./fonts.nix
@@ -14,23 +7,6 @@
     ./touch.nix
     ./user.nix
   ];
-
-  # Nixpkgs configuration
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.stable-packages
-      inputs.fenix.overlays.default
-    ];
-
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-  # Nix settings
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-  };
 
   nix.package = pkgs.nix;
 
