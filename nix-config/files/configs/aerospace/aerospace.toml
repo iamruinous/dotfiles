@@ -11,7 +11,7 @@ after-login-command = []
 after-startup-command = [
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders'
+  'exec-and-forget borders',
   # active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
@@ -54,11 +54,11 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10 
-outer.top =        10
-outer.right =      10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -189,7 +189,10 @@ alt-shift-semicolon = 'mode service'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 ## alt-shift-h = ['join-with left', 'mode main']
@@ -199,7 +202,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
-run = 'move-node-to-workspace 1' 
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
@@ -213,7 +216,7 @@ run = 'move-node-to-workspace B' # mnemonics B - Browser
 
 [[on-window-detected]]
 if.app-id = 'com.mimestream.Mimestream'
-run = 'move-node-to-workspace M' # mnemonics M - Mail
+run = 'move-node-to-workspace M'        # mnemonics M - Mail
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
@@ -221,15 +224,15 @@ run = 'move-node-to-workspace O' # mnemonics O - Obsidian
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace S' # mnemonics S - Slack
+run = 'move-node-to-workspace S'        # mnemonics S - Slack
 
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist'
-run = 'move-node-to-workspace T' # mnemonics T - Todoist
+run = 'move-node-to-workspace T'      # mnemonics T - Todoist
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace W' # mnemonics W - WezTerm
+run = 'move-node-to-workspace W'     # mnemonics W - WezTerm
 
 [[on-window-detected]]
 if.app-id = 'tv.plex.desktop'
@@ -238,28 +241,28 @@ check-further-callbacks = true
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
-run = 'move-node-to-workspace C' # mnemonics C - Chat
+run = 'move-node-to-workspace C'                                     # mnemonics C - Chat
 
 [[on-window-detected]]
 if.app-id = 'com.anongecko.gemini-desktop'
-run = 'move-node-to-workspace A' # mnemonics A - AI
+run = 'move-node-to-workspace A'           # mnemonics A - AI
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace A' # mnemonics A - AI
+run = 'move-node-to-workspace A'             # mnemonics A - AI
 
 [[on-window-detected]]
 if.app-id = 'com.flexibits.fantastical2.mac'
-run = 'move-node-to-workspace M' # mnemonics M - Mimestream
+run = 'move-node-to-workspace M'             # mnemonics M - Mimestream
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari.WebApp.9800FCCF-798C-4F96-9828-DC5B66963E2C'
-run = 'move-node-to-workspace G' # mnemonics G - Glance
+run = 'move-node-to-workspace G'                                           # mnemonics G - Glance
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari.WebApp.659B868C-AB8D-4A9B-BD1B-0B70B2813C73'
-run = 'move-node-to-workspace G' # mnemonics G - Glance
+run = 'move-node-to-workspace G'                                           # mnemonics G - Glance
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari.WebApp.8437BF77-93C7-4DE5-84C0-3A216CAB566A'
-run = 'move-node-to-workspace G' # mnemonics G - Glance
+run = 'move-node-to-workspace G'                                           # mnemonics G - Glance

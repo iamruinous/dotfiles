@@ -19,11 +19,17 @@
     # lsp and formatters
     alejandra
     basedpyright
+    biome
     harper
     lua-language-server
+    marksman
     nil
     selene
     stylua
+    taplo
+    typos-lsp
+    yaml-language-server
+    zls
 
     # rust
     (fenix.stable.withComponents [

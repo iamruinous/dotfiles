@@ -16,11 +16,16 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       "basedpyright",
-      "lua_ls",
-      "nil_ls",
+      "biome",
       "harper_ls",
+      "lua_ls",
+      "marksman",
+      "nil_ls",
       "rust_analyzer",
-      -- "pyright"
+      "taplo",
+      "typos_lsp",
+      "yamlls",
+      "zls",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
