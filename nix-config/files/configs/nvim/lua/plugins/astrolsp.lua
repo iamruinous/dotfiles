@@ -21,6 +21,7 @@ return {
       "lua_ls",
       "marksman",
       "nil_ls",
+      "ruff",
       "rust_analyzer",
       "taplo",
       "typos_lsp",

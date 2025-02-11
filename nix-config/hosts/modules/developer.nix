@@ -24,6 +24,7 @@
     lua-language-server
     marksman
     nil
+    ruff
     selene
     stylua
     taplo
