@@ -1,10 +1,7 @@
-{ inputs
-, outputs
-, lib
-, config
-, userConfig
-, pkgs
-, ...
+{
+  userConfig,
+  pkgs,
+  ...
 }: {
   # System settings
   system = {

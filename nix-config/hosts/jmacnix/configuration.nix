@@ -1,13 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, inputs, ... }:
-let
-  inherit (inputs) wezterm;
-in
 {
-    imports = [
+  pkgs,
+  inputs,
+  ...
+}: let
+  inherit (inputs) wezterm;
+in {
+  imports = [
     inputs.hardware.nixosModules.apple-imac-14-2
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -47,7 +48,7 @@ in
   # Enable the 1Passsword GUI with myself as an authorized user for polkit
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = [ "jmeskill" ];
+    polkitPolicyOwners = ["jmeskill"];
   };
 
   # This value determines the NixOS release from which the default

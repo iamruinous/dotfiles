@@ -1,8 +1,6 @@
-{ userConfig, ... }:
-let
+{...}: let
   git_config = ../../files/configs/git;
-in
-{
+in {
   # home.file.".ssh/allowed_signers".text = ''
   #   iamruinous@ruinous.social ${builtins.readFile ~/.ssh/id_ed25519.pub}
   #   iamruinous@ruinous.social ${builtins.readFile ~/.ssh/id_ruinous_computer_ed25519.pub}

@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.ssh = {
     enable = true;
     forwardAgent = true;
@@ -250,7 +250,7 @@
         };
       };
 
-      # rsync 
+      # rsync
       "de1381b.rsync.net rsync.net" = {
         hostname = "de1381b.rsync.net";
         user = "root";
@@ -283,7 +283,6 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-
 
       # tailscale
       "*.greyhound-triceratops.ts.net 100.*" = {
@@ -469,7 +468,6 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-
     };
   };
 }

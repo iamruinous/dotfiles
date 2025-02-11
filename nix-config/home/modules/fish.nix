@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # fish shell configuration
   programs.fish = {
     enable = true;

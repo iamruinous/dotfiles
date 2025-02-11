@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.services.vdirsyncer-auto;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.vdirsyncer-auto;
+in {
   options = {
     services.vdirsyncer-auto = {
       enable = mkOption {
@@ -31,7 +32,7 @@ in
         };
 
         Install = {
-          WantedBy = [ "timers.target" ];
+          WantedBy = ["timers.target"];
         };
       };
       systemd.user.services.vdirsyncer = {
@@ -43,7 +44,7 @@ in
           ExecStart = "${pkgs.vdirsyncer}/bin/vdirsyncer sync";
         };
         Install = {
-          WantedBy = [ "default.target" ];
+          WantedBy = ["default.target"];
         };
       };
     })
@@ -51,7 +52,7 @@ in
       launchd.agents.vdirsyncer = {
         enable = true;
         config = {
-          ProgramArguments = [ "${pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
+          ProgramArguments = ["${pkgs.vdirsyncer}/bin/vdirsyncer" "sync"];
           StartInterval = 900;
         };
       };

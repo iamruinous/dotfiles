@@ -1,12 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ pkgs, lib, inputs, ... }:
-let
-  inherit (inputs) wezterm hyprswitch walker;
-in
 {
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
+  inherit (inputs) wezterm hyprswitch walker;
+in {
   imports = [
     inputs.hardware.nixosModules.framework-intel-core-ultra-series1
 
@@ -78,7 +80,7 @@ in
   # Enable the 1Passsword GUI with myself as an authorized user for polkit
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = [ "jmeskill" ];
+    polkitPolicyOwners = ["jmeskill"];
   };
 
   # Enable the Hyprland DM
@@ -97,7 +99,7 @@ in
   # Enable security services
   security.polkit.enable = true;
   security.pam.services = {
-    hyprlock = { };
+    hyprlock = {};
   };
 
   # This value determines the NixOS release from which the default

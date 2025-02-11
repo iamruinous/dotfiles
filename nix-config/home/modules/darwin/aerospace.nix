@@ -1,8 +1,6 @@
-{ ... }:
-let
+{...}: let
   aerospace_config = ../../../files/configs/aerospace;
-in
-{
+in {
   xdg.configFile = {
     "aerospace" = {
       source = "${aerospace_config}";

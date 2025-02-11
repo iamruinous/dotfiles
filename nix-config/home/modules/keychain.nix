@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   programs.keychain = {
     enable = true;
     inheritType = "any-once";

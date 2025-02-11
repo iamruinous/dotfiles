@@ -1,9 +1,7 @@
-{ inputs, pkgs, ... }:
-let
+{inputs, ...}: let
   wallpaper_dir = ./../../../files/wallpapers/nixos;
   space-wallpaper = "${wallpaper_dir}/space1-wallpaper.jpg";
-in
-{
+in {
   imports = [
     inputs.walker.homeManagerModules.default
   ];
@@ -14,7 +12,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = [ "--all" ];
+    systemd.variables = ["--all"];
     settings = {
       general = {
         allow_tearing = false;
@@ -57,18 +55,16 @@ in
         preserve_split = true; # you probably want this
       };
       "$mainMod" = "SUPER";
-      exec-once =
-        [
-          "hyprpaper"
-          "hypridle"
-          "hyprswitch init --show-title --size-factor 5.5 --workspaces-per-row 5"
-        ];
+      exec-once = [
+        "hyprpaper"
+        "hypridle"
+        "hyprswitch init --show-title --size-factor 5.5 --workspaces-per-row 5"
+      ];
       # Move/resize windows with mainMod + LMB/RMB and dragging
-      bindm =
-        [
-          "$mainMod, mouse:272, movewindow"
-          "$mainMod, mouse:273, resizewindow"
-        ];
+      bindm = [
+        "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:273, resizewindow"
+      ];
       bind =
         [
           "$mainMod, G, exec, google-chrome-stable"
@@ -102,7 +98,6 @@ in
           # Scroll through existing workspaces with mainMod + scroll
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
-
 
           # Application menu
           "$mainMod, A, exec, wofi --show drun --allow-images"
@@ -159,59 +154,57 @@ in
           # workspaces
           # binds $mainMod + [shift +] {1..9} to [move to] workspace {1..9}
           builtins.concatLists (builtins.genList
-            (i:
-              let ws = i + 1;
-              in
-              [
+            (
+              i: let
+                ws = i + 1;
+              in [
                 "$mainMod, code:1${toString i}, workspace, ${toString ws}"
                 "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
               ]
             )
             9)
         );
-      windowrule =
-        [
-          # Center specific windows
-          "center 1, ^(.blueman-manager-wrapped)$"
-          "center 1, ^(gnome-calculator|org\.gnome\.Calculator)$"
-          "center 1, ^(nm-connection-editor)$"
-          "center 1, ^(org.pulseaudio.pavucontrol)$"
+      windowrule = [
+        # Center specific windows
+        "center 1, ^(.blueman-manager-wrapped)$"
+        "center 1, ^(gnome-calculator|org\.gnome\.Calculator)$"
+        "center 1, ^(nm-connection-editor)$"
+        "center 1, ^(org.pulseaudio.pavucontrol)$"
 
-          # Float specific windows
-          "float, ^(.blueman-manager-wrapped)$"
-          "float, ^(gnome-calculator|org\.gnome\.Calculator)$"
-          "float, ^(nm-connection-editor)$"
-          "float, ^(org.pulseaudio.pavucontrol)$"
-          "float, ^(walker)$"
+        # Float specific windows
+        "float, ^(.blueman-manager-wrapped)$"
+        "float, ^(gnome-calculator|org\.gnome\.Calculator)$"
+        "float, ^(nm-connection-editor)$"
+        "float, ^(org.pulseaudio.pavucontrol)$"
+        "float, ^(walker)$"
 
-          # Remove border for specific applications
-          "noborder, ^(walker)$"
+        # Remove border for specific applications
+        "noborder, ^(walker)$"
 
-          # Set size for specific windows
-          "size 50%, ^(.blueman-manager-wrapped)$"
-          "size 50%, ^(nm-connection-editor)$"
-          "size 50%, ^(org.pulseaudio.pavucontrol)$"
+        # Set size for specific windows
+        "size 50%, ^(.blueman-manager-wrapped)$"
+        "size 50%, ^(nm-connection-editor)$"
+        "size 50%, ^(org.pulseaudio.pavucontrol)$"
 
-          # Keep focus on specific windows when they open
-          "stayfocused, ^(.blueman-manager-wrapped)$"
-          "stayfocused, ^(gnome-calculator|org\.gnome\.Calculator)$"
-          "stayfocused, ^(org.pulseaudio.pavucontrol)$"
-          "stayfocused, ^(swappy)$"
-          "stayfocused, ^(walker)$"
+        # Keep focus on specific windows when they open
+        "stayfocused, ^(.blueman-manager-wrapped)$"
+        "stayfocused, ^(gnome-calculator|org\.gnome\.Calculator)$"
+        "stayfocused, ^(org.pulseaudio.pavucontrol)$"
+        "stayfocused, ^(swappy)$"
+        "stayfocused, ^(walker)$"
 
-          # Assign applications to specific workspaces
-          "workspace 1, ^(google-chrome)$"
-          "workspace 2, ^(org\.wezfurlong\.wezterm)$"
-          "workspace 3, ^(org\.telegram\.desktop)$"
-          "workspace 4, ^(com\.obsproject\.Studio)$"
-          "workspace 4, ^(steam)$"
-          "workspace 5 silent, ^(zoom)$"
-          "workspace special, ^(gnome-pomodoro)$"
-        ];
-      windowrulev2 =
-        [
-          "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
-        ];
+        # Assign applications to specific workspaces
+        "workspace 1, ^(google-chrome)$"
+        "workspace 2, ^(org\.wezfurlong\.wezterm)$"
+        "workspace 3, ^(org\.telegram\.desktop)$"
+        "workspace 4, ^(com\.obsproject\.Studio)$"
+        "workspace 4, ^(steam)$"
+        "workspace 5 silent, ^(zoom)$"
+        "workspace special, ^(gnome-pomodoro)$"
+      ];
+      windowrulev2 = [
+        "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
+      ];
     };
   };
 
@@ -388,5 +381,4 @@ in
       switcher.prefix = "/";
     };
   };
-
 }

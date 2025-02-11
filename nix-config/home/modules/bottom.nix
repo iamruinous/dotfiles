@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   # Install bottom via home-manager module
   programs.bottom = {
     enable = true;

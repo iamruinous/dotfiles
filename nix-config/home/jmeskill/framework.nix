@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{...}: {
   imports = [
     ../modules/common.nix
     ../modules/nixos/hyprland.nix
@@ -7,7 +7,7 @@
   # Enable home-manager
   programs.home-manager.enable = true;
 
-  # Enable todoist 
+  # Enable todoist
   services.todoist-auto.enable = true;
 
   # Enable vdirsyncer
@@ -19,4 +19,3 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.11";
 }
-

@@ -1,11 +1,4 @@
-{ inputs
-, outputs
-, lib
-, config
-, userConfig
-, pkgs
-, ...
-}: {
+{userConfig, ...}: {
   # User configuration
   users.users.${userConfig.name} = {
     name = "${userConfig.name}";

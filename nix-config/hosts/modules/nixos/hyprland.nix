@@ -1,8 +1,10 @@
-{ inputs, pkgs, ... }:
-let
-  inherit (inputs) hyprswitch walker hyprland-qtutils;
-in
 {
+  inputs,
+  pkgs,
+  ...
+}: let
+  inherit (inputs) hyprswitch walker hyprland-qtutils;
+in {
   # Input settings
   services.libinput.enable = true;
 
@@ -10,7 +12,7 @@ in
     enable = true;
     xkb.layout = "us";
     xkb.variant = "";
-    excludePackages = with pkgs; [ xterm ];
+    excludePackages = with pkgs; [xterm];
     displayManager.gdm.enable = true;
   };
 
@@ -25,7 +27,7 @@ in
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
   security.pam.services = {
-    hyprlock = { };
+    hyprlock = {};
     gdm.enableGnomeKeyring = true;
   };
 

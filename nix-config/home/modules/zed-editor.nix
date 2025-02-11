@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{...}: {
   # Zed editor configuration
   programs.zed-editor = {
     enable = true;

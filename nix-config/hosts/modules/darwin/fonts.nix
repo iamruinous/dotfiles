@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Fonts configuration
   fonts.packages = with pkgs; [
     pkgs.nerd-fonts.bigblue-terminal

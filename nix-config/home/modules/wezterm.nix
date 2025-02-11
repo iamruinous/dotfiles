@@ -1,8 +1,13 @@
-{ pkgs, lib, inputs, ... }:
-let
-  window_decorations = if pkgs.stdenv.isDarwin then "RESIZE" else "NONE";
-in
 {
+  pkgs,
+  inputs,
+  ...
+}: let
+  window_decorations =
+    if pkgs.stdenv.isDarwin
+    then "RESIZE"
+    else "NONE";
+in {
   # Install wezterm via home-manager module
   programs.wezterm = {
     enable = true;

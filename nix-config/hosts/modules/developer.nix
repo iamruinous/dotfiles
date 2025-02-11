@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   # System packages
   environment.systemPackages = with pkgs; [
     # dev tools
@@ -13,15 +12,18 @@
     # languages
     go
     nodejs
-    (python3.withPackages (ps: with ps; [ pip virtualenv ]))
+    (python3.withPackages (ps: with ps; [pip virtualenv]))
+    uv
+    zig
+
+    # lsp and formatters
+    alejandra
     basedpyright
+    harper
     lua-language-server
     nil
-    nixfmt
-    uv
-    stylua
     selene
-    zig
+    stylua
 
     # rust
     (fenix.stable.withComponents [

@@ -1,4 +1,8 @@
-{ age, config, outputs, ... }: {
+{
+  config,
+  outputs,
+  ...
+}: {
   imports = [
     ./bat.nix
     ./bottom.nix
@@ -35,5 +39,5 @@
     };
   };
 
-  age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_dotfiles_ed25519" ];
+  age.identityPaths = ["${config.home.homeDirectory}/.ssh/id_dotfiles_ed25519"];
 }

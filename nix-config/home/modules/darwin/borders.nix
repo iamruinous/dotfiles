@@ -1,8 +1,6 @@
-{ ... }:
-let
+{...}: let
   borders_config = ../../../files/configs/borders;
-in
-{
+in {
   xdg.configFile = {
     "borders" = {
       source = "${borders_config}";

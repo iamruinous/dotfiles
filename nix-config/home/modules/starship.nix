@@ -1,4 +1,8 @@
-{ lib, hostname, config, ... }: {
+{
+  lib,
+  hostname,
+  ...
+}: {
   # Starship configuration
   programs.starship = {
     enable = true;
@@ -135,7 +139,10 @@
         full_symbol = "󰁹";
         charging_symbol = "󰚥 ";
         discharging_symbol = "󰁺 ";
-        disabled = (if hostname == "jbookair" then false else true);
+        disabled =
+          if hostname == "jbookair"
+          then false
+          else true;
       };
       battery.display = [
         {

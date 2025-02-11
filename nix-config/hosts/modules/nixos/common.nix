@@ -1,24 +1,22 @@
-{ inputs
-, outputs
-, lib
-, config
-, userConfig
-, pkgs
-, ...
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
-
   # Register flake inputs for nix commands
-  nix.registry = lib.mapAttrs (_: flake: { inherit flake; }) (lib.filterAttrs (_: lib.isType "flake") inputs);
+  nix.registry = lib.mapAttrs (_: flake: {inherit flake;}) (lib.filterAttrs (_: lib.isType "flake") inputs);
 
   # Add inputs to legacy channels
-  nix.nixPath = [ "/etc/nix/path" ];
+  nix.nixPath = ["/etc/nix/path"];
   environment.etc =
     lib.mapAttrs'
-      (name: value: {
-        name = "nix/path/${name}";
-        value.source = value.flake;
-      })
-      config.nix.registry;
+    (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    })
+    config.nix.registry;
 
   boot = {
     # Bootloader.
@@ -31,7 +29,7 @@
       theme = "motion";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "motion" ];
+          selected_themes = ["motion"];
         })
       ];
     };
@@ -90,6 +88,3 @@
   # OpenSSH daemon
   services.openssh.enable = true;
 }
-
-
-

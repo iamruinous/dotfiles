@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.services.todoist-auto;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.todoist-auto;
+in {
   options = {
     services.todoist-auto = {
       enable = mkOption {
@@ -31,7 +32,7 @@ in
         };
 
         Install = {
-          WantedBy = [ "timers.target" ];
+          WantedBy = ["timers.target"];
         };
       };
       systemd.user.services.todoist = {
@@ -43,7 +44,7 @@ in
           ExecStart = "${pkgs.todoist}/bin/todoist sync";
         };
         Install = {
-          WantedBy = [ "default.target" ];
+          WantedBy = ["default.target"];
         };
       };
     })
@@ -51,11 +52,10 @@ in
       launchd.agents.todoist = {
         enable = true;
         config = {
-          ProgramArguments = [ "${pkgs.todoist}/bin/todoist" "sync" ];
+          ProgramArguments = ["${pkgs.todoist}/bin/todoist" "sync"];
           StartInterval = 900;
         };
       };
     })
   ]);
 }
-

@@ -1,9 +1,13 @@
-{ pkgs, inputs, outputs, ... }: {
-
+{
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}: {
   # Nix settings
   nix.settings = {
     experimental-features = "nix-command flakes";
-    trusted-users = [ "jmeskill" "@wheel" ];
+    trusted-users = ["jmeskill" "@wheel"];
   };
   nix.optimise.automatic = true;
 

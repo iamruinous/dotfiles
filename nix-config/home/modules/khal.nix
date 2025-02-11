@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
+{...}: let
   khal_config = ../../files/configs/khal/config;
-in
-{
+in {
   # Install khal via home-manager module
   programs.khal = {
     enable = true;

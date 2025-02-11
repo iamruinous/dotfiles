@@ -1,8 +1,6 @@
-{ ... }:
-let
+{...}: let
   editorconfig_config = ../../../files/configs/editorconfig;
-in
-{
+in {
   home.file = {
     ".editorconfig" = {
       source = "${editorconfig_config}";

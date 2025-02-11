@@ -1,4 +1,8 @@
-{ pkgs, userConfig, ... }: {
+{
+  pkgs,
+  userConfig,
+  ...
+}: {
   # Add nix-homebrew configuration
   nix-homebrew = {
     enable = true;

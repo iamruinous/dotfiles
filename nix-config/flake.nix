@@ -69,109 +69,105 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs =
-    { self
-    , darwin
-    , home-manager
-    , nix-homebrew
-    , fenix
-    , lanzaboote
-    , walker
-    , agenix
-    , nixpkgs
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
+  outputs = {
+    self,
+    darwin,
+    home-manager,
+    nix-homebrew,
+    fenix,
+    lanzaboote,
+    walker,
+    agenix,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
 
-      # Define user configurations
-      users = {
-        jmeskill = {
-          #avatar = ./files/avatar/face;
-          email = "jade.meskill@gmail.com";
-          fullName = "Jade Meskill";
-          #gitKey = "C5810093";
-          name = "jmeskill";
-        };
+    # Define user configurations
+    users = {
+      jmeskill = {
+        #avatar = ./files/avatar/face;
+        email = "jade.meskill@gmail.com";
+        fullName = "Jade Meskill";
+        #gitKey = "C5810093";
+        name = "jmeskill";
       };
-
-      # Function for NixOS system configuration
-      mkNixosConfiguration = system: hostname: username:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-          };
-          modules = [
-            ./hosts/${hostname}/configuration.nix
-            lanzaboote.nixosModules.lanzaboote
-            agenix.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-            }
-          ];
-        };
-
-      # Function for nix-darwin system configuration
-      mkDarwinConfiguration = system: hostname: username:
-        darwin.lib.darwinSystem {
-          inherit system;
-          specialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-          };
-          modules = [
-            ./hosts/${hostname}/configuration.nix
-            home-manager.darwinModules.home-manager
-            nix-homebrew.darwinModules.nix-homebrew
-            agenix.nixosModules.default
-            {
-              environment.systemPackages = [ agenix.packages.${system}.default ];
-            }
-          ];
-        };
-
-      # Function for Home Manager configuration
-      mkHomeConfiguration = system: hostname: username:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { inherit system; };
-          extraSpecialArgs = {
-            inherit inputs outputs hostname;
-            userConfig = users.${username};
-          };
-          modules = [
-            ./home/${username}/${hostname}.nix
-            agenix.homeManagerModules.default
-          ];
-        };
-    in
-    {
-      nixosConfigurations = {
-        "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
-        "jmacnix" = mkNixosConfiguration "x86_64-linux" "jmacnix" "jmeskill";
-        "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
-        "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
-      };
-
-
-      darwinConfigurations = {
-        "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
-        "jmacmini" = mkDarwinConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
-        "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
-      };
-
-      homeConfigurations = {
-        "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
-        "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
-        "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
-        "jmeskill@jmacnix" = mkHomeConfiguration "x86_64-linux" "jmacnix" "jmeskill";
-        "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
-        "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
-        "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
-      };
-
-      overlays = import ./overlays { inherit inputs; };
     };
-}
 
+    # Function for NixOS system configuration
+    mkNixosConfiguration = system: hostname: username:
+      nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
+        };
+        modules = [
+          ./hosts/${hostname}/configuration.nix
+          lanzaboote.nixosModules.lanzaboote
+          agenix.nixosModules.default
+          {
+            environment.systemPackages = [agenix.packages.${system}.default];
+          }
+        ];
+      };
+
+    # Function for nix-darwin system configuration
+    mkDarwinConfiguration = system: hostname: username:
+      darwin.lib.darwinSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
+        };
+        modules = [
+          ./hosts/${hostname}/configuration.nix
+          home-manager.darwinModules.home-manager
+          nix-homebrew.darwinModules.nix-homebrew
+          agenix.nixosModules.default
+          {
+            environment.systemPackages = [agenix.packages.${system}.default];
+          }
+        ];
+      };
+
+    # Function for Home Manager configuration
+    mkHomeConfiguration = system: hostname: username:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {inherit system;};
+        extraSpecialArgs = {
+          inherit inputs outputs hostname;
+          userConfig = users.${username};
+        };
+        modules = [
+          ./home/${username}/${hostname}.nix
+          agenix.homeManagerModules.default
+        ];
+      };
+  in {
+    nixosConfigurations = {
+      "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
+      "jmacnix" = mkNixosConfiguration "x86_64-linux" "jmacnix" "jmeskill";
+      "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
+      "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
+    };
+
+    darwinConfigurations = {
+      "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+      "jmacmini" = mkDarwinConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
+      "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
+    };
+
+    homeConfigurations = {
+      "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
+      "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+      "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
+      "jmeskill@jmacnix" = mkHomeConfiguration "x86_64-linux" "jmacnix" "jmeskill";
+      "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
+      "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
+      "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
+    };
+
+    overlays = import ./overlays {inherit inputs;};
+  };
+}
