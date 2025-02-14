@@ -35,8 +35,20 @@ in {
     };
     includes = [
       {
+        path = "~/.config/git/includes/codeberg.inc";
+        condition = "gitdir/i:codeberg\/iamruinous/";
+      }
+      {
         path = "~/.config/git/includes/github.inc";
         condition = "gitdir/i:github\\/iamruinous/";
+      }
+      {
+        path = "~/.config/git/includes/ruinous-social.inc";
+        condition = "gitdir/i:ruinous\.social\/iamruinous/";
+      }
+      {
+        path = "~/.config/git/includes/sourcehut.inc";
+        condition = "gitdir/i:sourcehut\/iamruinous/";
       }
     ];
     extraConfig = {
