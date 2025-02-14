@@ -16,16 +16,6 @@
         bind \ek kill-whole-line
       '';
 
-      ls = {
-        wraps = "eza";
-        body = "eza --git --icons -ga --group-directories-first $argv";
-      };
-
-      ll = {
-        wraps = "ls";
-        body = "ls -lahF $argv";
-      };
-
       l = {
         wraps = "xplr";
         body = "xplr $argv";

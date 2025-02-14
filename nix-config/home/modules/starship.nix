@@ -9,6 +9,7 @@
     enableTransience = true;
     enableInteractive = true;
     enableFishIntegration = true;
+    enableBashIntegration = true;
 
     settings = {
       format = lib.concatStrings [
