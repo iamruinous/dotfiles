@@ -16,15 +16,16 @@ in {
     ../modules/common.nix
     ../modules/developer.nix
     ../modules/nixos/common.nix
-    ../modules/nixos/latest-kernel.nix
-    ../modules/nixos/print.nix
-    ../modules/nixos/sudoless.nix
     ../modules/nixos/docker.nix
-    ../modules/nixos/user.nix
+    ../modules/nixos/flatpak.nix
     ../modules/nixos/kde.nix
+    ../modules/nixos/latest-kernel.nix
     ../modules/nixos/pipewire.nix
+    ../modules/nixos/print.nix
     ../modules/nixos/steam.nix
+    ../modules/nixos/sudoless.nix
     ../modules/nixos/tailscale.nix
+    ../modules/nixos/user.nix
   ];
 
   networking.hostName = "framework"; # Define your hostname.

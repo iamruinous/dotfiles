@@ -67,18 +67,22 @@
 
     # Agenix for secrets
     agenix.url = "github:ryantm/agenix";
+
+    # Flatpak
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = {
     self,
     darwin,
     home-manager,
-    nix-homebrew,
+    agenix,
     fenix,
     lanzaboote,
-    walker,
-    agenix,
+    nix-flatpak,
+    nix-homebrew,
     nixpkgs,
+    walker,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -109,6 +113,7 @@
           {
             environment.systemPackages = [agenix.packages.${system}.default];
           }
+          nix-flatpak.nixosModules.nix-flatpak
         ];
       };
 
@@ -142,6 +147,7 @@
         modules = [
           ./home/${username}/${hostname}.nix
           agenix.homeManagerModules.default
+          nix-flatpak.homeManagerModules.nix-flatpak
         ];
       };
   in {
