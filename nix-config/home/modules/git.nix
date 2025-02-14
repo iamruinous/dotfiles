@@ -6,6 +6,16 @@ in {
   #   iamruinous@ruinous.social ${builtins.readFile ~/.ssh/id_ruinous_computer_ed25519.pub}
   #   jade.meskill@gmail.com ${builtins.readFile ~/.ssh/id_jademeskill_ed25519.pub}
   # '';
+
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      gui = {
+        nerdFontsVersion = "3";
+      };
+    };
+  };
+
   # Install git via home-manager module
   programs.git = {
     enable = true;
