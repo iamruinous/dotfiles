@@ -3,7 +3,6 @@
     ./brew.nix
     ./fonts.nix
     ./system.nix
-    ./shell.nix
     ./touch.nix
     ./user.nix
   ];
