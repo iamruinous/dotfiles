@@ -11,4 +11,7 @@
 
   # Enable Nix daemon
   services.nix-daemon.enable = true;
+
+  # direnv configuration
+  programs.direnv.enable = true;
 }

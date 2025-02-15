@@ -14,13 +14,14 @@ in {
     ../modules/common.nix
     ../modules/developer.nix
     ../modules/nixos/common.nix
+    ../modules/nixos/flatpak.nix
+    ../modules/nixos/gnome.nix
     ../modules/nixos/latest-kernel.nix
+    ../modules/nixos/pipewire.nix
     ../modules/nixos/print.nix
     ../modules/nixos/sudoless.nix
-    ../modules/nixos/user.nix
-    ../modules/nixos/gnome.nix
-    ../modules/nixos/pipewire.nix
     ../modules/nixos/tailscale.nix
+    ../modules/nixos/user.nix
   ];
 
   hardware.facetimehd.enable = false;

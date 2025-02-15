@@ -87,4 +87,12 @@
 
   # OpenSSH daemon
   services.openssh.enable = true;
+
+  # direnv integration
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
 }

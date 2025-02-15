@@ -55,12 +55,4 @@
 
   # Fish configuration
   programs.fish.enable = true;
-
-  # direnv configuration
-  programs.direnv = {
-    enable = true;
-    enableFishIntegration = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
 }
