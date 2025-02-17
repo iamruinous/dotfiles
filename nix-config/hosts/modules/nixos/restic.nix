@@ -2,7 +2,20 @@
   # Enable restic backups
   services.restic.backups = {
     terranasbackup = {
-      paths = ["/home" "/etc"];
+      paths = [
+        "/home"
+        "/etc"
+      ];
+      exclude = [
+        "/home/*/.cache"
+        "/home/*/.cargo"
+        "/home/*/.config"
+        "/home/*/.local"
+        "/home/*/.mozilla"
+        "/home/*/.paradoxlauncher"
+        "/home/*/.var"
+        "/home/*/Downloads"
+      ];
       repository = "sftp:tmbackup@terranas.manage.farmhouse.meskill.network:/mnt/tank/tmbackup/linux-backup/${config.networking.hostName}";
       passwordFile = config.age.secrets.restic_password.path;
       timerConfig = {
