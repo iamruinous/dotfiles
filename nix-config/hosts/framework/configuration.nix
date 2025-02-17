@@ -6,9 +6,7 @@
   lib,
   inputs,
   ...
-}: let
-  inherit (inputs) wezterm hyprswitch walker;
-in {
+}: {
   imports = [
     inputs.hardware.nixosModules.framework-intel-core-ultra-series1
 

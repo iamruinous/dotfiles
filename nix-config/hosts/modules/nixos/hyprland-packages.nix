@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (inputs) hyprswitch walker;
+  inherit (inputs) hyprland-qtutils hyprswitch walker;
 in {
   environment.systemPackages = with pkgs; [
     hypridle

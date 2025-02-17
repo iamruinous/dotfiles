@@ -8,7 +8,6 @@
     ./sudoless.nix
     ./tailscale.nix
     ./user.nix
-    ./wezterm.nix
     ./xserver.nix
   ];
 
