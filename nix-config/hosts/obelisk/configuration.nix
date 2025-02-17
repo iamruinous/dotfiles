@@ -21,6 +21,7 @@ in {
     ../modules/nixos/hyprland.nix
     ../modules/nixos/latest-kernel.nix
     ../modules/nixos/ollama.nix
+    ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
   ];
 
