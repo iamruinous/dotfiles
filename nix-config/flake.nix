@@ -70,6 +70,12 @@
 
     # Flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    # Disko
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -77,6 +83,7 @@
     darwin,
     home-manager,
     agenix,
+    disko,
     fenix,
     lanzaboote,
     nix-flatpak,
@@ -113,6 +120,7 @@
           {
             environment.systemPackages = [agenix.packages.${system}.default];
           }
+          disko.nixosModules.disko
           nix-flatpak.nixosModules.nix-flatpak
         ];
       };

@@ -15,17 +15,13 @@ in {
     ./hardware-configuration.nix
     ../modules/common.nix
     ../modules/developer.nix
-    ../modules/nixos/common.nix
+    ../modules/nixos/desktop-common.nix
     ../modules/nixos/docker.nix
     ../modules/nixos/flatpak.nix
+    ../modules/nixos/hyprland-packages.nix
     ../modules/nixos/kde.nix
     ../modules/nixos/latest-kernel.nix
-    ../modules/nixos/pipewire.nix
-    ../modules/nixos/print.nix
     ../modules/nixos/steam.nix
-    ../modules/nixos/sudoless.nix
-    ../modules/nixos/tailscale.nix
-    ../modules/nixos/user.nix
   ];
 
   networking.hostName = "framework"; # Define your hostname.
@@ -47,42 +43,12 @@ in {
   boot.loader.efi.efiSysMountPoint = "/efi";
   boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    sbctl
-    fastfetch
-    google-chrome
-    wezterm.packages.${pkgs.system}.default
-    kdePackages.merkuro
-    obsidian
-    todoist-electron
     dwarf-fortress
-    gcc
-    kitty
-    hypridle
-    hyprlock
-    hyprpaper
-    hyprpicker
-    hyprswitch.packages.${pkgs.system}.default
-    walker.packages.${pkgs.system}.default
   ];
 
   # Enable login with fingerprint reader
   security.pam.services.login.fprintAuth = true;
-
-  # Enable the 1Password CLI, this also enables a SGUID wrapper so the CLI can authorize against the GUI app
-  programs._1password = {
-    enable = true;
-  };
-
-  # Enable the 1Passsword GUI with myself as an authorized user for polkit
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["jmeskill"];
-  };
 
   # Enable the Hyprland DM
   programs.hyprland = {
