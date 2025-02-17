@@ -3,7 +3,7 @@
   services.restic.backups = {
     terranasbackup = {
       paths = ["/home" "/etc"];
-      repository = "sftp:tmbackup@terranas.manage.farmhouse.meskill.network:/mnt/tank/tmbackup/linux-backup/obelisk";
+      repository = "sftp:tmbackup@terranas.manage.farmhouse.meskill.network:/mnt/tank/tmbackup/linux-backup/${config.networking.hostName}";
       passwordFile = config.age.secrets.restic_password.path;
       timerConfig = {
         OnCalendar = "00:05";

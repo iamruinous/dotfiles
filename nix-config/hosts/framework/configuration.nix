@@ -19,6 +19,7 @@
     ../modules/nixos/hyprland-packages.nix
     ../modules/nixos/kde.nix
     ../modules/nixos/latest-kernel.nix
+    ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
   ];
 

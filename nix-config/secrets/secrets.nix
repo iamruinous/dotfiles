@@ -1,22 +1,28 @@
 let
   jmeskill = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB/j8GXfs4yVEA2oIhAgAruX/f7Cg/Il6dKMmyIllqa0";
-  users = [jmeskill];
+  all_users = [jmeskill];
 
+  framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8xqxaR93hZCPoHmuZDi3NrIF/JD/1nFG4rV7O7iR26";
   jbookair = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFnhRtaSC1HFo3hF2Wdq2KzgCTk1/5BlAZvjkE2ZZauo";
+  jmacmini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBucoQ40ZvFyVdqtLqcITFVflxliTOHddWIso4fGwlX+";
   obelisk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKz0mrGO9wDTjOq7wC8w5EFIxB0e/vKBGLnOL/kx7Ov+";
   studio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBVXtjGlDK/b/8KU5edVlMcF/pcrcqlm4S2o94XtGOPD";
-  jmacmini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBucoQ40ZvFyVdqtLqcITFVflxliTOHddWIso4fGwlX+";
-  framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKz0mrGO9wDTjOq7wC8w5EFIxB0e/vKBGLnOL/kx7Ov+";
-  systems = [
+
+  all_systems = [
     framework
     jbookair
     jmacmini
     obelisk
     studio
   ];
+
+  linux_systems = [
+    framework
+    obelisk
+  ];
 in {
-  "files/configs/caddy/caddy.env.age".publicKeys = users ++ [obelisk];
-  "files/configs/vdirsyncer/config.age".publicKeys = users ++ systems;
-  "files/configs/todoist/config.json.age".publicKeys = users ++ systems;
-  "files/configs/restic/restic-password.age".publicKeys = users ++ systems;
+  "files/configs/caddy/caddy.env.age".publicKeys = [jmeskill obelisk];
+  "files/configs/vdirsyncer/config.age".publicKeys = all_users ++ all_systems;
+  "files/configs/todoist/config.json.age".publicKeys = all_users ++ all_systems;
+  "files/configs/restic/restic-password.age".publicKeys = all_users ++ linux_systems;
 }
