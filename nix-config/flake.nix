@@ -76,6 +76,13 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Plasma Manager
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
@@ -89,6 +96,7 @@
     nix-flatpak,
     nix-homebrew,
     nixpkgs,
+    plasma-manager,
     walker,
     ...
   } @ inputs: let
@@ -156,6 +164,7 @@
           ./home/${username}/${hostname}.nix
           agenix.homeManagerModules.default
           nix-flatpak.homeManagerModules.nix-flatpak
+          plasma-manager.homeManagerModules.plasma-manager
         ];
       };
   in {
