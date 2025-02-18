@@ -161,6 +161,7 @@
   in {
     nixosConfigurations = {
       "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
+      "inspo" = mkNixosConfiguration "x86_64-linux" "inspo" "jmeskill";
       "jmacnix" = mkNixosConfiguration "x86_64-linux" "jmacnix" "jmeskill";
       "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
       "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
@@ -174,6 +175,7 @@
 
     homeConfigurations = {
       "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
+      "jmeskill@inspo" = mkHomeConfiguration "x86_64-linux" "inspo" "jmeskill";
       "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
       "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
       "jmeskill@jmacnix" = mkHomeConfiguration "x86_64-linux" "jmacnix" "jmeskill";
