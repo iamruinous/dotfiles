@@ -7,19 +7,21 @@ let
   jmacmini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBucoQ40ZvFyVdqtLqcITFVflxliTOHddWIso4fGwlX+";
   obelisk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKz0mrGO9wDTjOq7wC8w5EFIxB0e/vKBGLnOL/kx7Ov+";
   studio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBVXtjGlDK/b/8KU5edVlMcF/pcrcqlm4S2o94XtGOPD";
+  monolith = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHzI0xVuc0SbWyDk+sVC5N3W4FzcAPOd5JCoJfTU2mTF";
 
-  all_systems = [
-    framework
+  darwin_systems = [
     jbookair
     jmacmini
-    obelisk
     studio
   ];
 
   linux_systems = [
     framework
     obelisk
+    monolith
   ];
+
+  all_systems = linux_systems ++ darwin_systems;
 in {
   "files/configs/caddy/caddy.env.age".publicKeys = [jmeskill obelisk];
   "files/configs/vdirsyncer/config.age".publicKeys = all_users ++ all_systems;

@@ -3,8 +3,9 @@
   services.restic.backups = {
     terranasbackup = {
       paths = [
-        "/home"
+        "/data"
         "/etc"
+        "/home"
       ];
       exclude = [
         "/home/*/.cache"
