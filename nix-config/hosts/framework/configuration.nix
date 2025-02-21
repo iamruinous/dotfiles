@@ -68,17 +68,6 @@
     hyprlock = {};
   };
 
-  # virtualisation.arion = {
-  #   backend = "docker";
-  #   projects = {
-  #     "echo".settings.services."echo".service = {
-  #       image = "hashicorp/http-echo";
-  #       ports = ["5678:5678"];
-  #       restart = "unless-stopped";
-  #     };
-  #   };
-  # };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
