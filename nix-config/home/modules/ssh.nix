@@ -169,6 +169,14 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
+      "monolith" = {
+        hostname = "monolith.manage.farmhouse.meskill.network";
+        user = "jmeskill";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
       "moonstone" = {
         hostname = "moonstone.manage.farmhouse.meskill.network";
         user = "jmeskill";

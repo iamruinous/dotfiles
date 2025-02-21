@@ -1,7 +1,6 @@
-{
-  pkgs,
-  userConfig,
-  ...
+{ pkgs
+, userConfig
+, ...
 }: {
   # Add nix-homebrew configuration
   nix-homebrew = {
@@ -46,6 +45,7 @@
       "slack"
       "soundsource"
       "spotify"
+      "steam"
       "wezterm"
     ];
     taps = [
