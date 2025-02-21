@@ -174,6 +174,7 @@
       "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
       "inspo" = mkNixosConfiguration "x86_64-linux" "inspo" "jmeskill";
       "jmacnix" = mkNixosConfiguration "x86_64-linux" "jmacnix" "jmeskill";
+      "monolith" = mkNixosConfiguration "x86_64-linux" "monolith" "jmeskill";
       "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
       "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
     };
@@ -190,6 +191,7 @@
       "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
       "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
       "jmeskill@jmacnix" = mkHomeConfiguration "x86_64-linux" "jmacnix" "jmeskill";
+      "jmeskill@monolith" = mkHomeConfiguration "x86_64-linux" "monolith" "jmeskill";
       "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
       "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
       "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";

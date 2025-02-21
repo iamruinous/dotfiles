@@ -7,7 +7,6 @@
     ./print.nix
     ./sudoless.nix
     ./tailscale.nix
-    ./user.nix
     ./xserver.nix
   ];
 
