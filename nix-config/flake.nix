@@ -98,6 +98,7 @@
     nixpkgs,
     plasma-manager,
     walker,
+    arion,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -130,6 +131,7 @@
           }
           disko.nixosModules.disko
           nix-flatpak.nixosModules.nix-flatpak
+          arion.nixosModules.arion
         ];
       };
 
