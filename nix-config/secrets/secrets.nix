@@ -27,4 +27,8 @@ in {
   "files/configs/vdirsyncer/config.age".publicKeys = all_users ++ all_systems;
   "files/configs/todoist/config.json.age".publicKeys = all_users ++ all_systems;
   "files/configs/restic/restic-password.age".publicKeys = all_users ++ linux_systems;
+
+  "hosts/monolith/files/caddy/Caddyfile.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/romm.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/mariadb.env.age".publicKeys = [jmeskill monolith];
 }

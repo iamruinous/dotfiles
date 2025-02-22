@@ -9,6 +9,7 @@
     ../modules/nixos/common.nix
     ../modules/nixos/docker.nix
     ../modules/nixos/latest-kernel.nix
+    ../modules/nixos/restic.nix
     ../modules/nixos/sudoless.nix
     ./containers.nix
     ./disko.nix
