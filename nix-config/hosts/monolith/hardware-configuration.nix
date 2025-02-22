@@ -31,24 +31,38 @@
   # networking.interfaces.wlp89s0.useDHCP = lib.mkDefault true;
   networking = {
     dhcpcd.enable = false;
-    interfaces.enp2s0f0np0.ipv4.addresses = [
-      {
-        address = "10.55.10.54";
-        prefixLength = 24;
-      }
-    ];
+    interfaces = {
+      enp2s0f0np0.ipv4.addresses = [
+        {
+          address = "10.55.10.54";
+          prefixLength = 24;
+        }
+      ];
+      vlan2.ipv4.addresses = [
+        {
+          address = "10.55.20.24";
+          prefixLength = 24;
+        }
+      ];
+      vlan6.ipv4.addresses = [
+        {
+          address = "10.55.60.24";
+          prefixLength = 24;
+        }
+      ];
+    };
     defaultGateway = "10.55.10.1";
     nameservers = ["10.55.10.35"];
-    vlans.vlan2 = {
-      id = 2;
-      interface = "enp2s0f0np0";
+    vlans = {
+      vlan2 = {
+        id = 2;
+        interface = "enp2s0f0np0";
+      };
+      vlan6 = {
+        id = 6;
+        interface = "enp2s0f0np0";
+      };
     };
-    interfaces.vlan2.ipv4.addresses = [
-      {
-        address = "10.55.20.24";
-        prefixLength = 24;
-      }
-    ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
