@@ -455,28 +455,28 @@
           restart = "unless-stopped";
           depends_on = ["piavpn"];
         };
-        "hbbs".service = {
-          container_name = "hbbs";
-          image = "docker.io/rustdesk/rustdesk-server:latest";
-          environment = {
-            ALWAYS_USE_RELAY = "Y";
-          };
-          depends_on = ["hbbr"];
-          network_mode = "host";
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/hbbs/config:/root"
-          ];
-        };
-        "hbbr".service = {
-          container_name = "hbbr";
-          image = "docker.io/rustdesk/rustdesk-server:latest";
-          network_mode = "host";
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/hbbs/config:/root"
-          ];
-        };
+        # "hbbs".service = {
+        #   container_name = "hbbs";
+        #   image = "docker.io/rustdesk/rustdesk-server:latest";
+        #   environment = {
+        #     ALWAYS_USE_RELAY = "Y";
+        #   };
+        #   depends_on = ["hbbr"];
+        #   network_mode = "host";
+        #   restart = "unless-stopped";
+        #   volumes = [
+        #     "/data/docker/hbbs/config:/root"
+        #   ];
+        # };
+        # "hbbr".service = {
+        #   container_name = "hbbr";
+        #   image = "docker.io/rustdesk/rustdesk-server:latest";
+        #   network_mode = "host";
+        #   restart = "unless-stopped";
+        #   volumes = [
+        #     "/data/docker/hbbs/config:/root"
+        #   ];
+        # };
         "calibre".service = {
           container_name = "calibre";
           image = "lscr.io/linuxserver/calibre:latest";
@@ -503,7 +503,7 @@
             PGID = "4000";
             TZ = "America/Phoenix";
             AUTO_UPDATE = "false";
-            DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
+            #DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
           };
           networks = ["proxynet"];
           restart = "unless-stopped";

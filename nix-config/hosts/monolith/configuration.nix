@@ -11,6 +11,7 @@
     ../modules/nixos/latest-kernel.nix
     ../modules/nixos/restic.nix
     ../modules/nixos/sudoless.nix
+    ../modules/nixos/tailscale.nix
     ./containers.nix
     ./disko.nix
     ./nfs.nix
@@ -19,6 +20,7 @@
   networking.hostName = "monolith"; # Define your hostname.
 
   virtualisation.docker.storageDriver = "btrfs";
+  services.tailscale.useRoutingFeatures = "server";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
