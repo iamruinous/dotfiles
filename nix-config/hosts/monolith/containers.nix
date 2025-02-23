@@ -513,6 +513,39 @@
             "/nas/media/xfer/ingest/calibre-automated:/cwa-book-ingest"
           ];
         };
+        "frigate".service = {
+          container_name = "frigate";
+          image = "ghcr.io/blakeblackshear/frigate:stable";
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          capabilities = {
+            CAP_PERFMON = true;
+          };
+          tmpfs = ["/tmp/cache,size=2g"];
+          volumes = [
+            "/etc/localtime:/etc/localtime:ro"
+            "/data/docker/frigate/config:/config"
+            "/nas/media/xfer/frigate:/media/frigate"
+          ];
+          devices = [
+            "/dev/bus/usb:/dev/bus/usb"
+            "/dev/dri/card0:/dev/dri/card0"
+            "/dev/dri/renderD128:/dev/dri/renderD128"
+          ];
+        };
+        "stepca".service = {
+          container_name = "stepca";
+          image = "docker.io/smallstep/step-ca";
+          env_file = [config.age.secrets.monolith_docker_env_stepca.path];
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          capabilities = {
+            NET_ADMIN = true;
+          };
+          volumes = [
+            "/data/docker/stepca/config:/home/step"
+          ];
+        };
       };
     };
   };
@@ -527,6 +560,10 @@
   };
   age.secrets.monolith_docker_env_piavpn = {
     file = ./files/docker/env/piavpn.env.age;
+    mode = "600";
+  };
+  age.secrets.monolith_docker_env_stepca = {
+    file = ./files/docker/env/stepca.env.age;
     mode = "600";
   };
   age.secrets.monolith_docker_env_romm = {

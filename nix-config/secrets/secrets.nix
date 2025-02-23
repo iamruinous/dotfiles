@@ -29,8 +29,9 @@ in {
   "files/configs/restic/restic-password.age".publicKeys = all_users ++ linux_systems;
 
   "hosts/monolith/files/caddy/Caddyfile.age".publicKeys = [jmeskill monolith];
-  "hosts/monolith/files/docker/env/romm.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/mariadb.env.age".publicKeys = [jmeskill monolith];
-  "hosts/monolith/files/docker/env/weatherflow.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/piavpn.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/romm.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/stepca.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/weatherflow.env.age".publicKeys = [jmeskill monolith];
 }
