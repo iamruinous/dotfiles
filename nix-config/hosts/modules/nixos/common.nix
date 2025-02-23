@@ -5,9 +5,9 @@
   pkgs,
   ...
 }: {
-	imports = [
-	./user.nix
-	];
+  imports = [
+    ./user.nix
+  ];
   # Register flake inputs for nix commands
   nix.registry = lib.mapAttrs (_: flake: {inherit flake;}) (lib.filterAttrs (_: lib.isType "flake") inputs);
 
@@ -98,4 +98,18 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
+
+  # Neovim text editor configuration
+  programs.neovim = {
+    enable = true;
+    package = pkgs.neovim-unwrapped;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    btop
+    pciutils
+  ];
 }
