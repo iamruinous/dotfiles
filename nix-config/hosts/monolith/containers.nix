@@ -528,6 +528,7 @@
             "/nas/media/xfer/frigate:/media/frigate"
           ];
           devices = [
+            "/dev/apex_0:/dev/apex_0"
             "/dev/bus/usb:/dev/bus/usb"
             "/dev/dri/card0:/dev/dri/card0"
             "/dev/dri/renderD128:/dev/dri/renderD128"
