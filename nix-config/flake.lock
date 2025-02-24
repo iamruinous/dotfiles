@@ -30,9 +30,10 @@
       "locked": {
         "lastModified": 1733918465,
         "narHash": "sha256-hSuGa8Hh67EHr2x812Ay6WFyFT2BGKn+zk+FJWeKXPg=",
-        "path": "/nix/store/z2gfiixicl2dhmpgwb15wcdrzcgqsc7x-source",
+        "owner": "hercules-ci",
+        "repo": "arion",
         "rev": "f01c95c10f9d4f04bb08d97b3233b530b180f12e",
-        "type": "path"
+        "type": "github"
       },
       "original": {
         "id": "arion",
@@ -1029,11 +1030,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1740317044,
-        "narHash": "sha256-s4D7XkF3IgxQWgXtPHe9FzRXKkakTNH2Utp7zNbPT2o=",
+        "lastModified": 1740350337,
+        "narHash": "sha256-Ue+ERNL8y9l/0BTay1/fm1V2zcKFf/dX5H1DHI2TO+w=",
         "owner": "wez",
         "repo": "wezterm",
-        "rev": "4ff581a8aa3460d04f859fdadb50f29b3c507763",
+        "rev": "fd532a8c2fb3b56593597cf8be1775da1feda0a3",
         "type": "github"
       },
       "original": {
