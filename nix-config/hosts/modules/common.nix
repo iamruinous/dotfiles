@@ -9,7 +9,7 @@
     experimental-features = "nix-command flakes";
     trusted-users = ["jmeskill" "@wheel"];
   };
-  nix.optimise.automatic = true;
+#  nix.optimise.automatic = true;
 
   # Nixpkgs configuration
   nixpkgs = {

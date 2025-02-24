@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./brew.nix
     ./fonts.nix
@@ -9,8 +13,10 @@
 
   nix.package = pkgs.nix;
 
-  # Enable Nix daemon
-  services.nix-daemon.enable = true;
+  # disable for Determinate Nix
+  nix.enable = false;
+
+  # ids.uids.nixbld = lib.mkForce 350;
 
   # direnv configuration
   programs.direnv.enable = true;
