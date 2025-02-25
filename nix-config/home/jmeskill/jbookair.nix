@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ../modules/common.nix
+    ../modules/desktop.nix
     ../modules/darwin/common.nix
   ];
 

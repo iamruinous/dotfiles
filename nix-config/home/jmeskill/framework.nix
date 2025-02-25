@@ -4,6 +4,7 @@
 in {
   imports = [
     ../modules/common.nix
+    ../modules/desktop.nix
   ];
 
   # Enable home-manager

@@ -15,6 +15,7 @@
         super.patches
         ++ [
           (pkgs.fetchpatch2 {
+            # https://github.com/google/gasket-driver/issues/39
             # https://github.com/google/gasket-driver/pull/40
             name = "linux-6.13-compat.patch";
             url = "https://github.com/google/gasket-driver/commit/6fbf8f8f8bcbc0ac9c9bef7a56f495a2c9872652.patch";
