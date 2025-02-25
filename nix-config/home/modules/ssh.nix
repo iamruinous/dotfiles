@@ -23,112 +23,8 @@
       };
 
       # svc
-      "ai" = {
-        hostname = "ai.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ca" = {
-        hostname = "ca.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "calibre" = {
-        hostname = "calibre.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "crew" = {
-        hostname = "crew.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "deluger" = {
-        hostname = "deluger.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "etv" = {
-        hostname = "etv.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "frigate" = {
-        hostname = "frigate.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "getterr" = {
-        hostname = "getterr.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "kavita" = {
-        hostname = "kavita.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "kodi" = {
-        hostname = "kodi.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ranch-obsidian" = {
-        hostname = "ranch-obsidian.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ranch-onxy" = {
-        hostname = "ranch-onyx.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "remote" = {
-        hostname = "remote.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "romm" = {
-        hostname = "romm.svc.farmhouse.meskill.network";
+      "mono" = {
+        hostname = "mono.svc.farmhouse.meskill.network";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";
@@ -143,24 +39,8 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "touchstone" = {
-        hostname = "touchstone.svc.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
 
       # manage
-      "graf" = {
-        hostname = "graf.manage.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
       "it" = {
         hostname = "it.manage.farmhouse.meskill.network";
         user = "root";
@@ -233,14 +113,6 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "spinel" = {
-        hostname = "spinel.manage.farmhouse.meskill.network";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
       "terranas" = {
         hostname = "terranas.manage.farmhouse.meskill.network";
         user = "admin";
@@ -300,65 +172,9 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "ts-ai" = {
-        hostname = "ai.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-ca" = {
-        hostname = "ca.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-calibre" = {
-        hostname = "calibre.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-crew" = {
-        hostname = "crew.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-deluger" = {
-        hostname = "deluger.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-etv" = {
-        hostname = "etv.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-getterr" = {
-        hostname = "getterr.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-kavita" = {
-        hostname = "kavita.greyhound-triceratops.ts.net";
-        user = "root";
+      "ts-monolith" = {
+        hostname = "monolith.greyhound-triceratops.ts.net";
+        user = "jmeskill";
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -412,38 +228,6 @@
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
-      "ts-ranch-obsidian" = {
-        hostname = "ranch-obsidian.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-ranch-onyx" = {
-        hostname = "ranch-onyx.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-remote" = {
-        hostname = "remote.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-romm" = {
-        hostname = "romm.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
       "ts-terranas" = {
         hostname = "terranas.greyhound-triceratops.ts.net";
         user = "admin";
@@ -462,14 +246,6 @@
       };
       "ts-truenas" = {
         hostname = "truenas.greyhound-triceratops.ts.net";
-        user = "root";
-        extraOptions = {
-          RequestTTY = "yes";
-          RemoteCommand = "tmux new-session -A -s shell";
-        };
-      };
-      "ts-touchstone" = {
-        hostname = "touchstone.greyhound-triceratops.ts.net";
         user = "root";
         extraOptions = {
           RequestTTY = "yes";

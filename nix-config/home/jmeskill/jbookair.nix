@@ -11,7 +11,7 @@
   services.todoist-auto.enable = true;
 
   # Enable vdirsyncer
-  services.vdirsyncer-auto.enable = true;
+  # services.vdirsyncer-auto.enable = true;
 
   # Ensure homebrew is in the PATH
   home.sessionPath = [
