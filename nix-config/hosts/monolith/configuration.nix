@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{...}: {
+{userConfig, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -19,8 +19,14 @@
 
   networking.hostName = "monolith"; # Define your hostname.
 
-  virtualisation.docker.storageDriver = "btrfs";
   services.tailscale.useRoutingFeatures = "server";
+
+  virtualisation.docker.storageDriver = "btrfs";
+
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [userConfig.name];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,9 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{inputs, ...}: let
-  inherit (inputs) disko;
-in {
+{
+  inputs,
+  userConfig,
+  ...
+}: {
   imports = [
     inputs.hardware.nixosModules.apple-imac-14-2
     ./hardware-configuration.nix
@@ -58,7 +60,7 @@ in {
                     mountpoint = "/home";
                   };
                   # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
-                  "/home/jmeskill" = {};
+                  "/home/${userConfig.name}" = {};
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
                     mountOptions = [

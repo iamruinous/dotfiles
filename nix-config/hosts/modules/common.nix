@@ -2,12 +2,13 @@
   pkgs,
   inputs,
   outputs,
+  userConfig,
   ...
 }: {
   # Nix settings
   nix.settings = {
     experimental-features = "nix-command flakes";
-    trusted-users = ["jmeskill" "@wheel"];
+    trusted-users = [userConfig.name "@wheel"];
   };
   nix.optimise.automatic = true;
 
