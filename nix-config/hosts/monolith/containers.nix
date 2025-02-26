@@ -1,4 +1,6 @@
 {config, ...}: {
+  virtualisation.docker.storageDriver = "btrfs";
+
   virtualisation.arion = {
     backend = "docker";
     projects."monolith".settings = {

@@ -83,6 +83,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    NixVirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -95,6 +100,7 @@
     lanzaboote,
     nix-flatpak,
     nix-homebrew,
+    NixVirt,
     nixpkgs,
     plasma-manager,
     walker,
@@ -132,6 +138,7 @@
           disko.nixosModules.disko
           nix-flatpak.nixosModules.nix-flatpak
           arion.nixosModules.arion
+          NixVirt.nixosModules.default
         ];
       };
 
@@ -167,6 +174,7 @@
           agenix.homeManagerModules.default
           nix-flatpak.homeManagerModules.nix-flatpak
           plasma-manager.homeManagerModules.plasma-manager
+          NixVirt.homeModules.default
         ];
       };
   in {

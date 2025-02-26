@@ -15,6 +15,7 @@
     ./containers.nix
     ./disko.nix
     ./nfs.nix
+    ./vm.nix
   ];
 
   networking.hostName = "monolith"; # Define your hostname.
@@ -22,11 +23,6 @@
   services.tailscale.useRoutingFeatures = "server";
 
   virtualisation.docker.storageDriver = "btrfs";
-
-  programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = [userConfig.name];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
