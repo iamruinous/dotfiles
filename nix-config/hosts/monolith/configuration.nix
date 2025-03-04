@@ -15,7 +15,6 @@
     ./containers.nix
     ./disko.nix
     ./nfs.nix
-    ./vm.nix
   ];
 
   networking.hostName = "monolith"; # Define your hostname.

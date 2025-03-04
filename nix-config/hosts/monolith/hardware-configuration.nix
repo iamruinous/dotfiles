@@ -30,6 +30,7 @@ in {
 
   services.fwupd.enable = true;
   hardware.enableRedistributableFirmware = true;
+  hardware.graphics.enable = true;
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];

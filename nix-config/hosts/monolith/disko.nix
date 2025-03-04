@@ -52,6 +52,9 @@
                     mountOptions = ["compress=zstd"];
                     mountpoint = "/data";
                   };
+                  # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
+                  "/data/docker" = {};
+                  "/data/kvms" = {};
                   # This subvolume will be created but not mounted
                   "/test" = {};
                   # Subvolume for the swapfile

@@ -88,6 +88,11 @@
       url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -101,6 +106,7 @@
     nix-flatpak,
     nix-homebrew,
     NixVirt,
+    microvm,
     nixpkgs,
     plasma-manager,
     walker,
@@ -139,6 +145,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           arion.nixosModules.arion
           NixVirt.nixosModules.default
+          microvm.nixosModules.host
         ];
       };
 

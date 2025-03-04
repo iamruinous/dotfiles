@@ -21,6 +21,7 @@
     basedpyright
     biome
     harper
+    lemminx
     lua-language-server
     marksman
     nil

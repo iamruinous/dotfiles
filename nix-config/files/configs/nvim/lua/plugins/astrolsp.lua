@@ -18,6 +18,7 @@ return {
       "basedpyright",
       "biome",
       "harper_ls",
+      "lemminx",
       "lua_ls",
       "marksman",
       "nil_ls",
