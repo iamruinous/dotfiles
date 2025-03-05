@@ -101,6 +101,20 @@
           ];
         };
         # proxynet services
+        "glance".service = {
+          container_name = "glance";
+          image = "docker.io/glanceapp/glance";
+          environment = {
+            TZ = "America/Phoenix";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/glance/config:/app/config"
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
+          ];
+        };
         "pinchflat".service = {
           container_name = "pinchflat";
           image = "ghcr.io/kieraneglin/pinchflat:latest";
@@ -556,6 +570,12 @@
   age.secrets.monolith_caddy_caddyfile = {
     file = ./files/caddy/Caddyfile.age;
     mode = "600";
+  };
+  age.secrets.monolith_glance_config = {
+    file = ./files/glance/glance.yml.age;
+    path = "/data/docker/glance/config/glance.yml";
+    mode = "600";
+    symlink = false;
   };
   age.secrets.monolith_docker_env_mariadb = {
     file = ./files/docker/env/mariadb.env.age;
