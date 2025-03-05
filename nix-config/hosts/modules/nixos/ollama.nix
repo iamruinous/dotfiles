@@ -14,7 +14,7 @@
   };
 
   age.secrets.caddy_env = {
-    file = ../../../files/configs/caddy/caddy.env.age;
+    file = ../../${config.networking.hostName}/files/caddy/caddy.env.age;
     mode = "600";
   };
 

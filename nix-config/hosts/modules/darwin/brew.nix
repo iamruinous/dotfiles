@@ -1,6 +1,7 @@
-{ pkgs
-, userConfig
-, ...
+{
+  pkgs,
+  userConfig,
+  ...
 }: {
   # Add nix-homebrew configuration
   nix-homebrew = {
@@ -31,6 +32,7 @@
       "deskpad"
       "dropbox"
       "element"
+      "gog-galaxy"
       "google-chrome"
       "jellyfin"
       "keka"
