@@ -189,6 +189,7 @@
       "framework" = mkNixosConfiguration "x86_64-linux" "framework" "jmeskill";
       "inspo" = mkNixosConfiguration "x86_64-linux" "inspo" "jmeskill";
       "jmacnix" = mkNixosConfiguration "x86_64-linux" "jmacnix" "jmeskill";
+      "kidmacnix" = mkNixosConfiguration "x86_64-linux" "kidmacnix" "kids";
       "monolith" = mkNixosConfiguration "x86_64-linux" "monolith" "jmeskill";
       "moonstone" = mkNixosConfiguration "x86_64-linux" "moonstone" "jmeskill";
       "obelisk" = mkNixosConfiguration "x86_64-linux" "obelisk" "jmeskill";
