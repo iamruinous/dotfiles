@@ -25,7 +25,8 @@
       # svc
       "mono" = {
         hostname = "mono.svc.farmhouse.meskill.network";
-        user = "root";
+        user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -52,6 +53,7 @@
       "monolith" = {
         hostname = "monolith.manage.farmhouse.meskill.network";
         user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -60,6 +62,7 @@
       "moonstone" = {
         hostname = "moonstone.manage.farmhouse.meskill.network";
         user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -76,6 +79,7 @@
       "obelisk" = {
         hostname = "obelisk.manage.farmhouse.meskill.network";
         user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -140,6 +144,7 @@
       "mail.ruinous.social" = {
         hostname = "mail.ruinous.social";
         user = "iamruinous";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -149,6 +154,7 @@
       "ruinous.computer tty.ruinous.computer" = {
         hostname = "tty.ruinous.computer";
         user = "iamruinous";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -158,6 +164,7 @@
       "ruinous.social tty.ruinous.social" = {
         hostname = "tty.ruinous.social";
         user = "iamruinous";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -175,6 +182,7 @@
       "ts-monolith" = {
         hostname = "monolith.greyhound-triceratops.ts.net";
         user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -183,6 +191,7 @@
       "ts-moonstone" = {
         hostname = "moonstone.greyhound-triceratops.ts.net";
         user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
@@ -199,6 +208,7 @@
       "ts-obelisk" = {
         hostname = "obelisk.greyhound-triceratops.ts.net";
         user = "jmeskill";
+        forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
