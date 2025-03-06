@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  userConfig,
   ...
 }: {
   imports = [
@@ -91,6 +92,15 @@
 
   # OpenSSH daemon
   services.openssh.enable = true;
+  services.openssh.extraConfig = ''
+    Match User ${userConfig.name}
+          AllowAgentForwarding yes
+          AllowTcpForwarding yes
+          PermitTTY yes
+          PermitTunnel yes
+          X11Forwarding yes
+    Match All
+  '';
 
   # direnv integration
   programs.direnv = {
