@@ -13,7 +13,7 @@
     ./git.nix
     ./go.nix
     ./home.nix
-    ./keychain.nix
+    # ./keychain.nix
     ./khal.nix
     ./neovim.nix
     ./oterm.nix

@@ -1,7 +1,11 @@
-{...}: {
+{pkgs, ...}: let
+  identityAgent =
+    if (pkgs.stdenv.isDarwin)
+    then "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    else "~/.1password/agent.sock";
+in {
   programs.ssh = {
     enable = true;
-    forwardAgent = true;
     addKeysToAgent = "yes";
     extraConfig = ''
       IgnoreUnknown AddKeysToAgent,UseKeychain
@@ -11,7 +15,7 @@
       IdentityFile ~/.ssh/id_jademeskill_ed25519
       IdentityFile ~/.ssh/id_ruinous_computer_ed25519
       IdentityFile ~/.ssh/id_rsa
-      IdentityAgent ~/.1password/agent.sock
+      IdentityAgent "${identityAgent}"
     '';
     matchBlocks = {
       "*.meskill.network 10.55.*" = {
@@ -56,6 +60,7 @@
         forwardAgent = true;
         extraOptions = {
           RequestTTY = "yes";
+          AddKeysToAgent = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
         };
       };
@@ -146,6 +151,7 @@
         user = "iamruinous";
         forwardAgent = true;
         extraOptions = {
+          AddKeysToAgent = "yes";
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
         };
@@ -156,6 +162,7 @@
         user = "iamruinous";
         forwardAgent = true;
         extraOptions = {
+          AddKeysToAgent = "yes";
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
         };
@@ -166,6 +173,7 @@
         user = "iamruinous";
         forwardAgent = true;
         extraOptions = {
+          AddKeysToAgent = "yes";
           RequestTTY = "yes";
           RemoteCommand = "tmux new-session -A -s shell";
         };
