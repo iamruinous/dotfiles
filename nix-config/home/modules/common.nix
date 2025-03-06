@@ -17,7 +17,7 @@
     ./khal.nix
     ./neovim.nix
     ./oterm.nix
-    ./ssh.nix
+    ./ssh-matches.nix
     ./starship.nix
     ./tmux.nix
     ./todoist.nix

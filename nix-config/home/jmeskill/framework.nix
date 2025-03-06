@@ -5,6 +5,7 @@ in {
   imports = [
     ../modules/common.nix
     ../modules/desktop.nix
+    ../modules/ssh-interactive.nix
   ];
 
   # Enable home-manager

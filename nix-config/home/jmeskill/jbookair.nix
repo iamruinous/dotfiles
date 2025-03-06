@@ -2,6 +2,7 @@
   imports = [
     ../modules/common.nix
     ../modules/desktop.nix
+    ../modules/ssh-interactive.nix
     ../modules/darwin/common.nix
   ];
 
