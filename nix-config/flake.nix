@@ -124,6 +124,13 @@
         #gitKey = "C5810093";
         name = "jmeskill";
       };
+      kids = {
+        #avatar = ./files/avatar/face;
+        #email = "jade.meskill@gmail.com";
+        fullName = "Meskill Kids";
+        #gitKey = "C5810093";
+        name = "kids";
+      };
     };
 
     # Function for NixOS system configuration
