@@ -10,9 +10,9 @@ function InstallPackages
         Agilebits.1Password `
         GitHub.GitHubDesktop `
         Google.Chrome.EXE `
+        JesseDuffield.lazygit `
         LGUG2Z.komorebi `
         LGUG2Z.whkd `
-        MartinStorsjo.LLVM-MinGW.UCRT `
         Microsoft.Git `
         Microsoft.PowerToys `
         Microsoft.VisualStudioCode `
@@ -22,28 +22,35 @@ function InstallPackages
         OpenJS.NodeJS `
         Tailscale.Tailscale `
         Valve.Steam
+
+    # winget install `
+    #     --exact `
+    #     --no-upgrade `
+    #     MartinStorsjo.LLVM-MinGW.UCRT 
 }
 
 function InstallFiles
 {
     $error.Clear()
 
-    NVIM_CONFIG_DIR=$env:LOCALAPPDATA\nvim
-    if (-not (Test-Path -Path $NVIM_CONFIG_DIR))
+    $NVIM_CONFIG_DIR="$env:LOCALAPPDATA\nvim"
+    if (-not (Test-Path -Path "$NVIM_CONFIG_DIR"))
     {
-        git clone --depth 1 https://github.com/AstroNvim/template $NVIM_CONFIG_DIR
-        Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+        git clone --depth 1 https://github.com/AstroNvim/template "$NVIM_CONFIG_DIR"
+        Remove-Item $NVIM_CONFIG_DIR\.git -Recurse -Force
     }
 
-    $KOMOREBI_CONFIG_DIR=~/.config/komorebi
-    if (-not (Test-Path -Path $NVIM_CONFIG_DIR))
+    $XDG_CONFIG_DIR="$env:USERPROFILE\.config"
+    $KOMOREBI_CONFIG_DIR="$XDG_CONFIG_DIR\komorebi"
+    $DOTFILES_DIR="$env:USERPROFILE\Projects\github\iamruinous\dotfiles\win-config"
+    if (-not (Test-Path -Path "$KOMOREBI_CONFIG_DIR"))
     {
-        mkdir -Force $KOMOREBI_CONFIG_DIR
+        mkdir -Force "$KOMOREBI_CONFIG_DIR"
     }
-    Copy-Item ~/Projects/github/iamruinous/dotfiles/win-config/files/configs/komorebi/*.json $KOMOREBI_CONFIG_DIR
-    Copy-Item ~/Projects/github/iamruinous/dotfiles/win-config/files/configs/whkdrc ~/.config
+    Copy-Item "$DOTFILES_DIR/files/configs/komorebi/*.json" "$KOMOREBI_CONFIG_DIR"
+    Copy-Item "$DOTFILES_DIR/files/configs/whkdrc" "$XDG_CONFIG_DIR"
+    komorebic enable-autostart --config "$KOMOREBI_CONFIG_DIR/komorebi.json" --whkd
 }
-
 
 InstallPackages $computerName
 InstallFiles $computerName
