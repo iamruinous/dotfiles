@@ -1,4 +1,11 @@
+Import-Module ".\font-management.ps1"
 param ($ComputerName = $(throw "ComputerName parameter is required."))
+
+$currentDirectory = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\') 
+if ($currentDirectory -eq $PSHOME.TrimEnd('\')) 
+{     
+    $currentDirectory = $PSScriptRoot 
+}
 
 function InstallPackages
 {
@@ -20,13 +27,20 @@ function InstallPackages
         Microsoft.WindowsTerminal `
         Neovim.Neovim `
         OpenJS.NodeJS `
+        Plex.Plex `
+        PrivateInternetAccess.PrivateInternetAccess `
         Tailscale.Tailscale `
         Valve.Steam
 
-    # winget install `
-    #     --exact `
-    #     --no-upgrade `
-    #     MartinStorsjo.LLVM-MinGW.UCRT 
+    $MINGW_ID="MartinStorsjo.LLVM-MinGW.UCRT"
+    winget list -q $MINGW_ID | Out-Null
+    if (-not($?))
+    {  
+        winget install `
+            --exact `
+            --no-upgrade `
+            $MINGW_ID
+    }
 }
 
 function InstallFiles
@@ -47,10 +61,29 @@ function InstallFiles
     {
         mkdir -Force "$KOMOREBI_CONFIG_DIR"
     }
-    Copy-Item "$DOTFILES_DIR/files/configs/komorebi/*.json" "$KOMOREBI_CONFIG_DIR"
-    Copy-Item "$DOTFILES_DIR/files/configs/whkdrc" "$XDG_CONFIG_DIR"
-    komorebic enable-autostart --config "$KOMOREBI_CONFIG_DIR/komorebi.json" --whkd
+    Copy-Item "$DOTFILES_DIR\files\configs\komorebi\*.json" "$KOMOREBI_CONFIG_DIR"
+    Copy-Item "$DOTFILES_DIR\files\configs\whkdrc" "$XDG_CONFIG_DIR"
+    komorebic enable-autostart --config "$KOMOREBI_CONFIG_DIR\komorebi.json" --whkd
+}
+
+function DownloadInstallFonts
+{
+    $error.Clear()
+
+    $FONT_DOWNLOAD_DIR="$currentDirectory\downloads\fonts"
+    if (-not (Test-Path -Path "$FONT_DOWNLOAD_DIR"))
+    {
+        # git clone --depth 1 https://github.com/AstroNvim/template "$NVIM_CONFIG_DIR"
+        # Remove-Item $NVIM_CONFIG_DIR\.git -Recurse -Force
+    }
+    #Loop through fonts in the same directory as the script and install/uninstall them
+    foreach ($FontItem in (Get-ChildItem -Path "$currentDirectory\downloads\fonts" | 
+                Where-Object {($_.Name -like '*.ttf') -or ($_.Name -like '*.otf') }))
+    {  
+        Install-Font -fontFile $FontItem.FullName  
+    }
 }
 
 InstallPackages $computerName
 InstallFiles $computerName
+DownloadInstallFonts $computerName
