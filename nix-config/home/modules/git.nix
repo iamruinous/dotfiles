@@ -30,7 +30,7 @@ in {
       crypt = "git-crypt";
     };
     signing = {
-      key = "iamruinous@ruinous.social";
+      # key = "iamruinous@ruinous.social";
       signByDefault = true;
     };
     includes = [

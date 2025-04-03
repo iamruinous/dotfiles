@@ -1,7 +1,18 @@
-{...}: {
+{pkgs, ...}: let
+  identityAgent =
+    if (pkgs.stdenv.isDarwin)
+    then "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    else "~/.1password/agent.sock";
+in {
   programs.ssh = {
     enable = true;
     matchBlocks = {
+      "z-ssh-tty" = {
+        match = "host * exec \"test -z $SSH_TTY\"";
+        extraOptions = {
+          IdentityAgent = "\"${identityAgent}\"";
+        };
+      };
       "*.meskill.network 10.55.*" = {
         user = "root";
         extraOptions = {
@@ -122,6 +133,20 @@
       "de1381b.rsync.net rsync.net" = {
         hostname = "de1381b.rsync.net";
         user = "root";
+        extraOptions = {
+          ForwardAgent = "no";
+          AddKeysToAgent = "no";
+        };
+      };
+
+      # pico.sh
+      "pico.sh" = {
+        hostname = "pico.sh";
+        user = "iamruinous";
+        extraOptions = {
+          ForwardAgent = "no";
+          AddKeysToAgent = "no";
+        };
       };
 
       # ruinous computers
