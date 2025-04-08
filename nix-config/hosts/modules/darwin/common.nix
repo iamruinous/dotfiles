@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./brew.nix
     ./fonts.nix
@@ -15,8 +11,6 @@
 
   # disable for Determinate Nix
   nix.enable = false;
-
-  # ids.uids.nixbld = lib.mkForce 350;
 
   # direnv configuration
   programs.direnv.enable = true;

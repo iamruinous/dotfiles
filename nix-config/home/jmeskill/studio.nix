@@ -4,6 +4,7 @@
     ../modules/desktop.nix
     ../modules/ssh-interactive.nix
     ../modules/darwin/common.nix
+    ../modules/darwin/aerospace-default.nix
   ];
 
   # Enable home-manager
@@ -17,7 +18,7 @@
 
   # Ensure homebrew is in the PATH
   home.sessionPath = [
-    "/opt/homebrew/bin/"
+    "/usr/local/homebrew/bin/"
   ];
 
   # Nicely reload system units when changing configs
