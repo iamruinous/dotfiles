@@ -242,7 +242,7 @@ run = 'move-node-to-workspace 2'
 # G - Glance Space
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome.app.ljlamgbgefobjkjkepgbmbebcoaheadj'
+if.app-id = 'com.google.Chrome.app.ljlamgbgefobjkjkepgbmbebcoaheadj' # Glance
 run = 'move-node-to-workspace G'
 
 ## Full Screen
@@ -262,7 +262,7 @@ run = 'move-node-to-workspace 1'
 # A - AI Space
 
 [[on-window-detected]]
-if.app-name-regex-substring = '^Gemini$'
+if.app-id = 'com.google.Chrome.app.gdfaincndogidkdcdkhapmbffkckdkhn' # Gemini
 run = 'move-node-to-workspace A'
 
 # N - The other AI Space
@@ -274,7 +274,7 @@ run = 'move-node-to-workspace N'
 # C - Chat Space
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi'
+if.app-id = 'com.google.Chrome.app.mdpkiolbdkhdjpekfbkbmhigcaggjagi' # Chat
 run = 'move-node-to-workspace C'
 
 # F - Fantastical Space

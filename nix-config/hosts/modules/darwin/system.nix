@@ -113,6 +113,12 @@
           "/Applications/Mimestream.app"
           "/Applications/Todoist.app"
           "/Applications/Spotify.app"
+          "/Applications/Fantastical.app"
+          "/Applications/Slack.app"
+          "/Users/jmeskill/Applications/Chrome Apps.localized/Glance.app"
+          "/Users/jmeskill/Applications/Chrome Apps.localized/Gemini.app"
+          "/Applications/Claude.app"
+          "/Applications/1Password.app"
         ];
         wvous-bl-corner = 1;
         wvous-br-corner = 1;
