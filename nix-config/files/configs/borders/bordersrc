@@ -4,9 +4,9 @@
 options=(
 	style=round
 	width=6.0
-	hidpi=off
+	hidpi=on
 	active_color=0xff813999
 	inactive_color=0xff19003f
 )
 
-borders "${options[@]}"
+/run/current-system/sw/bin/borders "${options[@]}"

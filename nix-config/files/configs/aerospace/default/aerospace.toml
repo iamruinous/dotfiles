@@ -11,7 +11,7 @@ after-login-command = []
 after-startup-command = [
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders',
+  'exec-and-forget /Users/jmeskill/.config/borders/bordersrc',
   # active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
@@ -111,7 +111,7 @@ alt-f = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
-## alt-2 = 'workspace 2'
+alt-2 = 'workspace 2'
 ## alt-3 = 'workspace 3'
 ## alt-4 = 'workspace 4'
 ## alt-5 = 'workspace 5'
@@ -128,7 +128,7 @@ alt-c = 'workspace C'
 alt-g = 'workspace G'
 ## alt-i = 'workspace I'
 alt-m = 'workspace M'
-## alt-n = 'workspace N'
+alt-n = 'workspace N'
 alt-o = 'workspace O'
 ## alt-p = 'workspace P'
 ## alt-q = 'workspace Q'
@@ -144,7 +144,7 @@ alt-w = 'workspace W'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
-## alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-2 = 'move-node-to-workspace 2'
 ## alt-shift-3 = 'move-node-to-workspace 3'
 ## alt-shift-4 = 'move-node-to-workspace 4'
 ## alt-shift-5 = 'move-node-to-workspace 5'
@@ -161,7 +161,7 @@ alt-shift-c = 'move-node-to-workspace C'
 alt-shift-g = 'move-node-to-workspace G'
 ## alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
-## alt-shift-n = 'move-node-to-workspace N'
+alt-shift-n = 'move-node-to-workspace N'
 alt-shift-o = 'move-node-to-workspace O'
 ## alt-shift-p = 'move-node-to-workspace P'
 ## alt-shift-q = 'move-node-to-workspace Q'
@@ -203,6 +203,11 @@ backspace = ['close-all-windows-but-current', 'mode main']
 ## Floating windows
 
 [[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+check-further-callbacks = true
+
+[[on-window-detected]]
 if.app-id = 'tv.plex.desktop'
 run = 'layout floating'
 check-further-callbacks = true
@@ -218,6 +223,7 @@ check-further-callbacks = true
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = '- Jade \(Work\)$'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
@@ -225,6 +231,13 @@ if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Picture in Picture'
 run = 'layout floating'
 check-further-callbacks = true
+
+# Personal Browser Window
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = '- Jade$'
+run = 'move-node-to-workspace 2'
 
 # G - Glance Space
 
@@ -249,12 +262,14 @@ run = 'move-node-to-workspace 1'
 # A - AI Space
 
 [[on-window-detected]]
-if.app-id = 'com.anongecko.gemini-desktop'
+if.app-name-regex-substring = '^Gemini$'
 run = 'move-node-to-workspace A'
+
+# N - The other AI Space
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace A'
+run = 'move-node-to-workspace N'
 
 # C - Chat Space
 
@@ -273,6 +288,12 @@ run = 'move-node-to-workspace F'
 [[on-window-detected]]
 if.app-id = 'com.mimestream.Mimestream'
 run = 'move-node-to-workspace M'
+
+# N - Spotify
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace N'
 
 # O - Obsidian Space
 

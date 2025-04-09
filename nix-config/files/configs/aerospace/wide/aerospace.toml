@@ -11,7 +11,7 @@ after-login-command = []
 after-startup-command = [
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders',
+  'exec-and-forget /Users/jmeskill/.config/borders/bordersrc',
   # active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 
@@ -111,7 +111,7 @@ alt-f = 'layout floating tiling'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
-## alt-2 = 'workspace 2'
+alt-2 = 'workspace 2'
 ## alt-3 = 'workspace 3'
 ## alt-4 = 'workspace 4'
 ## alt-5 = 'workspace 5'
@@ -144,7 +144,7 @@ alt-w = 'workspace W'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
-## alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-2 = 'move-node-to-workspace 2'
 ## alt-shift-3 = 'move-node-to-workspace 3'
 ## alt-shift-4 = 'move-node-to-workspace 4'
 ## alt-shift-5 = 'move-node-to-workspace 5'
@@ -203,6 +203,11 @@ backspace = ['close-all-windows-but-current', 'mode main']
 ## Floating windows
 
 [[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+check-further-callbacks = true
+
+[[on-window-detected]]
 if.app-id = 'tv.plex.desktop'
 run = 'layout floating'
 check-further-callbacks = true
@@ -218,6 +223,7 @@ check-further-callbacks = true
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = '- Jade \(Work\)$'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
@@ -225,6 +231,13 @@ if.app-id = 'com.google.Chrome'
 if.window-title-regex-substring = 'Picture in Picture'
 run = 'layout floating'
 check-further-callbacks = true
+
+# Personal Browser Window (Glance Space)
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = '- Jade$'
+run = 'move-node-to-workspace G'
 
 # G - Glance Space
 
@@ -248,10 +261,14 @@ run = 'move-node-to-workspace W'
 if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace 1'
 
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 1'
+
 # A - AI Space
 
 [[on-window-detected]]
-if.app-id = 'com.anongecko.gemini-desktop'
+if.app-name-regex-substring = '^Gemini$'
 run = 'move-node-to-workspace A'
 
 [[on-window-detected]]

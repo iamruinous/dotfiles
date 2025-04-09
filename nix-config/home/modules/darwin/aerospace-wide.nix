@@ -16,5 +16,7 @@ in {
   '';
 }
 ## BTT swipe left /usr/local/bin/aerospace workspace "$(/usr/local/bin/aerospace list-workspaces --monitor mouse --visible)" && /usr/local/bin/aerospace workspace next --wrap-around
+## BTT swipe left applesi /opt/homebrew/bin/aerospace workspace "$(/opt/homebrew/bin/aerospace list-workspaces --monitor mouse --visible)" && /opt/homebrew/bin/aerospace workspace next --wrap-around
 ## BTT swipe right /usr/local/bin/aerospace workspace "$(/usr/local/bin/aerospace list-workspaces --monitor mouse --visible)" && /usr/local/bin/aerospace workspace prev --wrap-around
+## BTT swipe right applesi /opt/homebrew/bin/aerospace workspace "$(/opt/homebrew/bin/aerospace list-workspaces --monitor mouse --visible)" && /opt/homebrew/bin/aerospace workspace prev --wrap-around
 

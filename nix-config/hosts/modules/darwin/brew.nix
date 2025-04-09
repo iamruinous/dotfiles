@@ -38,6 +38,7 @@
       "keka"
       "knockknock"
       "lulu"
+      "mas"
       "mimestream"
       "obsidian"
       "oversight"

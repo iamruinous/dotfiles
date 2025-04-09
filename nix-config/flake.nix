@@ -38,7 +38,7 @@
 
     # Nix Darwin (for MacOS machines)
     darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
