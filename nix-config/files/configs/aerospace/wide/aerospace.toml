@@ -217,6 +217,12 @@ if.app-id = 'com.1password.1password'
 run = 'layout floating'
 check-further-callbacks = true
 
+[[on-window-detected]]
+if.app-id = 'com.objective-see.lulu.app'
+if.window-title-regex-substring = '^LuLu Alert$'
+run = 'layout floating'
+check-further-callbacks = true
+
 ## Chrome and related
 
 # B - Browser Space 
