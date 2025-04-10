@@ -19,6 +19,7 @@
     onActivation.upgrade = true;
     brews = [
       "boring"
+      "mas"
       "step"
     ];
     casks = [
@@ -38,7 +39,6 @@
       "keka"
       "knockknock"
       "lulu"
-      "mas"
       "mimestream"
       "obsidian"
       "oversight"
