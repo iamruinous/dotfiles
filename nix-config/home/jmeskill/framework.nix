@@ -22,90 +22,127 @@ in {
 
   programs.plasma = {
     enable = true;
-
-    #
-    # Some high-level settings:
-    #
-    workspace.wallpaper = "${workspace-wallpaper}";
     kscreenlocker.appearance.wallpaper = "${workspace-wallpaper}";
+    workspace = {
+      wallpaper = "${workspace-wallpaper}";
+      lookAndFeel = "org.kde.breeze.desktop";
+      colorScheme = "BreezeDark";
+      cursor.theme = "breeze_cursors";
+    };
+    kwin = {
+      virtualDesktops = {
+        rows = 1;
+        number = 6;
+      };
+      tiling = {
+        padding = 4;
+        layout = {
+          id = "c8a4a66d-bbca-5e7f-8a37-ce3b4a705568";
+          tiles = {
+            layoutDirection = "horizontal";
+            tiles = [
+              {width = 0.25;}
+              {width = 0.5;}
+              {width = 0.25;}
+            ];
+          };
+        };
+      };
+    };
     window-rules = [
       {
-        description = "Google Chrome";
+        description = "Google Chrome nix";
         match = {
           window-class = {
+            type = "exact";
             value = "google-chrome";
-            type = "exact";
             match-whole = false;
           };
         };
         apply = {
           desktops = {
-            value = "d13a21da-3d8e-4629-a57a-2a89103e3008";
             apply = "initially";
+            value = "Desktop 1";
           };
         };
       }
       {
-        description = "WezTerm";
+        description = "Obsidian nix";
         match = {
           window-class = {
+            type = "exact";
+            value = "obsidian";
+            match-whole = false;
+          };
+        };
+        apply = {
+          desktops = {
+            apply = "initially";
+            value = "Desktop 2";
+          };
+        };
+      }
+      {
+        description = "WezTerm nix";
+        match = {
+          window-class = {
+            type = "exact";
             value = "org.wezfurlong.wezterm";
-            type = "exact";
             match-whole = false;
           };
         };
         apply = {
           desktops = {
-            value = "9f6f84c9-757f-48e8-ad21-92cc205d698f";
             apply = "initially";
+            value = "Desktop 3";
           };
         };
       }
       {
-        description = "Todoist";
+        description = "Todoist nix";
         match = {
           window-class = {
+            type = "exact";
             value = "Todoist";
-            type = "exact";
             match-whole = false;
           };
         };
         apply = {
           desktops = {
-            value = "335dc1e0-a72a-404a-bfb7-d8587fe250e2";
             apply = "initially";
+            value = "Desktop 4";
           };
         };
       }
       {
-        description = "Steam";
+        description = "Steam nix";
         match = {
           window-class = {
+            type = "exact";
             value = "steam";
-            type = "exact";
             match-whole = false;
           };
         };
         apply = {
           desktops = {
-            value = "85da5de8-7ca5-4938-a8ee-4920a0e4d659";
             apply = "initially";
+            value = "Desktop 5";
           };
         };
       }
       {
-        description = "Glance";
+        description = "Glance nix";
         match = {
           window-class = {
-            value = "chrome-ljlamgbgefobjkjkepgbmbebcoaheadj-Default";
             type = "exact";
+            value = "chrome-ljlamgbgefobjkjkepgbmbebcoaheadj-Default";
             match-whole = false;
           };
         };
         apply = {
           desktops = {
-            value = "ebdb614a-d1a5-4560-9e8c-66a27734a829";
             apply = "initially";
+            value = "Desktop 6";
           };
         };
       }

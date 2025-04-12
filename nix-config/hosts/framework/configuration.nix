@@ -16,7 +16,7 @@
     ../modules/nixos/desktop-common.nix
     ../modules/nixos/docker.nix
     ../modules/nixos/flatpak.nix
-    ../modules/nixos/hyprland-packages.nix
+    # ../modules/nixos/hyprland-packages.nix
     ../modules/nixos/kde.nix
     ../modules/nixos/latest-kernel.nix
     ../modules/nixos/restic.nix
@@ -34,6 +34,7 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
+    #    settings.reboot-for-bitlocker = true;
   };
 
   # Bootloader.
@@ -46,14 +47,16 @@
     dwarf-fortress
   ];
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Enable login with fingerprint reader
   security.pam.services.login.fprintAuth = true;
 
   # Enable the Hyprland DM
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;
+  # };
 
   # Enable the UWSM
   # programs.uwsm = {

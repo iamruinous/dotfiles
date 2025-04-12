@@ -3,17 +3,20 @@
   services.libinput.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.sddm.extraPackages = with pkgs; [
-    kdePackages.qtsvg
-    kdePackages.qtmultimedia
-    kdePackages.qtvirtualkeyboard
-  ];
-  services.displayManager.sddm.theme = "sddm-astronaut-theme";
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    extraPackages = with pkgs; [
+      kdePackages.qtsvg
+      kdePackages.qtmultimedia
+      kdePackages.qtvirtualkeyboard
+    ];
+    theme = "sddm-astronaut-theme";
+  };
 
   environment.systemPackages = with pkgs; [
+    kdePackages.oxygen
     kdePackages.krohnkite
     (sddm-astronaut.override
       {
