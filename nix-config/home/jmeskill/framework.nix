@@ -146,6 +146,22 @@ in {
           };
         };
       }
+      {
+        description = "Gemini nix";
+        match = {
+          window-class = {
+            type = "exact";
+            value = "chrome-gdfaincndogidkdcdkhapmbffkckdkhn-Default";
+            match-whole = false;
+          };
+        };
+        apply = {
+          desktops = {
+            apply = "initially";
+            value = "Desktop 6";
+          };
+        };
+      }
     ];
   };
 
