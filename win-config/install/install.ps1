@@ -14,6 +14,7 @@ function InstallPackages
         --exact `
         7zip.7zip `
         Agilebits.1Password `
+        Agilebits.1Password.CLI `
         eza-community.eza `
         GitHub.GitHubDesktop `
         Google.Chrome.EXE `
@@ -87,13 +88,19 @@ function InstallFiles
     }
 }
 
-function InstallFiles
+function InstallAliases
 {
     $error.Clear()
 
-    Set-Alias -Name ll -Value "eza --git --icons --long"
+    ## eza
+    $EZA_PROFILE='Set-Alias -Name ll -Value "eza --git --icons --long --header"'
+
+    if ( (Get-Content -Path "$PROFILE") -notcontains "$EZA_PROFILE")
+    {
+        Add-Content -Path "$PROFILE" -Value "$EZA_PROFILE"
+    }
 }
 
-InstallPackages $computerName
-InstallFiles $computerName
+# InstallPackages $computerName
+# InstallFiles $computerName
 InstallAliases $computerName

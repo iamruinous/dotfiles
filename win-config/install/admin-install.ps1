@@ -16,7 +16,7 @@ function InstallFonts
         Install-PSResource -Name NerdFonts -Scope AllUsers -Reinstall
     }
     Import-Module -Name NerdFonts
-    Get-NerdFont -Name 'FiraCode' -Scope AllUsers
+    Get-NerdFont -Name 'FiraCode'
     if (-not($?))
     {  
         Install-NerdFont -Name 'FiraCode' -Scope AllUsers
