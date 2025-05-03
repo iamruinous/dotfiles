@@ -20,7 +20,7 @@
         # hostnet services
         "caddy".service = {
           container_name = "caddy";
-          image = "ghcr.io/caddybuilds/caddy-cloudflare:latest";
+          image = "ghcr.io/caddybuilds/caddy-cloudflare:2.10.0";
           networks = [
             "hostnet"
             "proxynet"
@@ -59,7 +59,7 @@
         # datanet services
         "mariadb".service = {
           container_name = "mariadb";
-          image = "docker.io/mariadb:latest";
+          image = "docker.io/mariadb:11.7.2";
           env_file = [config.age.secrets.monolith_docker_env_mariadb.path];
           networks = ["datanet"];
           healthcheck = {
@@ -103,7 +103,7 @@
         # proxynet services
         "glance".service = {
           container_name = "glance";
-          image = "docker.io/glanceapp/glance";
+          image = "docker.io/glanceapp/glance:v0.7.13";
           environment = {
             TZ = "America/Phoenix";
           };
@@ -117,7 +117,7 @@
         };
         "pinchflat".service = {
           container_name = "pinchflat";
-          image = "ghcr.io/kieraneglin/pinchflat:latest";
+          image = "ghcr.io/kieraneglin/pinchflat:v2025.3.17";
           environment = {
             TZ = "America/Phoenix";
           };
@@ -130,7 +130,7 @@
         };
         "romm".service = {
           container_name = "romm";
-          image = "docker.io/rommapp/romm:latest";
+          image = "docker.io/rommapp/romm:3.9.0-beta.1";
           env_file = [config.age.secrets.monolith_docker_env_romm.path];
           networks = [
             "proxynet"
@@ -159,7 +159,7 @@
         };
         "kavita".service = {
           container_name = "kavita";
-          image = "lscr.io/linuxserver/kavita:latest";
+          image = "docker.io/jvmilazz0/kavita:0.8.6";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -220,7 +220,7 @@
         };
         "weatherflow".service = {
           container_name = "weatherflow";
-          image = "docker.io/briis/weatherflow2mqtt:latest";
+          image = "docker.io/briis/weatherflow2mqtt:3.2.2";
           ports = ["50222:50222/udp"];
           env_file = [config.age.secrets.monolith_docker_env_weatherflow.path];
           networks = [
@@ -233,7 +233,7 @@
         };
         "apprise".service = {
           container_name = "apprise";
-          image = "lscr.io/linuxserver/apprise-api:latest";
+          image = "lscr.io/linuxserver/apprise-api:1.2.0";
           environment = {
             TZ = "America/Phoenix";
           };
@@ -258,7 +258,7 @@
         };
         "bazarr".service = {
           container_name = "bazarr";
-          image = "lscr.io/linuxserver/bazarr";
+          image = "lscr.io/linuxserver/bazarr:1.5.1";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -280,7 +280,7 @@
         };
         "readarr".service = {
           container_name = "readarr";
-          image = "lscr.io/linuxserver/readarr:develop";
+          image = "lscr.io/linuxserver/readarr:0.4.15-develop";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -297,7 +297,7 @@
         };
         "prowlarr".service = {
           container_name = "prowlarr";
-          image = "lscr.io/linuxserver/prowlarr:develop";
+          image = "lscr.io/linuxserver/prowlarr:1.34.1";
           environment = {
             PUID = "4000";
             PGID = "4000";

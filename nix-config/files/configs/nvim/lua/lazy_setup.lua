@@ -11,6 +11,7 @@ require("lazy").setup({
       update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
     },
   },
+  { import = "aider" },
   { import = "community" },
   { import = "plugins" },
 } --[[@as LazySpec]], {
