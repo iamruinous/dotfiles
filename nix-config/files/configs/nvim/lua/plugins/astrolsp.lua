@@ -17,6 +17,8 @@ return {
     servers = {
       "basedpyright",
       "biome",
+      "golangci_lint_ls",
+      "gopls",
       "harper_ls",
       "lemminx",
       "lua_ls",
@@ -32,6 +34,15 @@ return {
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
     config = {
+      --       golangci_lint_ls = {
+      -- settings = {
+      --
+      --           go = {
+      --
+      --             k
+      --           }
+      --         },
+      --       },
       nil_ls = {
         settings = {
           ["nil"] = {

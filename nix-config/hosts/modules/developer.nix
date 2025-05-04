@@ -8,6 +8,8 @@
     just
     lazygit
     luarocks
+    playwright
+    playwright-driver.browsers
     ripgrep
 
     # languages
@@ -21,6 +23,9 @@
     alejandra
     basedpyright
     biome
+    golangci-lint
+    golangci-lint-langserver
+    gopls
     harper
     lemminx
     lua-language-server
