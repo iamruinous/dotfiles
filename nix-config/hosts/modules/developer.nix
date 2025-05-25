@@ -15,7 +15,14 @@
     # languages
     go
     nodejs
-    (python3.withPackages (ps: with ps; [pip virtualenv]))
+    (python3.withPackages (ps:
+      with ps; [
+        pip
+        virtualenv
+        llm
+        llm-anthropic
+        llm-gemini
+      ]))
     uv
     zig
 
