@@ -61,7 +61,7 @@
     wezterm.url = "github:wez/wezterm?dir=nix";
 
     # Hyprland
-    hyprswitch.url = "github:h3rmt/hyprswitch/release";
+    hyprshell.url = "github:H3rmt/hyprswitch?ref=hyprshell";
     hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
     walker.url = "github:abenz1267/walker";
 

@@ -8,6 +8,7 @@
 }: {
   services.fwupd.enable = true;
   time.hardwareClockInLocalTime = true;
+  hardware.graphics.enable32Bit = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/13f4c197-72aa-4ce3-8945-6954b9073bf9";
