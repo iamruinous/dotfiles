@@ -131,8 +131,8 @@ in {
 
       # rsync
       "de1381b.rsync.net rsync.net" = {
-        hostname = "de1381b.rsync.net";
-        user = "root";
+        hostname = "rsync.net";
+        user = "de1381b";
         extraOptions = {
           ForwardAgent = "no";
           AddKeysToAgent = "no";

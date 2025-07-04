@@ -101,6 +101,20 @@
           ];
         };
         # proxynet services
+        "mqttx".service = {
+          container_name = "glance";
+          image = "docker.io/emqx/mqttx-web:v1.12.0";
+          environment = {
+            TZ = "America/Phoenix";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/mqttx/config:/app/config"
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
+          ];
+        };
         "glance".service = {
           container_name = "glance";
           image = "docker.io/glanceapp/glance:v0.7.13";
