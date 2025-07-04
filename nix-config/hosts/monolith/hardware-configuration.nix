@@ -7,23 +7,7 @@
   pkgs,
   modulesPath,
   ...
-}: let
-  gasket =
-    config.boot.kernelPackages.gasket.overrideAttrs
-    (super: {
-      patches =
-        super.patches
-        ++ [
-          (pkgs.fetchpatch2 {
-            # https://github.com/google/gasket-driver/issues/39
-            # https://github.com/google/gasket-driver/pull/40
-            name = "linux-6.13-compat.patch";
-            url = "https://github.com/google/gasket-driver/commit/6fbf8f8f8bcbc0ac9c9bef7a56f495a2c9872652.patch";
-            hash = "sha256-roCo0/ETWuDVtZfbpFbrmy/icNI12A/ozOGQNLTtBUs=";
-          })
-        ];
-    });
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -34,7 +18,7 @@ in {
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [gasket];
+  boot.extraModulePackages = [config.boot.kernelPackages.gasket];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
