@@ -101,16 +101,16 @@
           ];
         };
         # proxynet services
-        "mqttx".service = {
-          container_name = "glance";
-          image = "docker.io/emqx/mqttx-web:v1.12.0";
+        "mqtt-explorer".service = {
+          container_name = "mqtt-explorer";
+          image = "docker.io/smeagolworms4/mqtt-explorer:browser-1.0.3";
           environment = {
             TZ = "America/Phoenix";
           };
           networks = ["proxynet"];
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/mqttx/config:/app/config"
+            "/data/docker/mqtt-explorer/config:/mqtt-explorer/config"
             "/etc/timezone:/etc/timezone:ro"
             "/etc/localtime:/etc/localtime:ro"
           ];
