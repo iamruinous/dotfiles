@@ -5,7 +5,8 @@
 }: {
   # System settings
   system = {
-    activationScripts.postUserActivation.text = ''
+    primaryUser = userConfig.name;
+    activationScripts.postActivation.text = ''
       # Following line should allow us to avoid a logout/login cycle
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
