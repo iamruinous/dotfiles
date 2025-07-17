@@ -6,8 +6,8 @@
   # Input settings
   services.libinput.enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
 
   # Enable the Hyprland DM
   programs.hyprland = {

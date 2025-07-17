@@ -3,7 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (inputs) hyprland-qtutils hyprswitch walker;
+  inherit (inputs) hyprland-qtutils hyprshell walker;
 in {
   environment.systemPackages = with pkgs; [
     hypridle
@@ -11,7 +11,7 @@ in {
     hyprpaper
     hyprpicker
     hyprland-qtutils.packages."${pkgs.system}".default
-    hyprswitch.packages.${pkgs.system}.default
+    hyprshell.packages.${pkgs.system}.default
     walker.packages.${pkgs.system}.default
   ];
 }
