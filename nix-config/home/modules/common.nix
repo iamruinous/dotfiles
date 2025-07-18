@@ -16,7 +16,7 @@
     # ./keychain.nix
     ./khal.nix
     ./neovim.nix
-    ./oterm.nix
+    # ./oterm.nix
     ./ssh-matches.nix
     ./starship.nix
     ./tmux.nix
