@@ -2,14 +2,14 @@
   # System packages
   environment.systemPackages = with pkgs; [
     # dev tools
-    aider-chat
+    #aider-chat
     git-secrets
     jq
     just
     lazygit
     luarocks
-    playwright
-    playwright-driver.browsers
+    #playwright
+    #playwright-driver.browsers
     ripgrep
 
     # languages

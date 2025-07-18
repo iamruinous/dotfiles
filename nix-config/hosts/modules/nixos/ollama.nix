@@ -9,9 +9,9 @@
     acceleration = "cuda";
   };
 
-  services.open-webui = {
-    enable = true;
-  };
+  # services.open-webui = {
+  #   enable = true;
+  # };
 
   age.secrets.caddy_env = {
     file = ../../${config.networking.hostName}/files/caddy/caddy.env.age;
@@ -21,8 +21,8 @@
   services.caddy = {
     enable = true;
     package = pkgs.caddy.withPlugins {
-      plugins = ["github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"];
-      hash = "sha256-jCcSzenewQiW897GFHF9WAcVkGaS/oUu63crJu7AyyQ=";
+      plugins = ["github.com/caddy-dns/cloudflare@v0.2.1"];
+      hash = "sha256-2D7dnG50CwtCho+U+iHmSj2w14zllQXPjmTHr6lJZ/A=";
     };
     environmentFile = config.age.secrets.caddy_env.path;
     globalConfig = ''
