@@ -60,8 +60,12 @@
         "mariadb".service = {
           container_name = "mariadb";
           image = "docker.io/mariadb:11";
+          ports = ["3306:3306"];
           env_file = [config.age.secrets.monolith_docker_env_mariadb.path];
-          networks = ["datanet"];
+          networks = [
+            "datanet"
+            "hostnet"
+          ];
           healthcheck = {
             test = [
               "CMD"
@@ -103,14 +107,18 @@
         "postgres".service = {
           container_name = "postgres";
           image = "docker.io/postgres:17";
+          ports = ["5432:5432"];
           environment = {
             PGDATA = "/var/lib/postgresql/17/docker";
           };
           env_file = [config.age.secrets.monolith_docker_env_postgres.path];
-          networks = ["datanet"];
+          networks = [
+            "datanet"
+            "hostnet"
+          ];
           healthcheck = {
             test = [
-              "CMD_SHELL"
+              "CMD-SHELL"
               "pg_isready"
             ];
             start_period = "10s";
@@ -167,7 +175,7 @@
         };
         "bazarr".service = {
           container_name = "bazarr";
-          image = "lscr.io/linuxserver/bazarr:1.5.1";
+          image = "lscr.io/linuxserver/bazarr:1.5.2";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -225,7 +233,7 @@
         };
         "deluge".service = {
           container_name = "deluge";
-          image = "lscr.io/linuxserver/deluge";
+          image = "lscr.io/linuxserver/deluge:2.2.0";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -312,7 +320,7 @@
         };
         "glance".service = {
           container_name = "glance";
-          image = "docker.io/glanceapp/glance:v0.7.13";
+          image = "docker.io/glanceapp/glance:v0.8.4";
           environment = {
             TZ = "America/Phoenix";
           };
@@ -348,7 +356,7 @@
         # };
         "jellyseerr".service = {
           container_name = "jellyseerr";
-          image = "docker.io/fallenbagel/jellyseerr";
+          image = "docker.io/fallenbagel/jellyseerr:2";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -363,7 +371,7 @@
         };
         "kavita".service = {
           container_name = "kavita";
-          image = "docker.io/jvmilazz0/kavita:0.8.6";
+          image = "docker.io/jvmilazz0/kavita:0.8.7";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -420,7 +428,7 @@
         };
         "phpldapadmin".service = {
           container_name = "phpldapadmin";
-          image = "docker.io/osixia/phpldapadmin:0.9.0";
+          image = "docker.io/phpldapadmin/phpldapadmin:2.2.2";
           environment = {
             PHPLDAPADMIN_HTTPS = "false";
             PHPLDAPADMIN_LDAP_HOSTS = "#PYTHON2BASH:[{'openldap': [{'server': [{'tls': False}]},{'login': [{'bind_id': 'cn=admin,dc=meskill-farmhouse,dc=lan'}]}]}]";
@@ -476,7 +484,7 @@
         };
         "pinchflat".service = {
           container_name = "pinchflat";
-          image = "ghcr.io/kieraneglin/pinchflat:v2025.3.17";
+          image = "ghcr.io/kieraneglin/pinchflat:v2025.6.6";
           environment = {
             TZ = "America/Phoenix";
           };
@@ -489,7 +497,7 @@
         };
         "prowlarr".service = {
           container_name = "prowlarr";
-          image = "lscr.io/linuxserver/prowlarr:1.34.1";
+          image = "lscr.io/linuxserver/prowlarr:2.0.2-nightly";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -504,7 +512,7 @@
         };
         "radarr".service = {
           container_name = "radarr";
-          image = "lscr.io/linuxserver/radarr";
+          image = "lscr.io/linuxserver/radarr:5.26.2";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -524,7 +532,7 @@
         };
         "readarr".service = {
           container_name = "readarr";
-          image = "lscr.io/linuxserver/readarr:0.4.15-develop";
+          image = "lscr.io/linuxserver/readarr:0.4.19-nightly";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -541,7 +549,7 @@
         };
         "romm".service = {
           container_name = "romm";
-          image = "docker.io/rommapp/romm:3.9.0-beta.1";
+          image = "docker.io/rommapp/romm:3";
           env_file = [config.age.secrets.monolith_docker_env_romm.path];
           networks = [
             "proxynet"
@@ -570,7 +578,7 @@
         };
         "sabnzbd".service = {
           container_name = "sabnzbd";
-          image = "lscr.io/linuxserver/sabnzbd";
+          image = "lscr.io/linuxserver/sabnzbd:4.5.2";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -587,7 +595,7 @@
         };
         "sonarr".service = {
           container_name = "sonarr";
-          image = "lscr.io/linuxserver/sonarr";
+          image = "lscr.io/linuxserver/sonarr:4.0.15";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -606,7 +614,7 @@
         };
         "stepca".service = {
           container_name = "stepca";
-          image = "docker.io/smallstep/step-ca";
+          image = "docker.io/smallstep/step-ca:0.28.4";
           env_file = [config.age.secrets.monolith_docker_env_stepca.path];
           networks = ["proxynet"];
           restart = "unless-stopped";
