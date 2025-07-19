@@ -59,7 +59,7 @@
         # datanet services
         "mariadb".service = {
           container_name = "mariadb";
-          image = "docker.io/mariadb:11.7.2";
+          image = "docker.io/mariadb:11";
           env_file = [config.age.secrets.monolith_docker_env_mariadb.path];
           networks = ["datanet"];
           healthcheck = {
@@ -100,10 +100,33 @@
             "/data/docker/openldap/slapd:/etc/ldap/slapd.d"
           ];
         };
+        "postgres".service = {
+          container_name = "postgres";
+          image = "docker.io/postgres:17";
+          environment = {
+            PGDATA = "/var/lib/postgresql/17/docker";
+          };
+          env_file = [config.age.secrets.monolith_docker_env_postgres.path];
+          networks = ["datanet"];
+          healthcheck = {
+            test = [
+              "CMD_SHELL"
+              "pg_isready"
+            ];
+            start_period = "10s";
+            interval = "60s";
+            timeout = "5s";
+            retries = 3;
+          };
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/postgres/pgdata:/var/lib/postgresql/17/docker"
+          ];
+        };
         # proxynet services
-        "mqtt-explorer".service = {
-          container_name = "mqtt-explorer";
-          image = "docker.io/smeagolworms4/mqtt-explorer:browser-1.0.3";
+        "adminer".service = {
+          container_name = "adminer";
+          image = "docker.io/adminer:5";
           environment = {
             TZ = "America/Phoenix";
           };
@@ -115,87 +138,108 @@
             "/etc/localtime:/etc/localtime:ro"
           ];
         };
-        "glance".service = {
-          container_name = "glance";
-          image = "docker.io/glanceapp/glance:v0.7.13";
+        "apprise".service = {
+          container_name = "apprise";
+          image = "lscr.io/linuxserver/apprise-api:1.2.0";
           environment = {
             TZ = "America/Phoenix";
           };
           networks = ["proxynet"];
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/glance/config:/app/config"
-            "/etc/timezone:/etc/timezone:ro"
-            "/etc/localtime:/etc/localtime:ro"
+            "/data/docker/apprise/config:/config"
           ];
         };
-        "pinchflat".service = {
-          container_name = "pinchflat";
-          image = "ghcr.io/kieraneglin/pinchflat:v2025.3.17";
-          environment = {
-            TZ = "America/Phoenix";
-          };
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/pinchflat/config:/config"
-            "/nas/media/YT:/downloads"
-          ];
-        };
-        "romm".service = {
-          container_name = "romm";
-          image = "docker.io/rommapp/romm:3.9.0-beta.1";
-          env_file = [config.age.secrets.monolith_docker_env_romm.path];
-          networks = [
-            "proxynet"
-            "datanet"
-          ];
-          healthcheck = {
-            test = [
-              "CMD"
-              "curl"
-              "--fail"
-              "http://127.0.0.1:8080"
-            ];
-            start_period = "60s";
-            interval = "60s";
-            timeout = "5s";
-            retries = 3;
-          };
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/romm/resources:/romm/resources"
-            "/data/docker/romm/config:/romm/config"
-            "/data/docker/romm/assets:/romm/assets"
-            "/data/docker/romm/redis:/redis-data"
-            "/nas/roms:/romm/library"
-          ];
-        };
-        "kavita".service = {
-          container_name = "kavita";
-          image = "docker.io/jvmilazz0/kavita:0.8.6";
+        "autobrr".service = {
+          container_name = "autobrr";
+          image = "ghcr.io/autobrr/autobrr:latest";
           environment = {
             PUID = "4000";
             PGID = "4000";
             TZ = "America/Phoenix";
+            AUTO_UPDATE = "false";
           };
           networks = ["proxynet"];
-          healthcheck = {
-            test = [
-              "CMD"
-              "curl"
-              "--fail"
-              "http://127.0.0.1:5000"
-            ];
-            start_period = "60s";
-            interval = "60s";
-            timeout = "5s";
-            retries = 3;
-          };
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/kavita/config:/config"
-            "/nas/media/Books:/mnt/books"
+            "/data/docker/autobrr/config:/config"
+          ];
+        };
+        "bazarr".service = {
+          container_name = "bazarr";
+          image = "lscr.io/linuxserver/bazarr:1.5.1";
+          environment = {
+            PUID = "4000";
+            PGID = "4000";
+            TZ = "America/Phoenix";
+            AUTO_UPDATE = "false";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/bazarr/config:/config"
+            "/nas/media/TV:/tv"
+            "/nas/media/Kids/TV:/tv-kids"
+            "/nas/media/Anime/TV:/tv-anime"
+            "/nas/media/Movies:/movies"
+            "/nas/media/Kids/Movies:/movies-kids"
+            "/nas/media/Anime/Movies:/movies-anime"
+            "/nas/media/Holidays:/movies-holidays"
+          ];
+        };
+        "calibre".service = {
+          container_name = "calibre";
+          image = "lscr.io/linuxserver/calibre:latest";
+          environment = {
+            PUID = "4000";
+            PGID = "4000";
+            TZ = "America/Phoenix";
+            CALIBRE_TEMP_DIR = "/config/tmp";
+            CALIBRE_CACHE_DIRECTORY = "/config/cache";
+            AUTO_UPDATE = "false";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/calibre/config:/config"
+            "/nas/media/Books:/mnt/calibre"
+          ];
+        };
+        "calibre-automated".service = {
+          container_name = "calibre-automated";
+          image = "docker.io/crocodilestick/calibre-web-automated:latest";
+          environment = {
+            PUID = "4000";
+            PGID = "4000";
+            TZ = "America/Phoenix";
+            AUTO_UPDATE = "false";
+            #DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/calibre-automated/config:/config"
+            "/nas/media/Books:/calibre-library"
+            "/nas/media/xfer/ingest/calibre-automated:/cwa-book-ingest"
+          ];
+        };
+        "deluge".service = {
+          container_name = "deluge";
+          image = "lscr.io/linuxserver/deluge";
+          environment = {
+            PUID = "4000";
+            PGID = "4000";
+            TZ = "America/Phoenix";
+            AUTO_UPDATE = "false";
+            DELUGE_LOGLEVEL = "error";
+          };
+          network_mode = "service:piavpn";
+          restart = "unless-stopped";
+          depends_on = ["piavpn"];
+          volumes = [
+            "/data/docker/piavpn/shared:/pia"
+            "/data/docker/deluge/config:/config"
+            "/nas/media/xfer:/data/xfer"
           ];
         };
         "ersatztv".service = {
@@ -232,137 +276,76 @@
             "/dev/dri/renderD128:/dev/dri/renderD128"
           ];
         };
-        "weatherflow".service = {
-          container_name = "weatherflow";
-          image = "docker.io/briis/weatherflow2mqtt:3.2.2";
-          ports = ["50222:50222/udp"];
-          env_file = [config.age.secrets.monolith_docker_env_weatherflow.path];
-          networks = [
-            "hostnet"
-          ];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/weatherflow/config:/usr/local/config"
-          ];
-        };
-        "apprise".service = {
-          container_name = "apprise";
-          image = "lscr.io/linuxserver/apprise-api:1.2.0";
-          environment = {
-            TZ = "America/Phoenix";
-          };
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/apprise/config:/config"
-          ];
-        };
-        "phpldapadmin".service = {
-          container_name = "phpldapadmin";
-          image = "docker.io/osixia/phpldapadmin:0.9.0";
-          environment = {
-            PHPLDAPADMIN_HTTPS = "false";
-            PHPLDAPADMIN_LDAP_HOSTS = "#PYTHON2BASH:[{'openldap': [{'server': [{'tls': False}]},{'login': [{'bind_id': 'cn=admin,dc=meskill-farmhouse,dc=lan'}]}]}]";
-          };
-          networks = [
-            "datanet"
-            "proxynet"
-          ];
-          restart = "unless-stopped";
-        };
-        "bazarr".service = {
-          container_name = "bazarr";
-          image = "lscr.io/linuxserver/bazarr:1.5.1";
+        "flaresolverr".service = {
+          container_name = "flaresolverr";
+          image = "ghcr.io/flaresolverr/flaresolverr:latest";
           environment = {
             PUID = "4000";
             PGID = "4000";
             TZ = "America/Phoenix";
             AUTO_UPDATE = "false";
           };
+          network_mode = "service:piavpn";
+          restart = "unless-stopped";
+          depends_on = ["piavpn"];
+        };
+        "frigate".service = {
+          container_name = "frigate";
+          image = "ghcr.io/blakeblackshear/frigate:stable";
           networks = ["proxynet"];
           restart = "unless-stopped";
+          capabilities = {
+            CAP_PERFMON = true;
+          };
+          tmpfs = ["/tmp/cache,size=2g"];
           volumes = [
-            "/data/docker/bazarr/config:/config"
-            "/nas/media/TV:/tv"
-            "/nas/media/Kids/TV:/tv-kids"
-            "/nas/media/Anime/TV:/tv-anime"
-            "/nas/media/Movies:/movies"
-            "/nas/media/Kids/Movies:/movies-kids"
-            "/nas/media/Anime/Movies:/movies-anime"
-            "/nas/media/Holidays:/movies-holidays"
+            "/etc/localtime:/etc/localtime:ro"
+            "/data/docker/frigate/config:/config"
+            "/nas/media/xfer/frigate:/media/frigate"
+          ];
+          devices = [
+            "/dev/apex_0:/dev/apex_0"
+            "/dev/bus/usb:/dev/bus/usb"
+            "/dev/dri/card0:/dev/dri/card0"
+            "/dev/dri/renderD128:/dev/dri/renderD128"
           ];
         };
-        "readarr".service = {
-          container_name = "readarr";
-          image = "lscr.io/linuxserver/readarr:0.4.15-develop";
+        "glance".service = {
+          container_name = "glance";
+          image = "docker.io/glanceapp/glance:v0.7.13";
           environment = {
-            PUID = "4000";
-            PGID = "4000";
             TZ = "America/Phoenix";
-            AUTO_UPDATE = "false";
           };
           networks = ["proxynet"];
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/readarr/config:/config"
-            "/nas/media/Books:/books"
-            "/nas/media/xfer/completed:/data/xfer/completed"
+            "/data/docker/glance/config:/app/config"
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
           ];
         };
-        "prowlarr".service = {
-          container_name = "prowlarr";
-          image = "lscr.io/linuxserver/prowlarr:1.34.1";
-          environment = {
-            PUID = "4000";
-            PGID = "4000";
-            TZ = "America/Phoenix";
-            AUTO_UPDATE = "false";
-          };
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/prowlarr/config:/config"
-          ];
-        };
-        "sonarr".service = {
-          container_name = "sonarr";
-          image = "lscr.io/linuxserver/sonarr";
-          environment = {
-            PUID = "4000";
-            PGID = "4000";
-            TZ = "America/Phoenix";
-            AUTO_UPDATE = "false";
-          };
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/sonarr/config:/config"
-            "/nas/media/xfer/completed:/data/xfer/completed"
-            "/nas/media/TV:/mnt/tv"
-            "/nas/media/Kids/TV:/mnt/kids"
-            "/nas/media/Anime/TV:/mnt/anime"
-          ];
-        };
-        "radarr".service = {
-          container_name = "radarr";
-          image = "lscr.io/linuxserver/radarr";
-          environment = {
-            PUID = "4000";
-            PGID = "4000";
-            TZ = "America/Phoenix";
-            AUTO_UPDATE = "false";
-          };
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/radarr/config:/config"
-            "/nas/media/xfer/completed:/data/xfer/completed"
-            "/nas/media/Movies:/mnt/movies"
-            "/nas/media/Kids/Movies:/mnt/kids"
-            "/nas/media/Anime/Movies:/mnt/anime"
-            "/nas/media/Holidays:/mnt/holidays"
-          ];
-        };
+        # "hbbs".service = {
+        #   container_name = "hbbs";
+        #   image = "docker.io/rustdesk/rustdesk-server:latest";
+        #   environment = {
+        #     ALWAYS_USE_RELAY = "Y";
+        #   };
+        #   depends_on = ["hbbr"];
+        #   network_mode = "host";
+        #   restart = "unless-stopped";
+        #   volumes = [
+        #     "/data/docker/hbbs/config:/root"
+        #   ];
+        # };
+        # "hbbr".service = {
+        #   container_name = "hbbr";
+        #   image = "docker.io/rustdesk/rustdesk-server:latest";
+        #   network_mode = "host";
+        #   restart = "unless-stopped";
+        #   volumes = [
+        #     "/data/docker/hbbs/config:/root"
+        #   ];
+        # };
         "jellyseerr".service = {
           container_name = "jellyseerr";
           image = "docker.io/fallenbagel/jellyseerr";
@@ -378,20 +361,75 @@
             "/data/docker/jellyseerr/config:/app/config"
           ];
         };
-        "autobrr".service = {
-          container_name = "autobrr";
-          image = "ghcr.io/autobrr/autobrr:latest";
+        "kavita".service = {
+          container_name = "kavita";
+          image = "docker.io/jvmilazz0/kavita:0.8.6";
           environment = {
             PUID = "4000";
             PGID = "4000";
             TZ = "America/Phoenix";
-            AUTO_UPDATE = "false";
+          };
+          networks = ["proxynet"];
+          healthcheck = {
+            test = [
+              "CMD"
+              "curl"
+              "--fail"
+              "http://127.0.0.1:5000"
+            ];
+            start_period = "60s";
+            interval = "60s";
+            timeout = "5s";
+            retries = 3;
+          };
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/kavita/config:/config"
+            "/nas/media/Books:/mnt/books"
+          ];
+        };
+        "mqtt-explorer".service = {
+          container_name = "mqtt-explorer";
+          image = "docker.io/smeagolworms4/mqtt-explorer:browser-1.0.3";
+          environment = {
+            TZ = "America/Phoenix";
           };
           networks = ["proxynet"];
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/autobrr/config:/config"
+            "/data/docker/mqtt-explorer/config:/mqtt-explorer/config"
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
           ];
+        };
+        "n8n".service = {
+          command = ["start" "--tunnel"];
+          container_name = "n8n";
+          image = "docker.n8n.io/n8nio/n8n:1.101.3";
+          environment = {
+            TZ = "America/Phoenix";
+            GENERIC_TIMEZONE = "America/Phoenix";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/n8n/config:/home/node/.n8n"
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
+          ];
+        };
+        "phpldapadmin".service = {
+          container_name = "phpldapadmin";
+          image = "docker.io/osixia/phpldapadmin:0.9.0";
+          environment = {
+            PHPLDAPADMIN_HTTPS = "false";
+            PHPLDAPADMIN_LDAP_HOSTS = "#PYTHON2BASH:[{'openldap': [{'server': [{'tls': False}]},{'login': [{'bind_id': 'cn=admin,dc=meskill-farmhouse,dc=lan'}]}]}]";
+          };
+          networks = [
+            "datanet"
+            "proxynet"
+          ];
+          restart = "unless-stopped";
         };
         "piavpn".service = {
           container_name = "piavpn";
@@ -436,23 +474,98 @@
             "/lib/modules:/lib/modules"
           ];
         };
-        "deluge".service = {
-          container_name = "deluge";
-          image = "lscr.io/linuxserver/deluge";
+        "pinchflat".service = {
+          container_name = "pinchflat";
+          image = "ghcr.io/kieraneglin/pinchflat:v2025.3.17";
+          environment = {
+            TZ = "America/Phoenix";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/pinchflat/config:/config"
+            "/nas/media/YT:/downloads"
+          ];
+        };
+        "prowlarr".service = {
+          container_name = "prowlarr";
+          image = "lscr.io/linuxserver/prowlarr:1.34.1";
           environment = {
             PUID = "4000";
             PGID = "4000";
             TZ = "America/Phoenix";
             AUTO_UPDATE = "false";
-            DELUGE_LOGLEVEL = "error";
           };
-          network_mode = "service:piavpn";
+          networks = ["proxynet"];
           restart = "unless-stopped";
-          depends_on = ["piavpn"];
           volumes = [
-            "/data/docker/piavpn/shared:/pia"
-            "/data/docker/deluge/config:/config"
-            "/nas/media/xfer:/data/xfer"
+            "/data/docker/prowlarr/config:/config"
+          ];
+        };
+        "radarr".service = {
+          container_name = "radarr";
+          image = "lscr.io/linuxserver/radarr";
+          environment = {
+            PUID = "4000";
+            PGID = "4000";
+            TZ = "America/Phoenix";
+            AUTO_UPDATE = "false";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/radarr/config:/config"
+            "/nas/media/xfer/completed:/data/xfer/completed"
+            "/nas/media/Movies:/mnt/movies"
+            "/nas/media/Kids/Movies:/mnt/kids"
+            "/nas/media/Anime/Movies:/mnt/anime"
+            "/nas/media/Holidays:/mnt/holidays"
+          ];
+        };
+        "readarr".service = {
+          container_name = "readarr";
+          image = "lscr.io/linuxserver/readarr:0.4.15-develop";
+          environment = {
+            PUID = "4000";
+            PGID = "4000";
+            TZ = "America/Phoenix";
+            AUTO_UPDATE = "false";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/readarr/config:/config"
+            "/nas/media/Books:/books"
+            "/nas/media/xfer/completed:/data/xfer/completed"
+          ];
+        };
+        "romm".service = {
+          container_name = "romm";
+          image = "docker.io/rommapp/romm:3.9.0-beta.1";
+          env_file = [config.age.secrets.monolith_docker_env_romm.path];
+          networks = [
+            "proxynet"
+            "datanet"
+          ];
+          healthcheck = {
+            test = [
+              "CMD"
+              "curl"
+              "--fail"
+              "http://127.0.0.1:8080"
+            ];
+            start_period = "60s";
+            interval = "60s";
+            timeout = "5s";
+            retries = 3;
+          };
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/romm/resources:/romm/resources"
+            "/data/docker/romm/config:/romm/config"
+            "/data/docker/romm/assets:/romm/assets"
+            "/data/docker/romm/redis:/redis-data"
+            "/nas/roms:/romm/library"
           ];
         };
         "sabnzbd".service = {
@@ -472,96 +585,23 @@
             "/nas/media/xfer:/data/xfer"
           ];
         };
-        "flaresolverr".service = {
-          container_name = "flaresolverr";
-          image = "ghcr.io/flaresolverr/flaresolverr:latest";
+        "sonarr".service = {
+          container_name = "sonarr";
+          image = "lscr.io/linuxserver/sonarr";
           environment = {
             PUID = "4000";
             PGID = "4000";
             TZ = "America/Phoenix";
             AUTO_UPDATE = "false";
           };
-          network_mode = "service:piavpn";
-          restart = "unless-stopped";
-          depends_on = ["piavpn"];
-        };
-        # "hbbs".service = {
-        #   container_name = "hbbs";
-        #   image = "docker.io/rustdesk/rustdesk-server:latest";
-        #   environment = {
-        #     ALWAYS_USE_RELAY = "Y";
-        #   };
-        #   depends_on = ["hbbr"];
-        #   network_mode = "host";
-        #   restart = "unless-stopped";
-        #   volumes = [
-        #     "/data/docker/hbbs/config:/root"
-        #   ];
-        # };
-        # "hbbr".service = {
-        #   container_name = "hbbr";
-        #   image = "docker.io/rustdesk/rustdesk-server:latest";
-        #   network_mode = "host";
-        #   restart = "unless-stopped";
-        #   volumes = [
-        #     "/data/docker/hbbs/config:/root"
-        #   ];
-        # };
-        "calibre".service = {
-          container_name = "calibre";
-          image = "lscr.io/linuxserver/calibre:latest";
-          environment = {
-            PUID = "4000";
-            PGID = "4000";
-            TZ = "America/Phoenix";
-            CALIBRE_TEMP_DIR = "/config/tmp";
-            CALIBRE_CACHE_DIRECTORY = "/config/cache";
-            AUTO_UPDATE = "false";
-          };
           networks = ["proxynet"];
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/calibre/config:/config"
-            "/nas/media/Books:/mnt/calibre"
-          ];
-        };
-        "calibre-automated".service = {
-          container_name = "calibre-automated";
-          image = "docker.io/crocodilestick/calibre-web-automated:latest";
-          environment = {
-            PUID = "4000";
-            PGID = "4000";
-            TZ = "America/Phoenix";
-            AUTO_UPDATE = "false";
-            #DOCKER_MODS = "lscr.io/linuxserver/mods:universal-calibre-v7.16.0";
-          };
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          volumes = [
-            "/data/docker/calibre-automated/config:/config"
-            "/nas/media/Books:/calibre-library"
-            "/nas/media/xfer/ingest/calibre-automated:/cwa-book-ingest"
-          ];
-        };
-        "frigate".service = {
-          container_name = "frigate";
-          image = "ghcr.io/blakeblackshear/frigate:stable";
-          networks = ["proxynet"];
-          restart = "unless-stopped";
-          capabilities = {
-            CAP_PERFMON = true;
-          };
-          tmpfs = ["/tmp/cache,size=2g"];
-          volumes = [
-            "/etc/localtime:/etc/localtime:ro"
-            "/data/docker/frigate/config:/config"
-            "/nas/media/xfer/frigate:/media/frigate"
-          ];
-          devices = [
-            "/dev/apex_0:/dev/apex_0"
-            "/dev/bus/usb:/dev/bus/usb"
-            "/dev/dri/card0:/dev/dri/card0"
-            "/dev/dri/renderD128:/dev/dri/renderD128"
+            "/data/docker/sonarr/config:/config"
+            "/nas/media/xfer/completed:/data/xfer/completed"
+            "/nas/media/TV:/mnt/tv"
+            "/nas/media/Kids/TV:/mnt/kids"
+            "/nas/media/Anime/TV:/mnt/anime"
           ];
         };
         "stepca".service = {
@@ -575,6 +615,19 @@
           };
           volumes = [
             "/data/docker/stepca/config:/home/step"
+          ];
+        };
+        "weatherflow".service = {
+          container_name = "weatherflow";
+          image = "docker.io/briis/weatherflow2mqtt:3.2.2";
+          ports = ["50222:50222/udp"];
+          env_file = [config.age.secrets.monolith_docker_env_weatherflow.path];
+          networks = [
+            "hostnet"
+          ];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/weatherflow/config:/usr/local/config"
           ];
         };
       };
@@ -599,12 +652,16 @@
     file = ./files/docker/env/piavpn.env.age;
     mode = "600";
   };
-  age.secrets.monolith_docker_env_stepca = {
-    file = ./files/docker/env/stepca.env.age;
+  age.secrets.monolith_docker_env_postgres = {
+    file = ./files/docker/env/postgres.env.age;
     mode = "600";
   };
   age.secrets.monolith_docker_env_romm = {
     file = ./files/docker/env/romm.env.age;
+    mode = "600";
+  };
+  age.secrets.monolith_docker_env_stepca = {
+    file = ./files/docker/env/stepca.env.age;
     mode = "600";
   };
   age.secrets.monolith_docker_env_weatherflow = {

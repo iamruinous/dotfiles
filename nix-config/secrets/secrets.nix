@@ -5,9 +5,9 @@ let
   framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID8xqxaR93hZCPoHmuZDi3NrIF/JD/1nFG4rV7O7iR26";
   jbookair = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFnhRtaSC1HFo3hF2Wdq2KzgCTk1/5BlAZvjkE2ZZauo";
   jmacmini = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBucoQ40ZvFyVdqtLqcITFVflxliTOHddWIso4fGwlX+";
+  monolith = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHzI0xVuc0SbWyDk+sVC5N3W4FzcAPOd5JCoJfTU2mTF";
   obelisk = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKz0mrGO9wDTjOq7wC8w5EFIxB0e/vKBGLnOL/kx7Ov+";
   studio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBVXtjGlDK/b/8KU5edVlMcF/pcrcqlm4S2o94XtGOPD";
-  monolith = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHzI0xVuc0SbWyDk+sVC5N3W4FzcAPOd5JCoJfTU2mTF";
 
   darwin_systems = [
     jbookair
@@ -17,8 +17,8 @@ let
 
   linux_systems = [
     framework
-    obelisk
     monolith
+    obelisk
   ];
 
   all_systems = linux_systems ++ darwin_systems;
@@ -34,6 +34,7 @@ in {
   "hosts/monolith/files/glance/glance.yml.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/mariadb.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/piavpn.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/postgres.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/romm.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/stepca.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/weatherflow.env.age".publicKeys = [jmeskill monolith];
