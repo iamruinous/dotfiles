@@ -32,10 +32,14 @@ in {
   "hosts/monolith/files/acme/cloudflare.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/caddy/Caddyfile.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/glance/glance.yml.age".publicKeys = [jmeskill monolith];
+
   "hosts/monolith/files/docker/env/mariadb.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/piavpn.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/postgres.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/romm.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/stepca.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/weatherflow.env.age".publicKeys = [jmeskill monolith];
+
+  "hosts/monolith/files/rtl_433/rtl_433.conf.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/rtl_433/rtl_915.conf.age".publicKeys = [jmeskill monolith];
 }

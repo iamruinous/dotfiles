@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{userConfig, ...}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -15,6 +15,7 @@
     ./containers.nix
     ./disko.nix
     ./nfs.nix
+    ./rtl_433.nix
   ];
 
   networking.hostName = "monolith"; # Define your hostname.

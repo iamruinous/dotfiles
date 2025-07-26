@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     # dev tools
     #aider-chat
+    devenv
     git-secrets
     jq
     just
