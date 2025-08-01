@@ -204,6 +204,7 @@
 
     darwinConfigurations = {
       "jbookair" = mkDarwinConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+      "jbookpro" = mkDarwinConfiguration "aarch64-darwin" "jbookpro" "jmeskill";
       "jmacmini" = mkDarwinConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
       "studio" = mkDarwinConfiguration "x86_64-darwin" "studio" "jmeskill";
     };
@@ -212,6 +213,7 @@
       "jmeskill@framework" = mkHomeConfiguration "x86_64-linux" "framework" "jmeskill";
       "jmeskill@inspo" = mkHomeConfiguration "x86_64-linux" "inspo" "jmeskill";
       "jmeskill@jbookair" = mkHomeConfiguration "aarch64-darwin" "jbookair" "jmeskill";
+      "jmeskill@jbookpro" = mkHomeConfiguration "aarch64-darwin" "jbookpro" "jmeskill";
       "jmeskill@jmacmini" = mkHomeConfiguration "aarch64-darwin" "jmacmini" "jmeskill";
       "jmeskill@jmacnix" = mkHomeConfiguration "x86_64-linux" "jmacnix" "jmeskill";
       "jmeskill@monolith" = mkHomeConfiguration "x86_64-linux" "monolith" "jmeskill";

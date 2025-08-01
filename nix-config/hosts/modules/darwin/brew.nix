@@ -29,6 +29,7 @@
       "balenaetcher"
       "blockblock"
       "claude"
+      "charmbracelet/tap/crush"
       "cyberduck"
       "deskpad"
       "dropbox"
@@ -52,6 +53,7 @@
       "wezterm"
     ];
     taps = [
+      "charmbracelet/tap"
       "ggozad/formulas"
       "nikitabobko/tap"
     ];
