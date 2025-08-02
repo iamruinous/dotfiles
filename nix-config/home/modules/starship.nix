@@ -140,10 +140,7 @@
         full_symbol = "󰁹";
         charging_symbol = "󰚥 ";
         discharging_symbol = "󰁺 ";
-        disabled =
-          if hostname == "jbookair"
-          then false
-          else true;
+        disabled = !builtins.elem hostname ["jbookair" "jbookpro" "framework"];
       };
       battery.display = [
         {
