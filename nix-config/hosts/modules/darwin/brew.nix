@@ -19,6 +19,7 @@
     onActivation.upgrade = true;
     brews = [
       "boring"
+      "crush"
       "mas"
       "step"
     ];
@@ -26,10 +27,10 @@
       "1password"
       "1password-cli"
       "aerospace"
+      "audacity"
       "balenaetcher"
       "blockblock"
       "claude"
-      "charmbracelet/tap/crush"
       "cyberduck"
       "deskpad"
       "dropbox"
@@ -39,6 +40,7 @@
       "jellyfin"
       "keka"
       "knockknock"
+      "loopback"
       "lulu"
       "mimestream"
       "obsidian"
@@ -50,7 +52,6 @@
       "soundsource"
       "spotify"
       "steam"
-      "wezterm"
     ];
     taps = [
       "charmbracelet/tap"
