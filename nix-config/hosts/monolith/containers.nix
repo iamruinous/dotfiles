@@ -544,6 +544,7 @@
           volumes = [
             "/data/docker/readarr/config:/config"
             "/nas/media/Books:/books"
+            "/nas/media/audiobooks:/audiobooks"
             "/nas/media/xfer/completed:/data/xfer/completed"
           ];
         };
