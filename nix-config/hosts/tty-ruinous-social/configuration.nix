@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -18,7 +18,17 @@
 
   networking.hostName = "tty-ruinous-social"; # Define your hostname.
 
-  services.tailscale.useRoutingFeatures = "server";
+  services.openssh = {
+    enable = true;
+    settings.PermitRootLogin = "yes";
+  };
+  networking.usePredictableInterfaceNames = false;
+
+  environment.systemPackages = with pkgs; [
+    inetutils
+    mtr
+    sysstat
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

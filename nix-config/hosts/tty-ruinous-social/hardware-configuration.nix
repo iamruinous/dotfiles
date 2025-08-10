@@ -9,63 +9,72 @@
   ...
 }: {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  services.fwupd.enable = true;
-  hardware.enableRedistributableFirmware = true;
-  hardware.graphics.enable = true;
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod"];
+  boot.kernelParams = ["console=ttyS0,19200n8"];
+  boot.loader.grub.enable = true;
+  boot.loader.grub.extraConfig = ''
+    serial --speed=19200 --unit=0 --word=8 --parity=no --stop=1;
+    terminal_input serial;
+    terminal_output serial;
+    insmod btrfs;
+  '';
+
+  boot.loader.grub.forceInstall = true;
+  boot.loader.grub.devices = ["nodev"];
+  boot.loader.timeout = 10;
+  boot.loader.systemd-boot.enable = false;
+
+  boot.initrd.availableKernelModules = ["virtio_pci" "virtio_scsi" "ahci" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [config.boot.kernelPackages.gasket];
+  boot.kernelModules = [];
+  boot.extraModulePackages = [];
+
+  fileSystems."/" = {
+    device = "/dev/sda";
+    fsType = "btrfs";
+    options = ["subvol=rootfs"];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/sda";
+    fsType = "btrfs";
+    options = ["subvol=boot"];
+  };
+
+  fileSystems."/nix" = {
+    device = "/dev/sda";
+    fsType = "btrfs";
+    options = ["compress=zstd" "noatime" "subvol=nix"];
+  };
+
+  fileSystems."/data" = {
+    device = "/dev/sda";
+    fsType = "btrfs";
+    options = ["compress=zstd" "subvol=data"];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/sda";
+    fsType = "btrfs";
+    options = ["compress=zstd" "subvol=home"];
+  };
+
+  fileSystems."/partition-root" = {
+    device = "/dev/sda";
+    fsType = "btrfs";
+  };
+
+  swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault false;
-  # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp2s0f1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp87s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp88s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp89s0.useDHCP = lib.mkDefault true;
-  networking = {
-    dhcpcd.enable = false;
-    interfaces = {
-      enp2s0f0np0.ipv4.addresses = [
-        {
-          address = "10.55.10.54";
-          prefixLength = 24;
-        }
-      ];
-      vlan2.ipv4.addresses = [
-        {
-          address = "10.55.20.24";
-          prefixLength = 24;
-        }
-      ];
-      vlan6.ipv4.addresses = [
-        {
-          address = "10.55.60.24";
-          prefixLength = 24;
-        }
-      ];
-    };
-    defaultGateway = "10.55.10.1";
-    nameservers = ["10.55.10.35"];
-    vlans = {
-      vlan2 = {
-        id = 2;
-        interface = "enp2s0f0np0";
-      };
-      vlan6 = {
-        id = 6;
-        interface = "enp2s0f0np0";
-      };
-    };
-  };
+  networking.useDHCP = false;
+  # networking.interfaces.enp0s5.useDHCP = lib.mkDefault true;
+  networking.interfaces.eth0.useDHCP = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
