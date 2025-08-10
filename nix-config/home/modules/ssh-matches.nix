@@ -177,6 +177,15 @@ in {
         };
       };
 
+      "tty2.ruinous.social" = {
+        hostname = "tty2.ruinous.social";
+        user = "jmeskill";
+        extraOptions = {
+          RequestTTY = "yes";
+          RemoteCommand = "tmux new-session -A -s shell";
+        };
+      };
+
       # tailscale
       "*.greyhound-triceratops.ts.net 100.*" = {
         user = "root";

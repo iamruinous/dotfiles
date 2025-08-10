@@ -43,4 +43,6 @@ in {
 
   "hosts/monolith/files/rtl_433/rtl_433.conf.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/rtl_433/rtl_915.conf.age".publicKeys = [jmeskill monolith];
+
+  "hosts/tty-ruinous-social/files/caddy/Caddyfile.age".publicKeys = [jmeskill tty-ruinous-social];
 }

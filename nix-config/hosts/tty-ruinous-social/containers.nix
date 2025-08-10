@@ -50,6 +50,7 @@
           };
           restart = "unless-stopped";
           volumes = [
+            "${config.age.secrets.tty_ruinous_social_caddy_caddyfile.path}:/etc/caddy/Caddyfile"
             "/data/docker/caddy/site:/srv"
             "/data/docker/caddy/data:/data"
             "/data/docker/caddy/config:/config"
@@ -59,5 +60,10 @@
         # proxynet services
       };
     };
+  };
+
+  age.secrets.tty_ruinous_social_caddy_caddyfile = {
+    file = ./files/caddy/Caddyfile.age;
+    mode = "600";
   };
 }
