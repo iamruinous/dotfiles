@@ -221,7 +221,7 @@
       "jmeskill@moonstone" = mkHomeConfiguration "x86_64-linux" "moonstone" "jmeskill";
       "jmeskill@obelisk" = mkHomeConfiguration "x86_64-linux" "obelisk" "jmeskill";
       "jmeskill@studio" = mkHomeConfiguration "x86_64-darwin" "studio" "jmeskill";
-      "jmeskill@tty-ruinous-social" = mkHomeConfiguration "x86_64-darwin" "tty-ruinous-social" "jmeskill";
+      "jmeskill@tty-ruinous-social" = mkHomeConfiguration "x86_64-linux" "tty-ruinous-social" "jmeskill";
     };
 
     overlays = import ./overlays {inherit inputs;};

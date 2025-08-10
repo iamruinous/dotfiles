@@ -9,11 +9,11 @@
     ../modules/nixos/common.nix
     ../modules/nixos/docker.nix
     ../modules/nixos/latest-kernel.nix
-    ../modules/nixos/restic.nix
+    #../modules/nixos/restic.nix
     ../modules/nixos/sudoless.nix
     ../modules/nixos/tailscale.nix
     ./containers.nix
-    ./disko.nix
+    #./disko.nix
   ];
 
   networking.hostName = "tty-ruinous-social"; # Define your hostname.

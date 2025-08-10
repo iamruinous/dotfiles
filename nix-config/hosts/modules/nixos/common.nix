@@ -25,7 +25,7 @@
 
   boot = {
     # Bootloader.
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot.enable = lib.mkDefault true;
     loader.efi.canTouchEfiVariables = true;
 
     # plymouth for fancy boot splash

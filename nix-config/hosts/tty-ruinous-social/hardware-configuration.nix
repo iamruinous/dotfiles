@@ -23,7 +23,7 @@
 
   boot.loader.grub.forceInstall = true;
   boot.loader.grub.devices = ["nodev"];
-  boot.loader.timeout = 10;
+  #boot.loader.timeout = 10;
   boot.loader.systemd-boot.enable = false;
 
   boot.initrd.availableKernelModules = ["virtio_pci" "virtio_scsi" "ahci" "sd_mod"];
