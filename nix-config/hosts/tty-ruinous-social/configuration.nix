@@ -17,12 +17,10 @@
   ];
 
   networking.hostName = "tty-ruinous-social"; # Define your hostname.
-
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "yes";
-  };
   networking.usePredictableInterfaceNames = false;
+  networking.firewall.enable = true;
+  networking.firewall.interfaces."eth0".allowedTCPPorts = [80 443];
+  networking.firewall.interfaces."eth0".allowedUDPPorts = [443];
 
   environment.systemPackages = with pkgs; [
     inetutils

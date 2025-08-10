@@ -58,6 +58,19 @@
         };
         # datanet services
         # proxynet services
+        "albyhub".service = {
+          container_name = "albyhub";
+          image = "ghcr.io/getalby/hub:latest";
+          environment = {
+            WORK_DIR = "/data/albyhub";
+            TZ = "America/Phoenix";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/albyhub/data:/data"
+          ];
+        };
       };
     };
   };
