@@ -42,6 +42,7 @@
       "knockknock"
       "loopback"
       "lulu"
+      "micro-snitch"
       "mimestream"
       "obsidian"
       "oversight"
