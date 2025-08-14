@@ -231,6 +231,18 @@
             "/nas/media/xfer/ingest/calibre-automated:/cwa-book-ingest"
           ];
         };
+        "changedetection".service = {
+          container_name = "changedetection";
+          image = "ghcr.io/dgtlmoon/changedetection.io";
+          environment = {
+            TZ = "America/Phoenix";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/changedetection/data:/datastore"
+          ];
+        };
         "deluge".service = {
           container_name = "deluge";
           image = "lscr.io/linuxserver/deluge:2.2.0";
