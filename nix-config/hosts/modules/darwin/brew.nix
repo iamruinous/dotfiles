@@ -20,6 +20,7 @@
     brews = [
       "boring"
       "crush"
+      "gemini-cli"
       "mas"
       "step"
     ];
@@ -42,6 +43,7 @@
       "knockknock"
       "loopback"
       "lulu"
+      "micro-snitch"
       "mimestream"
       "obsidian"
       "oversight"
