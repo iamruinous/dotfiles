@@ -20,6 +20,7 @@
     brews = [
       "boring"
       "crush"
+      "gemini-cli"
       "mas"
       "step"
     ];
