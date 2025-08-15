@@ -31,6 +31,7 @@ in {
   "hosts/obelisk/files/caddy/caddy.env.age".publicKeys = [jmeskill obelisk];
 
   "hosts/monolith/files/acme/cloudflare.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/caddy/caddy.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/caddy/Caddyfile.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/glance/glance.yml.age".publicKeys = [jmeskill monolith];
 
@@ -45,6 +46,7 @@ in {
   "hosts/monolith/files/rtl_433/rtl_915.conf.age".publicKeys = [jmeskill monolith];
 
   "hosts/tty-ruinous-social/files/caddy/Caddyfile.age".publicKeys = [jmeskill tty-ruinous-social];
+  "hosts/tty-ruinous-social/files/mosquitto/mosquitto.conf.age".publicKeys = [jmeskill tty-ruinous-social];
   "hosts/tty-ruinous-social/files/docker/env/karakeep.env.age".publicKeys = [jmeskill tty-ruinous-social];
   "hosts/tty-ruinous-social/files/docker/env/mealie.env.age".publicKeys = [jmeskill tty-ruinous-social];
   "hosts/tty-ruinous-social/files/docker/env/postgres.env.age".publicKeys = [jmeskill tty-ruinous-social];
