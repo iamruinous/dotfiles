@@ -3,7 +3,7 @@
 
   virtualisation.arion = {
     backend = "docker";
-    projects."monolith".settings = {
+    projects."tty-ruinous-social".settings = {
       networks = {
         "hostnet" = {
           name = "hostnet";
@@ -59,14 +59,15 @@
         # "mosquitto".service = {
         #   container_name = "mosquitto";
         #   image = "docker.io/eclipse-mosquitto:2";
+        #   command = ["/usr/sbin/mosquitto" "-c" "/config/mosquitto.conf"];
         #   networks = ["hostnet"];
         #   ports = [
         #     "1883:1883"
         #   ];
         #   restart = "unless-stopped";
         #   volumes = [
-        #     "${config.age.secrets.tty_ruinous_social_mosquitto_config.path}:/mosquitto/config/mosquitto.conf:ro"
-        #     "/data/docker/mosquitto/config:/mosquitto/config"
+        #     "${config.age.secrets.tty_ruinous_social_mosquitto_config.path}:/config/mosquitto.conf:ro"
+        #     "/data/docker/mosquitto/config:/config"
         #     "/data/docker/mosquitto/data:/mosquitto/data"
         #     "/data/docker/mosquitto/log:/mosquitto/log"
         #   ];
@@ -128,6 +129,26 @@
           restart = "unless-stopped";
           volumes = [
             "/data/docker/albyhub/data:/data"
+          ];
+        };
+        "forgejo".service = {
+          container_name = "forgejo";
+          image = "codeberg.org/forgejo/forgejo:12";
+          environment = {
+            USER_UID = "2000";
+            USER_GID = "2000";
+          };
+          networks = ["hostnet" "datanet" "proxynet"];
+          restart = "unless-stopped";
+          ports = [
+            "127.0.0.1:2222:22"
+          ];
+          volumes = [
+            "/data/docker/forgejo/data:/data"
+            "/home/git/.ssh:/data/git/.ssh"
+            "/home/git/.gnupg:/data/git/.gnupg"
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
           ];
         };
         "karakeep".service = {
@@ -303,6 +324,15 @@
   age.secrets.tty_ruinous_social_caddy_caddyfile = {
     file = ./files/caddy/Caddyfile.age;
     mode = "600";
+  };
+  # mosquitto container chowns the file
+  age.secrets.tty_ruinous_social_mosquitto_config = {
+    file = ./files/mosquitto/mosquitto.conf.age;
+    path = "/data/docker/mosquitto/config/mosquitto.conf";
+    mode = "600";
+    owner = "1883";
+    group = "1883";
+    symlink = false;
   };
   age.secrets.tty_ruinous_social_docker_env_karakeep = {
     file = ./files/docker/env/karakeep.env.age;
