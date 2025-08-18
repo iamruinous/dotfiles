@@ -12,6 +12,7 @@
     ../modules/nixos/restic.nix
     ../modules/nixos/sudoless.nix
     ../modules/nixos/tailscale.nix
+    # ./caddy.nix
     ./containers.nix
     ./disko.nix
     ./nfs.nix

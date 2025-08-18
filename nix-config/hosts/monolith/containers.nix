@@ -132,6 +132,16 @@
           ];
         };
         # proxynet services
+        "acme-dns".service = {
+          container_name = "acme-dns";
+          image = "docker.io/joohoi/acme-dns";
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/acme-dns/config:/etc/acme-dns:ro"
+            "/data/docker/acme-dns/data:/var/lib/acme-dns"
+          ];
+        };
         "adminer".service = {
           container_name = "adminer";
           image = "docker.io/adminer:5";
@@ -141,7 +151,6 @@
           networks = ["proxynet"];
           restart = "unless-stopped";
           volumes = [
-            "/data/docker/mqtt-explorer/config:/mqtt-explorer/config"
             "/etc/timezone:/etc/timezone:ro"
             "/etc/localtime:/etc/localtime:ro"
           ];
@@ -215,7 +224,7 @@
         };
         "calibre-automated".service = {
           container_name = "calibre-automated";
-          image = "docker.io/crocodilestick/calibre-web-automated:latest";
+          image = "ghcr.io/crocodilestick/calibre-web-automated:latest";
           environment = {
             PUID = "4000";
             PGID = "4000";
@@ -228,6 +237,29 @@
           volumes = [
             "/data/docker/calibre-automated/config:/config"
             "/nas/media/Books:/calibre-library"
+            "/nas/media/xfer/ingest/calibre-automated:/cwa-book-ingest"
+          ];
+        };
+        "calibre-automated-dl".service = {
+          container_name = "calibre-automated-dl";
+          image = "ghcr.io/calibrain/calibre-web-automated-book-downloader:latest";
+          environment = {
+            UID = "4000";
+            GID = "4000";
+            TZ = "America/Phoenix";
+            FLASK_PORT = "8084";
+            LOG_LEVEL = "info";
+            BOOK_LANGUAGE = "en";
+            USE_BOOK_TITLE = "true";
+            APP_ENV = "prod";
+            CWA_DB_PATH = "/auth/app.db";
+          };
+          network_mode = "service:piavpn";
+          restart = "unless-stopped";
+          depends_on = ["piavpn"];
+          volumes = [
+            "/data/docker/calibre-automated/config/app.db:/auth/app.db:ro"
+            #"/data/docker/calibre-automated/patch/book_manager.py:/app/book_manager.py:ro"
             "/nas/media/xfer/ingest/calibre-automated:/cwa-book-ingest"
           ];
         };
@@ -457,6 +489,7 @@
           env_file = [config.age.secrets.monolith_docker_env_piavpn.path];
           ports = [
             "8080:8080"
+            "8084:8084"
             "8112:8112"
             "8191:8191"
             "6789:6789"

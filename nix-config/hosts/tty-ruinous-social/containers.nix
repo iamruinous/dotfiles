@@ -56,21 +56,21 @@
             "/data/docker/caddy/config:/config"
           ];
         };
-        "mosquitto".service = {
-          container_name = "mosquitto";
-          image = "docker.io/eclipse-mosquitto:2";
-          networks = ["hostnet"];
-          ports = [
-            "1883:1883"
-          ];
-          restart = "unless-stopped";
-          volumes = [
-            "${config.age.secrets.tty_ruinous_social_mosquitto_config.path}:/mosquitto/config/mosquitto.conf:ro"
-            "/data/docker/mosquitto/config:/mosquitto/config"
-            "/data/docker/mosquitto/data:/mosquitto/data"
-            "/data/docker/mosquitto/log:/mosquitto/log"
-          ];
-        };
+        # "mosquitto".service = {
+        #   container_name = "mosquitto";
+        #   image = "docker.io/eclipse-mosquitto:2";
+        #   networks = ["hostnet"];
+        #   ports = [
+        #     "1883:1883"
+        #   ];
+        #   restart = "unless-stopped";
+        #   volumes = [
+        #     "${config.age.secrets.tty_ruinous_social_mosquitto_config.path}:/mosquitto/config/mosquitto.conf:ro"
+        #     "/data/docker/mosquitto/config:/mosquitto/config"
+        #     "/data/docker/mosquitto/data:/mosquitto/data"
+        #     "/data/docker/mosquitto/log:/mosquitto/log"
+        #   ];
+        # };
         # datanet services
         "postgres".service = {
           container_name = "postgres";
