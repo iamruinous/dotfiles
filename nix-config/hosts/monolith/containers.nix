@@ -416,7 +416,7 @@
         };
         "kavita".service = {
           container_name = "kavita";
-          image = "docker.io/jvmilazz0/kavita:0.8.7";
+          image = "lscr.io/linuxserver/kavita:0.8.7";
           environment = {
             PUID = "4000";
             PGID = "4000";
