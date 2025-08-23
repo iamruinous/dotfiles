@@ -54,6 +54,7 @@
             "/data/docker/caddy/site:/srv"
             "/data/docker/caddy/data:/data"
             "/data/docker/caddy/config:/config"
+            "/var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock"
           ];
         };
         # datanet services
