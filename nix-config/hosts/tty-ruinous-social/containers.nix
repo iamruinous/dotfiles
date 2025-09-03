@@ -131,6 +131,18 @@
             "/data/docker/albyhub/data:/data"
           ];
         };
+        "baikal".service = {
+          container_name = "baikal";
+          image = "docker.io/ckulka/baikal:0.10.1-nginx-php8.2";
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/baikal/config:/var/www/baikal/config"
+            "/data/docker/baikal/specific:/var/www/baikal/Specific"
+            # "/etc/timezone:/etc/timezone:ro"
+            # "/etc/localtime:/etc/localtime:ro"
+          ];
+        };
         "forgejo".service = {
           container_name = "forgejo";
           image = "codeberg.org/forgejo/forgejo:12";
