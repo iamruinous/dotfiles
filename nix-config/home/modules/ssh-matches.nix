@@ -131,8 +131,8 @@ in {
 
       # rsync
       "de1381b.rsync.net rsync.net" = {
-        hostname = "rsync.net";
-        user = "de1381b";
+        hostname = "de1381b.rsync.net";
+        user = "root";
         extraOptions = {
           ForwardAgent = "no";
           AddKeysToAgent = "no";
@@ -168,7 +168,7 @@ in {
         };
       };
 
-      "ruinous.social tty.ruinous.social" = {
+      "tty.ruinous.social" = {
         hostname = "tty.ruinous.social";
         user = "iamruinous";
         extraOptions = {
@@ -177,7 +177,7 @@ in {
         };
       };
 
-      "tty2.ruinous.social" = {
+      "ruinous.social tty2.ruinous.social" = {
         hostname = "tty2.ruinous.social";
         user = "jmeskill";
         extraOptions = {
