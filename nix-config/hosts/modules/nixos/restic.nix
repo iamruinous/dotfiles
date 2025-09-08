@@ -23,6 +23,12 @@
         OnCalendar = "00:05";
         RandomizedDelaySec = "5h";
       };
+      pruneOpts = [
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 12"
+        "--keep-yearly 75"
+      ];
     };
   };
 

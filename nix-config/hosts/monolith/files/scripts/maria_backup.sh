@@ -9,8 +9,8 @@ DATABASES=$(docker exec mariadb mysql -u"$DB_USER" -p"$DB_PASSWORD" -e "SHOW DAT
 
 # Loop through each database and dump it
 for DB_NAME in $DATABASES; do
-    echo "Dumping database: $DB_NAME"
-    docker exec mariadb mariadb-dump -u"$DB_USER" -p"$DB_PASSWORD" --databases "$DB_NAME" > "$BACKUP_DIR/$DB_NAME.sql"
+    echo "Dumping database: '${DB_NAME}'"
+    docker exec mariadb mariadb-dump -u"$DB_USER" -p"$DB_PASSWORD" --databases "$DB_NAME" > "$BACKUP_DIR/$DB_NAME.dump"
     if [ $? -eq 0 ]; then
         echo "Successfully dumped $DB_NAME to $BACKUP_DIR/$DB_NAME.sql"
     else
