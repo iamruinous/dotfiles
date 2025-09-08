@@ -132,6 +132,26 @@
             "/data/docker/postgres/pgdata:/var/lib/postgresql/17/docker"
           ];
         };
+        "redis".service = {
+          container_name = "redis";
+          image = "docker.io/redis:8-alpine";
+          networks = ["datanet"];
+          healthcheck = {
+            test = [
+              "CMD"
+              "redis-cli"
+              "ping"
+            ];
+            start_period = "60s";
+            interval = "60s";
+            timeout = "5s";
+            retries = 3;
+          };
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/redis/data:/data"
+          ];
+        };
         # proxynet services
         "acme-dns".service = {
           container_name = "acme-dns";
@@ -149,7 +169,10 @@
           environment = {
             TZ = "America/Phoenix";
           };
-          networks = ["proxynet"];
+          networks = [
+            "proxynet"
+            "datanet"
+          ];
           restart = "unless-stopped";
           volumes = [
             "/etc/timezone:/etc/timezone:ro"
@@ -471,6 +494,52 @@
             "/etc/localtime:/etc/localtime:ro"
           ];
         };
+        "paperless-ngx".service = {
+          container_name = "paperless-ngx";
+          image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
+          # depends_on = [
+          #   "gotenberg"
+          #   "postgres"
+          #   "redis"
+          #   "tika"
+          # ];
+          environment = {
+            PAPERLESS_REDIS = "redis://redis:6379";
+            PAPERLESS_DBHOST = "postgres";
+            PAPERLESS_TIKA_ENABLED = "1";
+            PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://gotenberg:3000";
+            PAPERLESS_TIKA_ENDPOINT = "http://tika:9998";
+          };
+          env_file = [config.age.secrets.monolith_docker_env_paperless_ngx.path];
+          networks = [
+            "proxynet"
+            "datanet"
+          ];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/paperless-ngx/data:/usr/src/paperless/data"
+            "/data/docker/paperless-ngx/media:/usr/src/paperless/media"
+            "/data/docker/paperless-ngx/consume:/usr/src/paperless/consume"
+            "/data/docker/paperless-ngx/export:/usr/src/paperless/export"
+          ];
+        };
+        "paperless-gotenberg".service = {
+          container_name = "gotenberg";
+          command = [
+            "gotenberg"
+            "--chromium-disable-javascript=true"
+            "--chromium-allow-list=file:///tmp/.*"
+          ];
+          image = "docker.io/gotenberg/gotenberg:8.22";
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+        };
+        "paperless-tika".service = {
+          container_name = "tika";
+          image = "docker.io/apache/tika:latest";
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+        };
         "phpldapadmin".service = {
           container_name = "phpldapadmin";
           image = "docker.io/phpldapadmin/phpldapadmin:2.2.2";
@@ -705,6 +774,10 @@
   };
   age.secrets.monolith_docker_env_piavpn = {
     file = ./files/docker/env/piavpn.env.age;
+    mode = "600";
+  };
+  age.secrets.monolith_docker_env_paperless_ngx = {
+    file = ./files/docker/env/paperless-ngx.env.age;
     mode = "600";
   };
   age.secrets.monolith_docker_env_postgres = {
