@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+BACKUP_DIR="/backup"
+
 # Dump individual databases directly to restic repository.
-docker exec postgres psql -U postgres -q -l -t -A --pset=pager=off | awk -F'|' '{print $1}' | while read db_name; do
-  if [[ -n "$db_name" && "$db_name" != "template0" && "$db_name" != "template1" && "$db_name" != "postgres" && "$db_name" != "postgres=CTc/postgres" ]]; then
-    echo "Dumping database '${db_name}'"
-    docker exec postgres pg_dump -Fc -Z 9 --user="postgres" --no-owner --no-privileges --dbname="$db_name" > "/data/backup/postgres/${db_name}_$(date +%Y%m%d%H%M%S).dump"
+docker exec postgres psql -U postgres -q -l -t -A --pset=pager=off | awk -F'|' '{print $1}' | while read DB_NAME; do
+  if [[ -n "$DB_NAME" && "$DB_NAME" != "template0" && "$DB_NAME" != "template1" && "$DB_NAME" != "postgres" && "$DB_NAME" != "postgres=CTc/postgres" ]]; then
+    echo "Dumping database '${DB_NAME}'"
+    docker exec postgres pg_dump -Fc -Z 9 --user="postgres" --no-owner --no-privileges --dbname="$DB_NAME" --file="${BACKUP_DIR}/${DB_NAME}_$(date +%Y%m%d%H%M%S).dump"
   fi
 done

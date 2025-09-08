@@ -82,6 +82,7 @@
           restart = "unless-stopped";
           volumes = [
             "/data/docker/mariadb/mysql:/var/lib/mysql"
+            "/data/backup/mariadb:/backup"
           ];
         };
         "openldap".service = {
@@ -130,6 +131,7 @@
           restart = "unless-stopped";
           volumes = [
             "/data/docker/postgres/pgdata:/var/lib/postgresql/17/docker"
+            "/data/backup/postgres:/backup"
           ];
         };
         "redis".service = {
