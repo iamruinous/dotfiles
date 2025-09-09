@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -28,6 +32,9 @@
     mtr
     sysstat
   ];
+
+  # update restic hostname to use tailscale
+  services.restic.backups.terranasbackup.repository = "sftp:tmbackup@terranas-1.greyhound-triceratops.ts.net:/mnt/tank/tmbackup/linux-backup/${config.networking.hostName}";
 
   #  services.openssh.settings.UsePAM = true;
   #  services.openssh.settings.AllowUsers = ["git"];
