@@ -496,6 +496,21 @@
             "/etc/localtime:/etc/localtime:ro"
           ];
         };
+        "paperless-ai".service = {
+          container_name = "paperless-ai";
+          image = "docker.io/clusterzx/paperless-ai:latest";
+          environment = {
+            PUID = "4000";
+            PGUID = "4000";
+            RAG_SERVICE_URL = "http://localhost:8000";
+            RAG_SERVICE_ENABLED = "true";
+          };
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/paperless-ai/data:/app/data"
+          ];
+        };
         "paperless-ngx".service = {
           container_name = "paperless-ngx";
           image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
@@ -741,6 +756,15 @@
           };
           volumes = [
             "/data/docker/stepca/config:/home/step"
+          ];
+        };
+        "tasktrove".service = {
+          container_name = "tasktrove";
+          image = "ghcr.io/dohsimpson/tasktrove";
+          networks = ["proxynet"];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/tasktrove/config:/app/data"
           ];
         };
         "weatherflow".service = {
