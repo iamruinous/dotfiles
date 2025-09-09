@@ -22,11 +22,15 @@ let
     obelisk
   ];
 
-  all_systems = linux_systems ++ darwin_systems;
+  remote_linux_systems = [
+    tty-ruinous-social
+  ];
+
+  all_systems = linux_systems ++ darwin_systems ++ remote_linux_systems;
 in {
   "files/configs/vdirsyncer/config.age".publicKeys = all_users ++ all_systems;
   "files/configs/todoist/config.json.age".publicKeys = all_users ++ all_systems;
-  "files/configs/restic/restic-password.age".publicKeys = all_users ++ linux_systems;
+  "files/configs/restic/restic-password.age".publicKeys = all_users ++ linux_systems ++ remote_linux_systems;
 
   "hosts/obelisk/files/caddy/caddy.env.age".publicKeys = [jmeskill obelisk];
 

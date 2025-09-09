@@ -6,10 +6,11 @@
     ./hardware-configuration.nix
     ../modules/common.nix
     ../modules/developer.nix
+    ../modules/nixos/backup-docker-postgres.nix
     ../modules/nixos/common.nix
     ../modules/nixos/docker.nix
     ../modules/nixos/latest-kernel.nix
-    #../modules/nixos/restic.nix
+    ../modules/nixos/restic.nix
     ../modules/nixos/sudoless.nix
     ../modules/nixos/tailscale.nix
     ./containers.nix
