@@ -95,6 +95,7 @@
           restart = "unless-stopped";
           volumes = [
             "/data/docker/postgres/pgdata:/var/lib/postgresql/17/docker"
+            "/data/backup/postgres:/backup"
           ];
         };
         "redis".service = {
@@ -120,7 +121,7 @@
         # proxynet services
         "albyhub".service = {
           container_name = "albyhub";
-          image = "ghcr.io/getalby/hub:latest";
+          image = "ghcr.io/getalby/hub:v1.19.3";
           environment = {
             WORK_DIR = "/data/albyhub";
             TZ = "America/Phoenix";
@@ -139,8 +140,6 @@
           volumes = [
             "/data/docker/baikal/config:/var/www/baikal/config"
             "/data/docker/baikal/specific:/var/www/baikal/Specific"
-            # "/etc/timezone:/etc/timezone:ro"
-            # "/etc/localtime:/etc/localtime:ro"
           ];
         };
         "forgejo".service = {
