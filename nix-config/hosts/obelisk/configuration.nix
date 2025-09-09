@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -14,13 +14,10 @@
     ../modules/nixos/ollama.nix
     ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
+    ./caddy.nix
   ];
 
   networking.hostName = "obelisk"; # Define your hostname.
-
-  environment.systemPackages = with pkgs; [
-    caddy
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

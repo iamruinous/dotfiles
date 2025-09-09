@@ -3,6 +3,8 @@
   config,
   ...
 }: {
+  networking.firewall.allowedTCPPorts = [80 443];
+
   age.secrets.caddy_env = {
     file = ../../${config.networking.hostName}/files/caddy/caddy.env.age;
     mode = "600";

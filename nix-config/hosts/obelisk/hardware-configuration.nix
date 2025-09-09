@@ -17,6 +17,8 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
+  hardware.nvidia-container-toolkit.enable = true;
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/584fb6b8-2499-4226-91c4-5e5049fe37ca";
     fsType = "ext4";
