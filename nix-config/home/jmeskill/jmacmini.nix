@@ -4,7 +4,7 @@
     ../modules/desktop.nix
     ../modules/ssh-interactive.nix
     ../modules/darwin/common.nix
-    ../modules/darwin/aerospace-wide.nix
+    ../modules/darwin/aerospace-wide-tall.nix
   ];
 
   # Enable home-manager
