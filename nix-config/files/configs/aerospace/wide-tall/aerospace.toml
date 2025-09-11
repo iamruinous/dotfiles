@@ -52,6 +52,10 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 In this example, 24 is a default value when there is no match.
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[workspace-to-monitor-force-assignment]
+    1 = 'main'
+    2 = 'secondary'
+
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
@@ -108,9 +112,6 @@ alt-f = 'layout floating tiling'
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 #alt-shift-minus = 'resize smart -50'
 #alt-shift-equal = 'resize smart +50'
-
-alt-shift-j = 'move-workspace-to-monitor secondary'
-alt-shift-k = 'move-workspace-to-monitor main'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
