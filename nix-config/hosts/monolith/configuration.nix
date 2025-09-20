@@ -25,8 +25,6 @@
 
   services.tailscale.useRoutingFeatures = "server";
 
-  virtualisation.docker.storageDriver = "btrfs";
-
   programs.nix-ld.enable = true;
 
   systemd.services.mariadb-backup.serviceConfig.EnvironmentFile = config.age.secrets.monolith_docker_env_mariadb.path;
