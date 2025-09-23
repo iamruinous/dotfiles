@@ -42,8 +42,9 @@ in {
 
   "hosts/monolith/files/docker/env/mariadb.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/piavpn.env.age".publicKeys = [jmeskill monolith];
-  "hosts/monolith/files/docker/env/postgres.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/paperless-ngx.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/postgres.env.age".publicKeys = [jmeskill monolith];
+  "hosts/monolith/files/docker/env/prometheus-plex-exporter.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/romm.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/stepca.env.age".publicKeys = [jmeskill monolith];
   "hosts/monolith/files/docker/env/weatherflow.env.age".publicKeys = [jmeskill monolith];

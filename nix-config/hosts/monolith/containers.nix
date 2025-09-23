@@ -134,6 +134,21 @@
             "/data/backup/postgres:/backup"
           ];
         };
+        "prometheus".service = {
+          container_name = "prometheus";
+          image = "docker.io/prom/prometheus:v3.6.0";
+          ports = ["9090:9090"];
+          networks = [
+            "datanet"
+            "hostnet"
+          ];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/prometheus/data:/prometheus"
+            "${./files/prometheus/prometheus.yml}:/etc/prometheus/prometheus.yml"
+            "${./files/prometheus/rules.yml}:/etc/prometheus/rules.yml"
+          ];
+        };
         "redis".service = {
           container_name = "redis";
           image = "docker.io/redis:8-alpine";
@@ -402,6 +417,20 @@
             "/etc/localtime:/etc/localtime:ro"
           ];
         };
+        "grafana".service = {
+          container_name = "grafana";
+          image = "docker.io/grafana/grafana-oss:12.1.1";
+          networks = [
+            "datanet"
+            "proxynet"
+          ];
+          restart = "unless-stopped";
+          volumes = [
+            "/data/docker/grafana/data:/var/lib/grafana"
+            "${./files/grafana/datasources}:/etc/grafana/provisioning/datasources"
+            "${./files/grafana/dashboards}:/etc/grafana/provisioning/dashboards"
+          ];
+        };
         # "hbbs".service = {
         #   container_name = "hbbs";
         #   image = "docker.io/rustdesk/rustdesk-server:latest";
@@ -627,6 +656,54 @@
             "/nas/media/YT:/downloads"
           ];
         };
+        "prom-alert-manager".service = {
+          container_name = "alert-manager";
+          image = "docker.io/prom/alertmanager:v0.28.1";
+          networks = [
+            "datanet"
+            "proxynet"
+          ];
+          restart = "unless-stopped";
+          volumes = [
+            "${./files/prometheus/alertmanager.yml}:/alertmanager/alertmanager.yml"
+          ];
+        };
+        "prom-graphite-exporter".service = {
+          container_name = "graphite-exporter";
+          image = "docker.io/prom/graphite-exporter:v0.16.0";
+          networks = [
+            "datanet"
+            "proxynet"
+            "hostnet"
+          ];
+          ports = [
+            "9109:9109"
+            "9109:9109/udp"
+          ];
+          restart = "unless-stopped";
+        };
+        "prom-node-exporter".service = {
+          container_name = "node-exporter";
+          image = "docker.io/prom/node-exporter:v1.9.1";
+          networks = [
+            "datanet"
+            "proxynet"
+          ];
+          restart = "unless-stopped";
+        };
+        "prom-plex-exporter".service = {
+          container_name = "plex-exporter";
+          image = "ghcr.io/timothystewart6/prometheus-plex-exporter:latest";
+          networks = [
+            "datanet"
+            "proxynet"
+          ];
+          restart = "unless-stopped";
+          env_file = [config.age.secrets.monolith_docker_env_prometheus_plex_exporter.path];
+          environment = {
+            TZ = "America/Phoenix";
+          };
+        };
         "prowlarr".service = {
           container_name = "prowlarr";
           image = "lscr.io/linuxserver/prowlarr:2.0.2-nightly";
@@ -808,6 +885,10 @@
   };
   age.secrets.monolith_docker_env_postgres = {
     file = ./files/docker/env/postgres.env.age;
+    mode = "600";
+  };
+  age.secrets.monolith_docker_env_prometheus_plex_exporter = {
+    file = ./files/docker/env/prometheus-plex-exporter.env.age;
     mode = "600";
   };
   age.secrets.monolith_docker_env_romm = {
