@@ -3,6 +3,7 @@
     ../modules/common.nix
     ../modules/desktop.nix
     ../modules/nixos/hyprland.nix
+    ../modules/nixos/vm.nix
     ../modules/devenv.nix
   ];
 

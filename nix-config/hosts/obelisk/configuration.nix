@@ -12,9 +12,12 @@
     ../modules/nixos/hyprland.nix
     ../modules/nixos/latest-kernel.nix
     ../modules/nixos/node-exporter.nix
+    ../modules/nixos/libvirt.nix
     ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
     ./containers.nix
+    ./nfs.nix
+    ./vm.nix
   ];
 
   networking.hostName = "obelisk"; # Define your hostname.
