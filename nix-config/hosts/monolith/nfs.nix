@@ -10,5 +10,10 @@
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };
+    "/nas/paperless" = {
+      device = "terranas.manage.farmhouse.meskill.network:/mnt/tank/share/paperless";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
   };
 }

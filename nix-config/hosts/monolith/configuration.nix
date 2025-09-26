@@ -17,6 +17,7 @@
     ./containers.nix
     ./disko.nix
     ./nfs.nix
+    ./printing.nix
     ./rtl_433.nix
   ];
 

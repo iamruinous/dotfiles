@@ -564,9 +564,9 @@
           restart = "unless-stopped";
           volumes = [
             "/data/docker/paperless-ngx/data:/usr/src/paperless/data"
-            "/data/docker/paperless-ngx/media:/usr/src/paperless/media"
-            "/data/docker/paperless-ngx/consume:/usr/src/paperless/consume"
-            "/data/docker/paperless-ngx/export:/usr/src/paperless/export"
+            "/nas/paperless/media:/usr/src/paperless/media"
+            "/nas/paperless/consume:/usr/src/paperless/consume"
+            "/nas/paperless/export:/usr/src/paperless/export"
           ];
         };
         "paperless-gotenberg".service = {
