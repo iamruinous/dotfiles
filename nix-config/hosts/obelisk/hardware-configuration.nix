@@ -58,6 +58,18 @@
         prefixLength = 24;
       }
     ];
+    # bridges = {
+    #   "virbr0" = {
+    #     interfaces = ["vlan2@enp2s0"];
+    #   };
+    # };
+    # interfaces.virbr0.ipv4.addresses = [
+    #   {
+    #     address = "10.25.0.11";
+    #     prefixLength = 24;
+    #   }
+    # ];
+    # interfaces.virbr0.useDHCP = true;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

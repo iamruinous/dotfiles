@@ -11,11 +11,12 @@
     ../modules/nixos/flatpak.nix
     ../modules/nixos/hyprland.nix
     ../modules/nixos/latest-kernel.nix
-    # ../modules/nixos/ollama.nix
+    ../modules/nixos/libvirt.nix
     ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
-    # ./caddy.nix
     ./containers.nix
+    ./nfs.nix
+    ./vm.nix
   ];
 
   networking.hostName = "obelisk"; # Define your hostname.
