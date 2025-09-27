@@ -7,4 +7,6 @@
       config.allowUnfree = true;
     };
   };
+
+  nelko = import ./nelko.nix;
 }
