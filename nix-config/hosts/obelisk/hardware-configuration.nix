@@ -15,6 +15,7 @@
   boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "8021q"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
   boot.extraModulePackages = [];
 
   hardware.nvidia-container-toolkit.enable = true;

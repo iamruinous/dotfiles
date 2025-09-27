@@ -32,7 +32,7 @@ in {
   "files/configs/todoist/config.json.age".publicKeys = all_users ++ all_systems;
   "files/configs/restic/restic-password.age".publicKeys = all_users ++ linux_systems ++ remote_linux_systems;
 
-  "hosts/obelisk/files/caddy/caddy.env.age".publicKeys = [jmeskill obelisk];
+  "hosts/obelisk/files/acme/cloudflare.env.age".publicKeys = [jmeskill obelisk];
   "hosts/obelisk/files/caddy/Caddyfile.age".publicKeys = [jmeskill obelisk];
 
   "hosts/monolith/files/acme/cloudflare.env.age".publicKeys = [jmeskill monolith];

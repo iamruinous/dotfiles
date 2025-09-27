@@ -52,6 +52,7 @@
             "/data/docker/caddy/site:/srv"
             "/data/docker/caddy/data:/data"
             "/data/docker/caddy/config:/config"
+            "/data/docker/caddy/static:/static"
             "/var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock"
           ];
         };
