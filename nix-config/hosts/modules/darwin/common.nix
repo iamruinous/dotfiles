@@ -14,4 +14,7 @@
 
   # direnv configuration
   programs.direnv.enable = true;
+
+  # added to deal with some broken packages like zig on macos
+  nixpkgs.config.allowBroken = true;
 }

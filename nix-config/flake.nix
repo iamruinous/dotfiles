@@ -36,6 +36,9 @@
     # NixOS profiles to optimize settings for different hardware
     hardware.url = "github:nixos/nixos-hardware";
 
+    # arion for docker
+    arion.url = "github:hercules-ci/arion";
+
     # Nix Darwin (for MacOS machines)
     darwin = {
       url = "github:LnL7/nix-darwin/master";
