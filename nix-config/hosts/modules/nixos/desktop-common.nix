@@ -4,7 +4,6 @@
     ./1password.nix
     ./fonts.nix
     ./pipewire.nix
-    ./print.nix
     ./sudoless.nix
     ./tailscale.nix
     ./xserver.nix

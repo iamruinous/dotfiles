@@ -11,6 +11,7 @@
     ../modules/nixos/common.nix
     ../modules/nixos/docker.nix
     ../modules/nixos/latest-kernel.nix
+    ../modules/nixos/printing.nix
     ../modules/nixos/restic.nix
     ../modules/nixos/sudoless.nix
     ../modules/nixos/tailscale.nix

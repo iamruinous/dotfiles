@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url = "https://cdn.shopify.com/s/files/1/0657/6626/0980/files/NELKO_PL70e-BT_Linux_v3.0.1.407.deb";
     # Replace this with the actual hash from the build error
-    sha256 = "11v28s7z032ixg0z6x8g8v8v8v8v8v8v8v8v8v8v8v8v8v8v8v8v";
+    sha256 = "sha256-IinWigCaA9WVWTeTL6x+AXQyvBGCUbOKu1shjYjabUY=";
   };
 
   nativeBuildInputs = [unzip dpkg];

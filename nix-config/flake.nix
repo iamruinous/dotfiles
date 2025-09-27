@@ -240,5 +240,13 @@
     };
 
     overlays = import ./overlays {inherit inputs;};
+    packages = (import "${nixpkgs}/lib").genAttrs ["x86_64-linux" "aarch64-darwin" "x86_64-darwin"] (system: {
+      nelko-pl70ebt =
+        (import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = builtins.attrValues outputs.overlays;
+        }).nelko-pl70ebt;
+    });
   };
 }

@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../modules/common.nix
@@ -12,11 +12,13 @@
     ../modules/nixos/hyprland.nix
     ../modules/nixos/latest-kernel.nix
     ../modules/nixos/node-exporter.nix
+    ../modules/nixos/printing.nix
     ../modules/nixos/libvirt.nix
     ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
     ./containers.nix
     ./nfs.nix
+    ./printing.nix
     ./vm.nix
   ];
 
