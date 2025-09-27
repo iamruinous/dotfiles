@@ -145,6 +145,10 @@
           userConfig = users.${username};
         };
         modules = [
+          {
+            nixpkgs.overlays = builtins.attrValues outputs.overlays;
+            nixpkgs.config.allowUnfree = true;
+          }
           ./hosts/${hostname}/configuration.nix
           lanzaboote.nixosModules.lanzaboote
           agenix.nixosModules.default
@@ -168,6 +172,10 @@
           userConfig = users.${username};
         };
         modules = [
+          {
+            nixpkgs.overlays = builtins.attrValues outputs.overlays;
+            nixpkgs.config.allowUnfree = true;
+          }
           ./hosts/${hostname}/configuration.nix
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
@@ -181,7 +189,11 @@
     # Function for Home Manager configuration
     mkHomeConfiguration = system: hostname: username:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {inherit system;};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = builtins.attrValues outputs.overlays;
+        };
         extraSpecialArgs = {
           inherit inputs outputs hostname;
           userConfig = users.${username};
