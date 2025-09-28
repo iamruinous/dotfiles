@@ -9,7 +9,7 @@
         location = "Studio Desk";
         deviceUri = "usb:///PL70e-BT?serial=YY33230312";
         ppdOptions = {
-          PageSize = "100x150mm";
+          PageSize = "w288h432";
         };
         model = "Nelko/PL70e-BT.ppd";
       }
