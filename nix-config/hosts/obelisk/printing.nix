@@ -5,14 +5,20 @@
   hardware.printers = {
     ensurePrinters = [
       {
-        name = "PLT70e-BT";
+        name = "PL70e-BT";
         location = "Studio Desk";
-        deviceUri = "usb://Dell/1250c%20Color%20Printer?serial=YNP023240";
-        model = "Dell-1250c.ppd.gz";
+        deviceUri = "usb:///PL70e-BT?serial=YY33230312";
         ppdOptions = {
-          PageSize = "A4";
+          PageSize = "100x150mm";
         };
+        model = "Nelko/PL70e-BT.ppd";
       }
     ];
   };
+
+  hardware.printers.ensureDefaultPrinter = "PL70e-BT";
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    cups
+  ];
 }

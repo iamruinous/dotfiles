@@ -1,7 +1,7 @@
 {
   stdenv,
   fetchurl,
-  unzip,
+  cups,
   dpkg,
   lib,
 }:
@@ -10,27 +10,28 @@ stdenv.mkDerivation rec {
   version = "3.0.1.407";
 
   src = fetchurl {
-    url = "https://cdn.shopify.com/s/files/1/0657/6626/0980/files/NELKO_PL70e-BT_Linux_v3.0.1.407.deb";
+    url = "https://cdn.shopify.com/s/files/1/0657/6626/0980/files/NELKO_PL70e-BT_Linux_v${version}.deb";
     # Replace this with the actual hash from the build error
     sha256 = "sha256-IinWigCaA9WVWTeTL6x+AXQyvBGCUbOKu1shjYjabUY=";
   };
 
-  nativeBuildInputs = [unzip dpkg];
+  buildInputs = [cups];
 
-  unpackPhase = ''
-    # Extract the contents of the debian package
-    dpkg -x $src .
-  '';
+  nativeBuildInputs = [dpkg];
 
   installPhase = ''
     # Create the necessary directories in the output
-    install -d $out/share/cups/model
-    install -d $out/lib/cups/filter
+    install -d $out/share/cups/model/Nelko
+    install -d $out/lib/cups/filter/Nelko/Filter
+    install -d $out/lib/cups/filter/Nelko/PPDs
 
     # Copy the PPD file and the filter executable
     # The exact paths might differ, you may need to inspect the extracted contents
-    install -m 644 usr/share/cups/model/Nelko_PL70e-BT.ppd $out/share/cups/model/
-    install -m 755 usr/lib/cups/filter/rastertoNelko_PL70e-BT $out/lib/cups/filter/
+    install -m 644 usr/share/cups/model/Nelko/PL420.ppd $out/share/cups/model/Nelko/
+    install -m 644 usr/share/cups/model/Nelko/PL70e-BT.ppd $out/share/cups/model/Nelko/
+    install -m 644 usr/lib/cups/filter/Nelko/PPDs/PL420.ppd $out/lib/cups/filter/Nelko/PPDs/
+    install -m 644 usr/lib/cups/filter/Nelko/PPDs/PL70e-BT.ppd $out/lib/cups/filter/Nelko/PPDs/
+    install -m 755 usr/lib/cups/filter/Nelko/Filter/rastertolabel $out/lib/cups/filter/Nelko/Filter/
   '';
 
   meta = {
