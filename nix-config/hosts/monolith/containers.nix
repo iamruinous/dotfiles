@@ -555,6 +555,11 @@
             PAPERLESS_TIKA_ENABLED = "1";
             PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://gotenberg:3000";
             PAPERLESS_TIKA_ENDPOINT = "http://tika:9998";
+            PAPERLESS_URL = "https://paperless.meskill.farm";
+            PAPERLESS_CSRF_TRUSTED_ORIGINS = "https://paperless.meskill.farm,https://paperless.svc.farmhouse.meskill.network";
+            USERMAP_UID = "4000";
+            USERMAP_GID = "4000";
+            PAPERLESS_TIME_ZONE = "America/Phoenix";
           };
           env_file = [config.age.secrets.monolith_docker_env_paperless_ngx.path];
           networks = [
