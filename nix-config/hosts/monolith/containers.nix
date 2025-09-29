@@ -510,14 +510,21 @@
           ];
         };
         "n8n".service = {
-          command = ["start" "--tunnel"];
+          # command = ["start" "--tunnel"];
           container_name = "n8n";
-          image = "docker.n8n.io/n8nio/n8n:1.101.3";
+          image = "docker.n8n.io/n8nio/n8n:1.112.6";
           environment = {
             TZ = "America/Phoenix";
             GENERIC_TIMEZONE = "America/Phoenix";
+            N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS = "true";
+            N8N_RUNNERS_ENABLED = "true";
+            DB_TYPE = "postgresdb";
           };
-          networks = ["proxynet"];
+          env_file = [config.age.secrets.monolith_docker_env_n8n.path];
+          networks = [
+            "proxynet"
+            "datanet"
+          ];
           restart = "unless-stopped";
           volumes = [
             "/data/docker/n8n/config:/home/node/.n8n"
@@ -542,7 +549,7 @@
         };
         "paperless-ngx".service = {
           container_name = "paperless-ngx";
-          image = "ghcr.io/paperless-ngx/paperless-ngx:latest";
+          image = "ghcr.io/paperless-ngx/paperless-ngx:2.18";
           # depends_on = [
           #   "gotenberg"
           #   "postgres"
@@ -878,6 +885,10 @@
   };
   age.secrets.monolith_docker_env_mariadb = {
     file = ./files/docker/env/mariadb.env.age;
+    mode = "600";
+  };
+  age.secrets.monolith_docker_env_n8n = {
+    file = ./files/docker/env/n8n.env.age;
     mode = "600";
   };
   age.secrets.monolith_docker_env_piavpn = {
