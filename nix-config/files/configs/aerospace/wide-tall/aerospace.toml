@@ -55,6 +55,15 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 [workspace-to-monitor-force-assignment]
     1 = 'main'
     2 = 'secondary'
+    A = 'main'
+    B = 'main'
+    C = 'main'
+    G = 'main'
+    M = 'main'
+    O = 'main'
+    S = 'secondary'
+    T = 'secondary'
+    W = 'main'
 
 [gaps]
 inner.horizontal = 10
@@ -259,7 +268,7 @@ run = 'move-node-to-workspace G'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.app.ljlamgbgefobjkjkepgbmbebcoaheadj' # Glance
-run = 'move-node-to-workspace G'
+run = 'move-node-to-workspace 2'
 
 ## Full Screen
 
@@ -279,7 +288,7 @@ run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 1'
+run = 'move-node-to-workspace 2'
 
 # A - AI Space
 
