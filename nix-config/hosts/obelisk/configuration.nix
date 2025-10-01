@@ -17,6 +17,7 @@
     ../modules/nixos/restic.nix
     ../modules/nixos/steam.nix
     ./containers.nix
+    # ./microvm.nix
     ./nfs.nix
     ./printing.nix
     ./vm.nix
