@@ -1,7 +1,6 @@
 {flake, ...}: {
   imports = [
     flake.darwinModules.default
-    flake.nixosModules.common
     flake.nixosModules.developer
   ];
 

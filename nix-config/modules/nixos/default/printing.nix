@@ -1,5 +1,5 @@
-{...}: {
-  services.printing.enable = true;
+{lib, ...}: {
+  services.printing.enable = lib.mkDefault false;
   fonts.enableDefaultPackages = true;
 
   services.avahi = {

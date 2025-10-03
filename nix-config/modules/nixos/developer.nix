@@ -36,7 +36,7 @@
         llm-gemini
       ]))
     uv
-    zig
+    # zig # TODO: broken
 
     # lsp and formatters
     alejandra
@@ -56,7 +56,7 @@
     taplo
     typos-lsp
     yaml-language-server
-    zls
+    # zls # TODO: zig broken
 
     # rust
     (fenix.stable.withComponents [

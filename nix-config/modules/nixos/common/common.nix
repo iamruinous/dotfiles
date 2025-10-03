@@ -1,9 +1,4 @@
-{
-  pkgs,
-  flake,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   # System packages
   environment.systemPackages = with pkgs; [
     # config management

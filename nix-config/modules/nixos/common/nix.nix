@@ -1,13 +1,13 @@
 {
-  config,
+  hostName,
+  pkgs,
   lib,
   flake,
   ...
 }: let
   inherit (lib) mapAttrs imap1;
   inherit (flake.lib) cacheUrl;
-in {
-  flake.caches = [
+  caches = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -16,7 +16,7 @@ in {
     "walker.cachix.org-1:fG8q+uAaMqhsMxWjwvk0IMb4mFPFLqHjuvfwQxE4oJM="
     "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
   ];
-
+in {
   # Nix Settings
   nix.settings = {
     # Enable flakes and pipes
@@ -41,8 +41,8 @@ in {
     builders-use-substitutes = true;
 
     # Binary caches
-    substituters = imap1 (index: key: cacheUrl index key) flake.caches;
-    trusted-public-keys = flake.caches;
+    substituters = imap1 (index: key: cacheUrl index key) caches;
+    trusted-public-keys = caches;
   };
 
   # nix.sshServe = {
@@ -58,8 +58,8 @@ in {
 
   # Automatic garbage collection
   nix.gc = {
-    automatic = true;
-    dates = "weekly";
+    automatic = pkgs.stdenv.isLinux;
+    interval = "weekly";
     options = "--delete-older-than 30d";
   };
 
@@ -75,20 +75,20 @@ in {
     allowUnfree = true;
   };
 
-  # Automatically upgrade this system while I sleep
-  system.autoUpgrade = {
-    enable = false;
-    dates = "04:00";
-    flake = "/etc/nixos#${config.networking.hostName}";
-    flags = [
-      # "--update-input" "nixpkgs"
-      # "--update-input" "unstable"
-      # "--update-input" "nur"
-      # "--update-input" "home-manager"
-      # "--update-input" "agenix"
-      # "--update-input" "impermanence"
-      # "--commit-lock-file"
-    ];
-    allowReboot = true;
-  };
+  # # Automatically upgrade this system while I sleep
+  # system.autoUpgrade = {
+  #   enable = false;
+  #   dates = "04:00";
+  #   flake = "/etc/nixos#${hostName}";
+  #   flags = [
+  #     # "--update-input" "nixpkgs"
+  #     # "--update-input" "unstable"
+  #     # "--update-input" "nur"
+  #     # "--update-input" "home-manager"
+  #     # "--update-input" "agenix"
+  #     # "--update-input" "impermanence"
+  #     # "--commit-lock-file"
+  #   ];
+  #   allowReboot = true;
+  # };
 }
