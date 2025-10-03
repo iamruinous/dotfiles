@@ -1,4 +1,15 @@
-{pkgs, ...}: {
+{
+  flake,
+  pkgs,
+  ...
+}: {
+  nixpkgs = {
+    overlays = [
+      # flake.outputs.overlays.stable-packages
+      flake.inputs.fenix.overlays.default
+    ];
+  };
+
   # System packages
   environment.systemPackages = with pkgs; [
     # dev tools

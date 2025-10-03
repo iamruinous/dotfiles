@@ -8,5 +8,5 @@
   users.users.jmeskill.home = /Users/jmeskill;
   system.primaryUser = "jmeskill";
 
-  system.stateVersion = 6; # initial nix-darwin state
+  system.stateVersion = 6;
 }

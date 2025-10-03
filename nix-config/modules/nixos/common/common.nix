@@ -1,29 +1,9 @@
 {
   pkgs,
-  inputs,
-  outputs,
-  userConfig,
+  flake,
+  config,
   ...
 }: {
-  # Nix settings
-  nix.settings = {
-    experimental-features = "nix-command flakes";
-    trusted-users = [userConfig.name "@wheel"];
-  };
-#  nix.optimise.automatic = true;
-
-  # Nixpkgs configuration
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.stable-packages
-      inputs.fenix.overlays.default
-    ];
-
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   # System packages
   environment.systemPackages = with pkgs; [
     # config management

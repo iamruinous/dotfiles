@@ -1,10 +1,15 @@
-{...}: {
+{flake, ...}: {
   imports = [
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/darwin/common.nix
+    flake.darwinModules.default
+    flake.nixosModules.common
+    flake.nixosModules.developer
   ];
 
+  nixpkgs.hostPlatform = "x86_64-darwin";
+
+  users.users.jmeskill.home = /Users/jmeskill;
+  system.primaryUser = "jmeskill";
+
   # Used for backwards compatibility, please read the changelog before changing.
-  system.stateVersion = 5;
+  system.stateVersion = 6;
 }
