@@ -318,6 +318,22 @@
         "type": "github"
       }
     },
+    "flake-registry": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1744623129,
+        "narHash": "sha256-nlQTQrHqM+ywXN0evDXnYEV6z6WWZB5BFQ2TkXsduKw=",
+        "owner": "NixOS",
+        "repo": "flake-registry",
+        "rev": "1322f33d5836ae757d2e6190239252cf8402acf6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-registry",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems_4"
@@ -991,6 +1007,7 @@
         "blueprint": "blueprint",
         "disko": "disko",
         "fenix": "fenix",
+        "flake-registry": "flake-registry",
         "hardware": "hardware",
         "home-manager": "home-manager_2",
         "hyprland-qtutils": "hyprland-qtutils",

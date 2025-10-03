@@ -34,6 +34,11 @@
     # <https://github.com/zhaofengli/nix-homebrew>
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
+    # Nix Flake Registry
+    # <https://github.com/nixos/flake-registry>
+    flake-registry.url = "github:NixOS/flake-registry";
+    flake-registry.flake = false;
+
     # Fenix for rust
     # <https://github.com/nix-community/fenix>
     fenix.url = "github:nix-community/fenix";

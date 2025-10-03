@@ -1,7 +1,7 @@
 {flake, ...}: {
   imports = [
     flake.homeModules.default
-    # flake.homeModules.darwin
+    flake.homeModules.darwin
   ];
 
   # Enable todoist
@@ -17,14 +17,7 @@
 
   xdg.configFile.aerospace.source = ./aerospace.toml;
 
+  programs.wezterm.enable = true;
+
   home.stateVersion = "25.05";
 }
-#   imports = [
-#     ../modules/common.nix
-#     ../modules/desktop.nix
-#     ../modules/ssh-interactive.nix
-#     ../modules/darwin/common.nix
-#     ../modules/darwin/aerospace-default.nix
-#   ];
-#
-

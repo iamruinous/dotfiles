@@ -3,7 +3,8 @@
   environment.systemPackages = with pkgs; [
     # config management
     age
-    chezmoi
+    # chezmoi
+    home-manager
 
     # utils
     cargo-binstall
