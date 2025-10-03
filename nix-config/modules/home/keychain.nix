@@ -1,6 +1,6 @@
-{...}: {
+{lib, ...}: {
   programs.keychain = {
-    enable = true;
+    enable = lib.mkDefault false;
     inheritType = "any-once";
     extraFlags = [
       "--ignore-missing"

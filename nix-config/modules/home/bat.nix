@@ -1,6 +1,6 @@
-{...}: {
+{lib, ...}: {
   # Install bat via home-manager module
   programs.bat = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 }

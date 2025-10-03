@@ -1,7 +1,7 @@
-{...}: {
+{lib, ...}: {
   # Install btop via home-manager module
   programs.btop = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       color_theme = "tokyo_night";
       theme_background = false;

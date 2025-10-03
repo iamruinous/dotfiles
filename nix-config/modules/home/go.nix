@@ -1,7 +1,7 @@
-{...}: {
+{lib, ...}: {
   # Install and configure Golang via home-manager module
   programs.go = {
-    enable = true;
+    enable = lib.mkDefault true;
     goBin = "go/bin";
     goPath = "go";
   };

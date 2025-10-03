@@ -1,8 +1,12 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   networking.firewall.allowedTCPPorts = [80 443];
 
   services.caddy = {
-    enable = true;
+    enable = lib.mkDefault true;
     package = pkgs.caddy.withPlugins {
       plugins = ["github.com/caddy-dns/cloudflare@v0.2.1"];
       hash = "sha256-j+xUy8OAjEo+bdMOkQ1kVqDnEkzKGTBIbMDVL7YDwDY=";

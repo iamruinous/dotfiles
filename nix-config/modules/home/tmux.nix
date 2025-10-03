@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   # Tmux terminal multiplexer configuration
   programs.tmux = {
-    enable = true;
+    enable = lib.mkDefault true;
     shell = "${pkgs.fish}/bin/fish";
     mouse = true;
     aggressiveResize = true;

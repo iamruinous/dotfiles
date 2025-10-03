@@ -1,7 +1,7 @@
-{...}: {
+{lib, ...}: {
   # Enable ollama
   services.ollama = {
-    enable = true;
+    enable = lib.mkDefault true;
     acceleration = "cuda";
     loadModels = ["llama3.2:3b" "deepseek-r1:1.5b"];
     environmentVariables = {
@@ -10,6 +10,6 @@
   };
 
   services.open-webui = {
-    enable = true;
+    enable = lib.mkDefault true;
   };
 }

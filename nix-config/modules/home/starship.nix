@@ -1,7 +1,7 @@
 {lib, ...}: {
   # Starship configuration
   programs.starship = {
-    enable = true;
+    enable = lib.mkDefault true;
     enableTransience = true;
     enableInteractive = true;
     enableFishIntegration = true;
@@ -136,7 +136,7 @@
         full_symbol = "󰁹";
         charging_symbol = "󰚥 ";
         discharging_symbol = "󰁺 ";
-        # disabled = !builtins.elem hostname ["jbookair" "jbookpro" "framework"];
+        disabled = lib.mkDefault true;
       };
       battery.display = [
         {

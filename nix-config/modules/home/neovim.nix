@@ -1,9 +1,13 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   nvim_config = ../../files/configs/nvim;
 in {
   # Neovim text editor configuration
   programs.neovim = {
-    enable = true;
+    enable = lib.mkDefault true;
     package = pkgs.neovim-unwrapped;
     defaultEditor = true;
     viAlias = true;

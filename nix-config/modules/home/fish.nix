@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   # fish shell configuration
   programs.fish = {
-    enable = true;
+    enable = lib.mkDefault true;
     shellAbbrs = {
       dl = "curl --create-dirs -O --output-dir /tmp/";
     };

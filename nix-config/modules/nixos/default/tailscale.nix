@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   # Enable tailscale
-  services.tailscale.enable = true;
+  services.tailscale.enable = lib.mkDefault true;
 }

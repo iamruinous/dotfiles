@@ -1,7 +1,7 @@
-{...}: {
+{lib, ...}: {
   # Install bottom via home-manager module
   programs.bottom = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       flags = {
         avg_cpu = true;

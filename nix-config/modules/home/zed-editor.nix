@@ -1,7 +1,7 @@
-{...}: {
+{lib, ...}: {
   # Zed editor configuration
   programs.zed-editor = {
-    enable = true;
+    enable = lib.mkDefault false;
     userSettings = {
       theme = {
         mode = "dark";

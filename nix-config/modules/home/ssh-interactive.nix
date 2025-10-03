@@ -1,6 +1,6 @@
-{...}: {
+{lib, ...}: {
   programs.ssh = {
-    enable = true;
+    enable = lib.mkDefault true;
     addKeysToAgent = "yes";
     forwardAgent = true;
     extraConfig = ''

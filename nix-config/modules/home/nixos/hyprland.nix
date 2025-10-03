@@ -11,7 +11,7 @@ in {
   # ];
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = lib.mkDefault true;
     systemd.variables = ["--all"];
     settings = {
       general = {

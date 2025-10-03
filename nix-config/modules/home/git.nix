@@ -1,4 +1,4 @@
-{...}: let
+{lib, ...}: let
   git_config = ../../files/configs/git;
 in {
   # home.file.".ssh/allowed_signers".text = ''
@@ -8,7 +8,7 @@ in {
   # '';
 
   programs.lazygit = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       gui = {
         nerdFontsVersion = "3";
@@ -18,8 +18,8 @@ in {
 
   # Install git via home-manager module
   programs.git = {
-    enable = true;
-    lfs.enable = true;
+    enable = lib.mkDefault true;
+    lfs.enable = lib.mkDefault true;
     aliases = {
       a = "add";
       c = "commit -v";
@@ -31,7 +31,7 @@ in {
     };
     signing = {
       # key = "iamruinous@ruinous.social";
-      signByDefault = true;
+      signByDefault = lib.mkDefault true;
     };
     includes = [
       {

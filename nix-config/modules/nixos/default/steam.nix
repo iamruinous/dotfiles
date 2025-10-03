@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs = {
     steam = {
-      enable = true;
+      enable = lib.mkDefault true;
       package = pkgs.steam.override {
         extraPkgs = pkgs:
           with pkgs; [
