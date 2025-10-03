@@ -2,11 +2,12 @@
   lib,
   config,
   pkgs,
+  flake,
   ...
 }: {
-  # imports = [
-  #   ./user.nix
-  # ];
+  imports = [
+    flake.nixosModules.common
+  ];
 
   # Register flake inputs for nix commands
   # nix.registry = lib.mapAttrs (_: flake: {inherit flake;}) (lib.filterAttrs (_: lib.isType "flake") inputs);
@@ -92,15 +93,15 @@
 
   # OpenSSH daemon
   services.openssh.enable = true;
-  # services.openssh.extraConfig = ''
-  #   Match User ${userConfig.name}
-  #         AllowAgentForwarding yes
-  #         AllowTcpForwarding yes
-  #         PermitTTY yes
-  #         PermitTunnel yes
-  #         X11Forwarding yes
-  #   Match All
-  # '';
+  services.openssh.extraConfig = ''
+    Match User ${config.system.primaryUser}
+          AllowAgentForwarding yes
+          AllowTcpForwarding yes
+          PermitTTY yes
+          PermitTunnel yes
+          X11Forwarding yes
+    Match All
+  '';
 
   # direnv integration
   programs.direnv = {

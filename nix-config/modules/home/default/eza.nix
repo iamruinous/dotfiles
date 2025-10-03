@@ -1,5 +1,5 @@
 {lib, ...}: let
-  eza_config = ../../files/configs/eza;
+  eza_config = ../../../files/configs/eza;
 in {
   # Install eza via home-manager module
   programs.eza = {

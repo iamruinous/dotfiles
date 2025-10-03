@@ -1,10 +1,16 @@
-{...}: let
-  borders_config = ../../../files/configs/borders;
-in {
-  xdg.configFile = {
-    "borders" = {
-      source = "${borders_config}";
-      recursive = true;
-    };
-  };
+{...}: {
+  xdg.configFile.borders.text = ''
+    #!/bin/bash
+    # vi: ft=bash
+
+    options=(
+    	style=round
+    	width=6.0
+    	hidpi=on
+    	active_color=0xff813999
+    	inactive_color=0xff19003f
+    )
+
+    /run/current-system/sw/bin/borders "''${options[@]}"
+  '';
 }

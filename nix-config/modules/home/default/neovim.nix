@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  nvim_config = ../../files/configs/nvim;
+  nvim_config = ../../../files/configs/nvim;
 in {
   # Neovim text editor configuration
   programs.neovim = {
