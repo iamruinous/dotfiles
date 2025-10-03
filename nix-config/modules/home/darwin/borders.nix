@@ -1,5 +1,5 @@
-{...}: {
-  xdg.configFile.borders.text = ''
+{pkgs, ...}: {
+  xdg.configFile."borders/bordersrc".text = ''
     #!/bin/bash
     # vi: ft=bash
 
@@ -11,6 +11,6 @@
     	inactive_color=0xff19003f
     )
 
-    /run/current-system/sw/bin/borders "''${options[@]}"
+    ${pkgs.jankyborders}/bin/borders "''${options[@]}"
   '';
 }
