@@ -2,7 +2,7 @@
   # Starship configuration
   programs.starship = {
     enable = lib.mkDefault true;
-    enableTransience = true;
+    # enableTransience = true;
     enableInteractive = true;
     enableFishIntegration = true;
     enableBashIntegration = true;

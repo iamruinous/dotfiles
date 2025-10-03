@@ -15,7 +15,10 @@
     "/opt/homebrew/bin/"
   ];
 
-  xdg.configFile.aerospace.source = ./aerospace.toml;
+  # this system has a battery
+  programs.starship.settings.battery.disabled = false;
+
+  xdg.configFile."aerospace/aerospace.toml".source = ./aerospace.toml;
 
   programs.wezterm.enable = true;
 
