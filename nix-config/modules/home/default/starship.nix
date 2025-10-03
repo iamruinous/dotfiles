@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # Starship configuration
   programs.starship = {
     enable = lib.mkDefault true;
@@ -6,6 +10,7 @@
     enableInteractive = true;
     enableFishIntegration = true;
     enableBashIntegration = true;
+    package = pkgs.starship;
 
     settings = {
       format = lib.concatStrings [

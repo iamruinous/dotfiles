@@ -1,6 +1,4 @@
-{...}: let
-  editorconfig_config = ../../../files/configs/editorconfig;
-in {
+{...}: {
   home.file.".editorconfig".text = ''
     # vi: ft=toml
     # EditorConfig is awesome: https://EditorConfig.org
