@@ -3,8 +3,8 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {flake, ...}: {
   imports = [
-    flake.nixosModules.default
     flake.nixosModules.developer
+    flake.nixosModules.hyprland
 
     ./hardware-configuration.nix
     ./containers.nix
@@ -15,10 +15,10 @@
   networking.hostName = "obelisk"; # Define your hostname.
 
   virtualisation.libvirtd.enable = true;
-  virtualisation.docker.enable = true;
   services.printing.enable = true;
   services.printing.discoverable = true;
   virtualisation.arion.enable = true;
+  programs.hyprland.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

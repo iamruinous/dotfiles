@@ -1,6 +1,4 @@
 {config, ...}: {
-  hardware.nvidia-container-toolkit.enable = true;
-
   networking.firewall.allowedTCPPorts = [80 443];
 
   virtualisation.arion = {

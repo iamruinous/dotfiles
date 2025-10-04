@@ -1,3 +1,4 @@
+# virtualisation.arion.enable = true;
 {
   lib,
   pkgs,
@@ -12,16 +13,12 @@ in {
   ];
 
   options.virtualisation.arion = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "arion";
-    };
+    enable = lib.options.mkEnableOption "arion";
   };
 
   config = lib.mkIf cfg.enable {
     # Docker configuration
-    # virtualisation.docker.enable = true;
+    virtualisation.docker.enable = true;
     # virtualisation.docker.rootless.enable = true;
     # virtualisation.docker.rootless.setSocketVariable = true;
     users.users.jmeskill.extraGroups = ["docker"]; # TODO: generalize user

@@ -18,8 +18,6 @@
   boot.extraModprobeConfig = "options kvm_intel nested=1";
   boot.extraModulePackages = [];
 
-  hardware.nvidia-container-toolkit.enable = true;
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/584fb6b8-2499-4226-91c4-5e5049fe37ca";
     fsType = "ext4";
@@ -89,6 +87,9 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  nixpkgs.config.nvidia.acceptLicense = true;
+  hardware.nvidia-container-toolkit.enable = true;
 
   systemd.sleep.extraConfig = ''
     AllowSuspend=no

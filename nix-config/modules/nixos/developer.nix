@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  imports = [flake.nixosModules.default];
+
   nixpkgs = {
     overlays = [
       # flake.outputs.overlays.stable-packages
