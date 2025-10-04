@@ -4,19 +4,22 @@
 {
   config,
   pkgs,
+  flake,
   ...
 }: {
   imports = [
+    flake.inputs.agenix.nixosModules.default
+    flake.inputs.arion.nixosModules.arion
     ./hardware-configuration.nix
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/nixos/backup-docker-postgres.nix
-    ../modules/nixos/common.nix
-    ../modules/nixos/docker.nix
-    ../modules/nixos/latest-kernel.nix
-    ../modules/nixos/restic.nix
-    ../modules/nixos/sudoless.nix
-    ../modules/nixos/tailscale.nix
+    # ../modules/common.nix
+    # ../modules/developer.nix
+    # ../modules/nixos/backup-docker-postgres.nix
+    # ../modules/nixos/common.nix
+    # ../modules/nixos/docker.nix
+    # ../modules/nixos/latest-kernel.nix
+    # ../modules/nixos/restic.nix
+    # ../modules/nixos/sudoless.nix
+    # ../modules/nixos/tailscale.nix
     ./containers.nix
     #./disko.nix
   ];

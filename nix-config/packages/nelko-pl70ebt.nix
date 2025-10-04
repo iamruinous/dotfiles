@@ -1,6 +1,7 @@
 {pkgs, ...}:
 pkgs.stdenv.mkDerivation {
-  pname = "nelko-pl70ebt-driver";
+  name = "nelko-pl70ebt";
+  version = "3.0.1.407";
 
   src = pkgs.fetchurl {
     url = "https://cdn.shopify.com/s/files/1/0657/6626/0980/files/NELKO_PL70e-BT_Linux_v3.0.1.407.deb";
@@ -28,7 +29,7 @@ pkgs.stdenv.mkDerivation {
   meta = {
     description = "Nelko PL70e-BT printer driver";
     homepage = "https://nelkoprint.com/";
-    license = pkgs.lib.licenses.unfree;
+    license = pkgs.lib.licenses.mit; # TODO: figure out how to deal with unfree
     platforms = pkgs.lib.platforms.linux;
     maintainers = [pkgs.lib.maintainers.jmeskill];
   };

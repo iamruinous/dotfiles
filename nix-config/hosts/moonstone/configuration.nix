@@ -10,12 +10,12 @@
 in {
   imports = [
     ./hardware-configuration.nix
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/nixos/desktop-common.nix
-    ../modules/nixos/docker.nix
-    ../modules/nixos/hyprland.nix
-    ../modules/nixos/latest-kernel.nix
+    # ../modules/common.nix
+    # ../modules/developer.nix
+    # ../modules/nixos/desktop-common.nix
+    # ../modules/nixos/docker.nix
+    # ../modules/nixos/hyprland.nix
+    # ../modules/nixos/latest-kernel.nix
   ];
 
   networking.hostName = "moonstone"; # Define your hostname.

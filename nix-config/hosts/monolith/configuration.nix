@@ -1,20 +1,27 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{config, ...}: {
+{
+  config,
+  flake,
+  ...
+}: {
   imports = [
+    flake.nixosModules.default
+    flake.inputs.disko.nixosModules.disko
+    flake.inputs.arion.nixosModules.arion
     ./hardware-configuration.nix
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/nixos/backup-docker-mariadb.nix
-    ../modules/nixos/backup-docker-postgres.nix
-    ../modules/nixos/common.nix
-    ../modules/nixos/docker.nix
-    ../modules/nixos/latest-kernel.nix
-    ../modules/nixos/printing.nix
-    ../modules/nixos/restic.nix
-    ../modules/nixos/sudoless.nix
-    ../modules/nixos/tailscale.nix
+    # ../modules/common.nix
+    # ../modules/developer.nix
+    # ../modules/nixos/backup-docker-mariadb.nix
+    # ../modules/nixos/backup-docker-postgres.nix
+    # ../modules/nixos/common.nix
+    # ../modules/nixos/docker.nix
+    # ../modules/nixos/latest-kernel.nix
+    # ../modules/nixos/printing.nix
+    # ../modules/nixos/restic.nix
+    # ../modules/nixos/sudoless.nix
+    # ../modules/nixos/tailscale.nix
     ./containers.nix
     ./disko.nix
     ./nfs.nix

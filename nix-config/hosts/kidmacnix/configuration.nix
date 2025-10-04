@@ -3,19 +3,20 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
-  userConfig,
+  flake,
   ...
 }: {
   imports = [
+    flake.inputs.disko.nixosModules.disko
     inputs.hardware.nixosModules.apple-imac-18-2
     ./hardware-configuration.nix
     ./disko.nix
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/nixos/desktop-common.nix
-    ../modules/nixos/flatpak.nix
-    ../modules/nixos/kde.nix
-    ../modules/nixos/latest-kernel.nix
+    # ../modules/common.nix
+    # ../modules/developer.nix
+    # ../modules/nixos/desktop-common.nix
+    # ../modules/nixos/flatpak.nix
+    # ../modules/nixos/kde.nix
+    # ../modules/nixos/latest-kernel.nix
   ];
 
   hardware.facetimehd.enable = false;
@@ -25,7 +26,7 @@
   # autologin
   services.displayManager = {
     autoLogin.enable = true;
-    autoLogin.user = userConfig.name;
+    autoLogin.user = "jmeskill"; # TODO: generalize user
   };
 
   # This value determines the NixOS release from which the default

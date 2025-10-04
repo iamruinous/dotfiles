@@ -1,29 +1,24 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{flake, ...}: {
   imports = [
+    flake.nixosModules.default
+    flake.nixosModules.developer
+
     ./hardware-configuration.nix
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/nixos/desktop-common.nix
-    ../modules/nixos/docker.nix
-    ../modules/nixos/flatpak.nix
-    ../modules/nixos/hyprland.nix
-    ../modules/nixos/latest-kernel.nix
-    ../modules/nixos/node-exporter.nix
-    ../modules/nixos/printing.nix
-    ../modules/nixos/libvirt.nix
-    ../modules/nixos/restic.nix
-    ../modules/nixos/steam.nix
     ./containers.nix
-    # ./microvm.nix
     ./nfs.nix
     ./printing.nix
-    ./vm.nix
   ];
 
   networking.hostName = "obelisk"; # Define your hostname.
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
+  services.printing.enable = true;
+  services.printing.discoverable = true;
+  virtualisation.arion.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

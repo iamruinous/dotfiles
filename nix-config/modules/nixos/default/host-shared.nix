@@ -94,14 +94,14 @@
   # OpenSSH daemon
   services.openssh.enable = true;
   services.openssh.extraConfig = ''
-    Match User ${config.system.primaryUser}
+    Match User jmeskill
           AllowAgentForwarding yes
           AllowTcpForwarding yes
           PermitTTY yes
           PermitTunnel yes
           X11Forwarding yes
     Match All
-  '';
+  ''; # TODO: generalize user
 
   # direnv integration
   programs.direnv = {

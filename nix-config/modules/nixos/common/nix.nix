@@ -59,7 +59,7 @@ in {
   # Automatic garbage collection
   nix.gc = {
     automatic = pkgs.stdenv.isLinux;
-    interval = "weekly";
+    dates = "weekly";
     options = "--delete-older-than 30d";
   };
 

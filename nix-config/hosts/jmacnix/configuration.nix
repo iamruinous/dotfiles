@@ -3,18 +3,19 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
-  userConfig,
+  flake,
   ...
 }: {
   imports = [
+    flake.inputs.disko.nixosModules.disko
     inputs.hardware.nixosModules.apple-imac-14-2
     ./hardware-configuration.nix
-    ../modules/common.nix
-    ../modules/developer.nix
-    ../modules/nixos/desktop-common.nix
-    ../modules/nixos/flatpak.nix
-    ../modules/nixos/gnome.nix
-    ../modules/nixos/latest-kernel.nix
+    # ../modules/common.nix
+    # ../modules/developer.nix
+    # ../modules/nixos/desktop-common.nix
+    # ../modules/nixos/flatpak.nix
+    # ../modules/nixos/gnome.nix
+    # ../modules/nixos/latest-kernel.nix
   ];
 
   hardware.facetimehd.enable = false;
@@ -60,7 +61,7 @@
                     mountpoint = "/home";
                   };
                   # Sub(sub)volume doesn't need a mountpoint as its parent is mounted
-                  "/home/${userConfig.name}" = {};
+                  "/home/jmeskill" = {}; # TODO: generalize user
                   # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
                     mountOptions = [
