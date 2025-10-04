@@ -7,9 +7,10 @@
   ...
 }: {
   imports = [
-    flake.nixosModules.default
+    flake.nixosModules.developer
     flake.nixosModules.bork
     flake.inputs.disko.nixosModules.disko
+
     ./hardware-configuration.nix
     # ../modules/nixos/backup-docker-mariadb.nix
     # ../modules/nixos/backup-docker-postgres.nix

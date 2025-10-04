@@ -8,18 +8,9 @@
   ...
 }: {
   imports = [
-    flake.inputs.agenix.nixosModules.default
-    flake.inputs.arion.nixosModules.arion
+  flake.nixosModules.developer
+  flake.nixosModules.bork
     ./hardware-configuration.nix
-    # ../modules/common.nix
-    # ../modules/developer.nix
-    # ../modules/nixos/backup-docker-postgres.nix
-    # ../modules/nixos/common.nix
-    # ../modules/nixos/docker.nix
-    # ../modules/nixos/latest-kernel.nix
-    # ../modules/nixos/restic.nix
-    # ../modules/nixos/sudoless.nix
-    # ../modules/nixos/tailscale.nix
     ./containers.nix
     #./disko.nix
   ];
@@ -38,6 +29,7 @@
 
   # update restic hostname to use tailscale
   services.restic.backups.terranasbackup.repository = "sftp:tmbackup@terranas-1.greyhound-triceratops.ts.net:/mnt/tank/tmbackup/linux-backup/${config.networking.hostName}";
+  services.restic.terranas= true;
 
   #  services.openssh.settings.UsePAM = true;
   #  services.openssh.settings.AllowUsers = ["git"];
