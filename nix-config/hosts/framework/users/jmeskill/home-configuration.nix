@@ -1,15 +1,11 @@
-{...}: let
+{flake, ...}: let
   wallpaper_dir = ../../files/wallpapers/nixos;
   workspace-wallpaper = "${wallpaper_dir}/pixel_sakura_static.png";
 in {
   imports = [
-    ../modules/common.nix
-    ../modules/desktop.nix
-    ../modules/ssh-interactive.nix
+    flake.homeModules.default
+    flake.homeModules.hyprland
   ];
-
-  # Enable home-manager
-  programs.home-manager.enable = true;
 
   # Enable todoist
   services.todoist-auto.enable = true;
@@ -17,8 +13,8 @@ in {
   # Enable vdirsyncer
   services.vdirsyncer-auto.enable = true;
 
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  programs.wezterm.enable = true;
+  programs.ssh-interactive.enable = true;
 
   programs.plasma = {
     enable = true;
