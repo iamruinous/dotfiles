@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   services.prometheus = {
     exporters = {
       node = {
