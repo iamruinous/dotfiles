@@ -39,6 +39,10 @@ in {
       xwayland.enable = true;
     };
 
+    # programs.hyprshell = {
+    #   enable = true;
+    # };
+
     programs.walker = {
       enable = true;
     };

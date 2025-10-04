@@ -15,7 +15,7 @@ in {
     # Enable the 1Password GUI with myself as an authorized user for polkit
     programs._1password-gui = {
       enable = lib.mkDefault true;
-      polkitPolicyOwners = [config.system.primaryUser];
+      polkitPolicyOwners = ["jmeskill"]; # TODO: generalize user
     };
   };
 }
