@@ -20,6 +20,7 @@
   virtualisation.arion.enable = true;
   programs.hyprland.enable = true;
   programs._1password.enable = true;
+  services.prometheus.exporters.node.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
